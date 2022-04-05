@@ -1,0 +1,56 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.loe
+
+## Intermediate documents:
+*.dvi
+*-converted-to.*
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.brf
+*.run.xml
+*.latexmain
+
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+*.tdo
+
+##swap files
+*.swp
+*.synctex(busy)
+
+##other help files
+*.idx
+*.ilg
+*.ind
+*.lec
+*.cnt
+
+### main pdf file
+.pdf
+
+## build directory
+build/
+
+## makefiles locks
+.init-submodule-cert
+.init-git-hooks-cert

@@ -1,0 +1,34 @@
+stages:
+  - build
+  - pages
+
+default:
+    tags:
+        - latex
+
+build-document:
+  stage: build
+  script:
+      - .ci/build_document.sh
+  variables:
+      GIT_SUBMODULE_STRATEGY: recursive
+  artifacts:
+    paths:
+        - public/
+  only:
+      - tags
+      - branches
+        #      - merge_requests
+
+
+pages:
+    stage: pages
+    artifacts:
+        paths:
+            - public/
+    script:
+        - echo "Deploying to pages"
+        - test -f public/2022_Topology_II.pdf
+    only:
+        - master
+        - main
