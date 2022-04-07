@@ -1,0 +1,67 @@
+\section{Projective modules}
+
+\newcommand\dash{-}
+\todo{fix this}
+
+\begin{definition}
+  Let $R$ be a ring.
+  An $R$-module $P$ is projective if one of the following equivalent
+  conditions holds:
+   \begin{enumerate}[p]
+    \item The functor $\Hom_R(P, \dash)$ is exact.
+    \item For every surjection $\mu \colon  M \twoheadrightarrow N$
+      and every morphism $p\colon P \to N$ lifts to a morphism
+      $\hat{p} \colon  P \to  M$:
+      \[
+      \begin{tikzcd}[column sep = tiny]
+      & P \ar[swap,dashed]{dl}{\hat{p}} \ar{dr}{p} \\
+      M \ar[swap]{rr}{\mu} & & N
+      \end{tikzcd}
+      \]
+    \item Every short exact sequence
+      \[
+      0 \to  L \xrightarrow{λ} M \xrightarrow{\mu} \xrightarrow{P} \to 0
+      \] 
+      splits.
+    \item $P$ is a direct summand of a free module,
+      that is, there exists a module $K$ and a free module  $F$,
+      such that  $F \cong P \oplus K$.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  Let $P_1$ and $P_2$ be projective modules.
+  Then, the following hold:
+  \begin{enumerate}[h]
+    \item
+      $P_1 \oplus P_2$ and $P_1 \otimes _R P_2$
+      are projective modules.
+    \item Every direct summand of $P_1$ is projective.
+    \item For every $R$-module  $M$, there exists a projective resolution
+       \[
+      \ldots \to P_3 \to P_2 \to P_1 \to P_0 \to  M \to  0
+      \] 
+  \end{enumerate}
+\end{lemma}
+
+\begin{lemma}
+  Let $P$ be finitely generated $R$-module.
+  Then  $P$ is projective if and only if  $P$ is a direct summand
+  of  $R^n$ for some $n\in \mathbb{N}$.
+\end{lemma}
+
+\begin{lemma}
+  Let $P$ be an  $R$-module.
+  Then, the following hold:
+   \begin{enumerate}[h]
+     \item Let $P$ be free. Then  $P$ is projective.
+     \item Let $P$ be projective. Then  $P$ is flat. 
+     \item Let $P$ be flat. If  $R$ is noetherian and  $P$ is
+       finitely generated, then  $P$ is projective.
+  \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+  A chain complex $C_\chainbullet $ is called \vocab{projective}
+  if all $C_n$ are projective modules.
+\end{definition}
