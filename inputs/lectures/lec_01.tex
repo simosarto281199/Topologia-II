@@ -1,0 +1,56 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mo 04 Apr 2022}{The Künneth formula}
+
+\section{Reminder on UCT}
+
+\begin{editor}
+  We revised the following notions from last semester:
+  \begin{itemize}
+    \item Projective modules
+    \item The $\Tor$ functor and its derived long exact sequences
+    \item The UCT theorem for chain complexes and spaces
+  \end{itemize}
+\end{editor}
+
+\begin{exercise}
+  Repeat the story with the  $\Hom$ and  $\Ext$ functors for cohomology.
+\end{exercise}
+
+
+
+\section{The Künneth theorem}
+
+\begin{question}
+  Let $X$ and  $Y$ be spaces.
+  What is  $H_\chainbullet (X \times Y)$?
+\end{question}
+
+\begin{definition}
+  Let $C$ and  $D$ be  $R$-chain complexes.
+  Define a chain complex $C \otimes D$ by
+  \[
+    (C \otimes D)_n \coloneqq \bigoplus_{p + q = n} C_p \otimes D_q
+  \]
+  and
+  \[
+  d ( a \otimes b) \coloneqq  da \otimes b + (-1)^{\abs{a} } \cdot a \otimes db
+  \] 
+\end{definition}
+
+\begin{theorem}[Künneth for chain complexes]
+  Let $R$ be a principal ideal domain,
+   $C$ a projective chain complex and  $D$ any chain complex.
+   Then, there is a natural short exact sequence.
+    \[
+     0
+     \to
+     \bigoplus_{p + q = n} H_pC \otimes H_q D 
+     \to
+     H_n (C \otimes D)
+     \to 
+     \bigoplus_{p + q = n-1} \Tor_1(H_pC, H_qD)
+     \to
+     0
+   \]
+   that splits (not naturally).
+\end{theorem}
