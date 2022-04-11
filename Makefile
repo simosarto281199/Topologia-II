@@ -1,5 +1,5 @@
 pdf: init
-	latexmk
+	latexmk 2022_Topology_II.tex
 
 clean:
 	latexmk -c
