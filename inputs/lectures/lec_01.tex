@@ -81,7 +81,7 @@
   \label{thm:uct-for-chain-complexes}
 
   Let $R$ be a  principal ideal domain,
-  $C$ a projective chain complex
+  $C_\chainbullet $ a projective chain complex
   and $M$ an  $R$-module.
 
   Then, there is a natural short exact sequence
@@ -89,11 +89,11 @@
     \begin{tikzcd}[column sep = small, row sep = tiny]
       0 \ar{r}
       &
-      H_n(C) \otimes M \ar{r}
+      H_n(C_\chainbullet ) \otimes M \ar{r}
       &
-      H_n(C \otimes M) \ar{r}
+      H_n(C_\chainbullet  \otimes M) \ar{r}
       &
-      \Tor_1(H_{n-1}(C), M) \ar{r}
+      \Tor_1(H_{n-1}(C_\chainbullet ), M) \ar{r}
       &
       0 \\
       &
@@ -211,10 +211,317 @@ $H_\chainbullet  (X \times Y)$ is.
     B_p \coloneqq \set{ da \suchthat  a \in C_{p+1} } 
   \]
   We have the short exact sequence
-  \[
+  \begin{equation}
+    \label{eq:künneth-ses-cycles-boundaries}
     0 \to  Z_p \xrightarrow{ι}   C_p \xrightarrow{d}  B_{p-1} \to 0
-  \]
+  \end{equation}
   Since $R$ is a  principal ideal domain and $C_p$ is projective,
   $Z_p$ and  $B_p$ are also projective as direct summands
-  of a projective module.
+  of a projective module by
+  \autoref{lm:facts-projective-modules}.
+
+  Since $B_{p-1}$ is projective, we obtain the
+  short exact sequence
+  \[
+    \Tor_1(B_{p-1}, D_q) = 0
+    \to Z_p \tensor D_q
+    \to C_p \tensor D_q
+    \to B_{p-1} \tensor D_q
+    \to 0
+  \]
+  by the \nameref{prop:tor-exact-sequence}.
+
+  We regard $Z_\chainbullet $ and $B_\chainbullet $ as formal
+  chain complexes, with $0$ as boundary maps in both cases.
+
+  Then, with
+  \eqref{eq:künneth-ses-cycles-boundaries},
+  this gives a short exact sequence of chain complexes
+  \begin{equation}
+    \label{eq:künneth-ses-chain-complexes}
+    0
+    \to  Z_\chainbullet  \chaintensor D_\chainbullet 
+    \to C_\chainbullet \chaintensor D_\chainbullet 
+    \to  B_{\chainbullet-1} \chaintensor D_\chainbullet 
+    \to  0
+  \end{equation}
+  Since $Z_\chainbullet $ and $B_{\chainbullet -1}$ are formal,
+  we get
+  \[
+    Z_\chainbullet  \tensor D_\chainbullet
+    \cong
+    \directsum_p Z_p \tensor D_{\chainbullet -p},
+    \qquad
+    B_{\chainbullet -1} \tensor D_\chainbullet
+    \cong
+    \bigoplus_p B_{p-1} \chaintensor D_{\chainbullet -p}
+  \]
+  up to sign of the boundary maps $d$.
+  Since $Z_p$ and  $B_{p-1}$  are projective and thus
+  $\Tor_1(H_{n-1}(D_{\chainbullet -p}), Z_p)$
+  as well as
+  $\Tor_1(H_{n-1}(D_{\chainbullet -p}), B_{p-1})$
+  vanish, by the
+  \nameref{thm:uct-for-chain-complexes}
+  we obtain that
+  \begin{IEEEeqnarray*}{rCl}
+    H_n (Z_\chainbullet  \chaintensor D_\chainbullet )
+    &\cong&
+    \directsum_{p+q = n} Z_p \tensor H_q(D_\chainbullet )
+    \\
+    H_n(B_{\chainbullet -1} \tensor D_\chainbullet )
+    &\cong&
+    \directsum_{p+q=n-1} B_p \tensor H_q(D_\chainbullet )
+  \end{IEEEeqnarray*}
+
+  Taking the long exact sequence on homology associated to
+  \eqref{eq:künneth-ses-chain-complexes},
+  we get
+  \[
+    \begin{tikzcd}[column sep = small]
+      \ldots
+      \ar{r}
+      &
+      \directsum\limits_{p+q = n} Z_p \tensor H_q (D_\chainbullet )
+      \ar{r}
+      &
+      H_n(C_\chainbullet \chaintensor D_\chainbullet )
+      \ar{r}
+      \boundarymark
+      &
+      \directsum\limits_{p+q = n-1} B_p \tensor H_q(D_\chainbullet )
+      \boundarymap{\partial}
+      \\
+      &
+      \directsum\limits_{p+q = n-1} Z_p \chaintensor H_q(D_\chainbullet )
+      \ar{r}
+      &
+      \ldots
+    \end{tikzcd}
+  \]
+  A diagram chase shows that the connecting homomorphism $\partial $
+  is given by
+  \personal{Do diagram chase}
+  \[
+    \partial  = \directsum j_p \tensor \id_{H_q(D_\chainbullet )}
+  ,\]
+  where $j_p \colon  B_p \hookrightarrow Z_p$ is the natural inclusion.
+
+  We may split the long exact sequence
+  at $H_n(C_\chainbullet \tensor D_\chainbullet )$
+  to obtain the short exact sequence
+  \begin{equation}
+    \label{eq:künneth-ker-coker-ses}  
+    0
+    \to
+    \smashoperator{\directsum_{p+q =n}}
+    \coker ( j_p \tensor \id_{H_q(D_\chainbullet )})
+    \to 
+    H_n(C_\chainbullet \chaintensor  D_\chainbullet )
+    \to 
+    \smashoperator{\directsum_{p+q=n-1}}
+    \ker ( j_p \tensor \id_{H_q(D_\chainbullet )} )
+    \to 
+    0
+  \end{equation}
+
+  Now, consider the short exact sequence 
+  \[
+    0 \to  B_p \xrightarrow{j_p} Z_p \to H_p(C_\chainbullet ) \to 0
+  ,\]
+  which by the 
+  \nameref{prop:tor-exact-sequence},
+  and since $Z_p$ is projective,
+  gives the long exact sequence
+  \begin{equation}
+     \label{eq:künneth-tor-exact-sequence}
+     \begin{tikzcd}[column sep = small]
+      &[4em]
+      0
+      \boundarymark
+      \ar{r}
+      &
+      \Tor_1(H_p(C_\chainbullet ), H_q(D_\chainbullet ))
+      \boundarymap{}
+      \\
+      B_p \tensor H_q(D_\chainbullet )
+      \ar{r}{j_p \tensor \id_{H_q(D_\chainbullet )}}
+      &
+      Z_p \tensor H_q(D_\chainbullet )
+      \ar{r}
+      &
+      H_p(C_\chainbullet ) \tensor H_q(D_\chainbullet )
+      \ar{r}
+      &
+      0
+    \end{tikzcd}
+  \end{equation}
+   Since this yields
+   $\Tor_1(H_p(C_\chainbullet ), H_q(D_\chainbullet ))$
+   as the kernel and
+   $H_p(C_\chainbullet )\tensor H_q(D_\chainbullet )$
+   as the cokernel of
+   $j_p\tensor \id_{H_q(D_\chainbullet )}$,
+   with taking direct sums,
+   \eqref{eq:künneth-ker-coker-ses}
+   becomes the desired short exact sequence
+   \begin{equation}
+     \label{ref:künneth-ses}
+     0
+     \to
+     \smashoperator{\directsum_{p + q = n}}
+     H_p(C_\chainbullet ) \otimes H_q (D _\chainbullet )
+     \to
+     H_n (C_\chainbullet \otimes D_\chainbullet )
+     \to 
+     \smashoperator{\directsum_{p + q = n-1}}
+     \Tor_1(H_p(C_\chainbullet ), H_q(D_\chainbullet ))
+     \to
+     0
+     .
+   \end{equation}
+
+  It remains to show the claimed splitting of the sequence.
+
+  First, assume that $D_\chainbullet $ is also projective.
+  Since $B_{p-1}$ is projective, the short exact sequence
+  \eqref{eq:künneth-ses-cycles-boundaries}
+  splits and we get a retraction
+  $t_p \colon  C_p \to  Z_p$.
+  Similarly, write $Z_q'$,  $B_q'\subset D_q$ for the cycles
+  and boundaries of $D_\chainbullet $.
+  Since $D_\chainbullet $ is projective, so is $B_{q-1}'$
+  and in the short exact sequence
+  \[
+    0 \to  Z_p' \to  D_p \to B_{p-1}' \to 0
+  \]
+  we get a retraction $t_q' \colon  D_q \to Z_q'$.
+  \begin{claim}
+    The morphism
+      \begin{equation*}
+      \begin{array}{c c l} 
+      H_n(C_\chainbullet \chaintensor D_\chainbullet )
+      &
+      \longrightarrow
+      &
+      \directsum\limits_{p+q=n}H_p(C_\chainbullet ) \tensor H_q(D_\chainbullet )
+      \\
+      \left[ a \chaintensor b\right]
+      &
+      \longmapsto
+      &
+      \left[t_p a\right] \tensor \left[t_q'b\right]
+      \end{array}
+    \end{equation*}
+    is a retraction of the claimed short exact sequence.
+  \end{claim}
+  \begin{proof}
+    It suffices to see that the first map in
+    \eqref{ref:künneth-ses} is given by
+    \[
+      [ a ] \tensor [b] \mapsto [ a \chaintensor  b ]
+    ,\]
+    since then commutativity follows directly from the retraction properties.
+    For this, note that we identified
+    \[
+      H_p(C_\chainbullet ) \tensor H_q(D_\chainbullet )
+      \cong
+      \coker \left( j_p \tensor \id_{H_q(D_\chainbullet )} \right) 
+    \]
+    with the projection
+    \[
+      Z_p \tensor H_q(D_\chainbullet ) \to H_p(C_\chainbullet ) \tensor H_q(D_\chainbullet )
+    \]
+    induced by the inclusion $Z_p \to C_p$
+    and that the first map in
+    \eqref{eq:künneth-ker-coker-ses}
+    is induced via the long exact sequence on homology of
+    \eqref{eq:künneth-ses-chain-complexes},
+    and thus induced by the natural inclusion $Z_p \to  C_p$
+    as well.
+    Thus, we really get the desired natural form of the morphism.
+  \end{proof}
+
+  It remains to show the splitting property for general $D$.
+  By
+  \autoref{lm:quasi-iso-from-projective-complex},
+  we can pick a projective chain complex $F_\chainbullet $
+  with a quasi-isomorphism $F_\chainbullet \to D_\chainbullet$.
+
+  This induces a morphism of short exact sequences
+  \[
+    \begin{tikzcd}[column sep = tiny]
+      0
+      \ar{r}
+      &
+      \smashoperator{\directsum\limits_{p+q=n}}
+      H_p(C_\chainbullet ) \tensor H_q(F_\chainbullet )
+      \ar{r}
+      \ar{d}[swap]{\cong}
+      &
+      H_n(C_\chainbullet \chaintensor F_\chainbullet )
+      \ar{r}
+      \ar{d}{f}
+      &
+      \smashoperator{\directsum\limits_{p+q=n-1}}
+      \Tor_1(H_p(C_\chainbullet), H_q(F_\chainbullet ))
+      \ar{r}
+      \ar{d}{\cong}
+      &
+      0
+      \\
+      0
+      \ar{r}
+      &
+      \smashoperator{\directsum\limits_{p+q=n}}
+      H_p(C_\chainbullet ) \tensor H_q(D_\chainbullet )
+      \ar{r}
+      &
+      H_n(C_\chainbullet \chaintensor D_\chainbullet )
+      \ar{r}
+      &
+      \smashoperator{\directsum\limits_{p+q=n-1}}
+      \Tor_1(H_p(C_\chainbullet ), H_q(D_\chainbullet )
+      \ar{r}
+      &
+      0
+    \end{tikzcd}
+  \]
+  where by the 5-lemma, $f$ is an isomorphism and thus the bottom
+  short exact sequence splits as well.
 \end{refproof}
+
+
+\begin{lemma}+
+  \label{lm:quasi-iso-from-projective-complex}
+  Let $C_\chainbullet $ be a chain complex.
+  Then there exists a projective chain complex $P_\chainbullet $
+  with a quasi-isomorphism $P_\chainbullet \to C_\chainbullet $.
+\end{lemma}
+
+\begin{proof}*
+  Was left as an exercise in the lecture.
+  The idea is to take a $1$-dimensional projective resolution
+  of each  $H_n(D_\chainbullet )$.
+\end{proof}
+
+
+\begin{remark}+
+  Note that for the morphism of short exact sequences
+  we need to check a few naturality conditions
+  (which are all trivially met):
+  \begin{itemize}
+    \item Functoriality of the long exact sequence on homology
+      to get a morphism of the short exact sequences
+      given by 
+      \autoref{eq:künneth-ker-coker-ses}.
+    \item Functoriality of the
+      \nameref{prop:tor-exact-sequence},
+      to get a morphism of the sequences given by
+      \eqref{eq:künneth-tor-exact-sequence}
+   \item Naturality of kernel and cokernel,
+     so that the morphism of short exact sequences remains natural
+     after identification of kernel and cokernel via
+     \eqref{eq:künneth-tor-exact-sequence}.
+  \end{itemize}
+\end{remark}

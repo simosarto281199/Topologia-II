@@ -44,3 +44,23 @@
   {
     \left\{ #1 \right\}
   }
+
+
+\newcommand\boundarymark[1][Z]{\arrow[phantom,d,""{coordinate, name=#1}]}
+\newcommand\boundarymap[2][Z]
+  {
+    \arrow
+    [
+    dll,
+    "#2",
+    rounded corners,
+    to path =
+      {
+        -- ([xshift=2em]\tikztostart.east)
+        |- (#1) [near end]\tikztonodes
+        -| ([xshift=-2ex]\tikztotarget.west)
+        -- (\tikztotarget)
+      }
+    ]
+  }
+\newcommand\personal{\todo[color=gray!5]}
