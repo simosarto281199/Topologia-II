@@ -120,3 +120,138 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
   This is free with model $(\Delta^n, \id_{\Delta^n})$ in degree $n$.
   This is also acyclic.
 \end{example}
+
+\begin{example}
+  Consider
+  $C_\chainbullet ^{\sing}(\blank ; \mathbb{Z}) \otimes _{\mathbb{Z}} C_\chainbullet ^{\sing}
+  (\blank ; \mathbb{Z}) \colon  \Top^2 \to  CH_+$.
+  This functor is free with models given by
+  \[
+    \left\{(\Delta^k, \Delta^{n-k}), (\id_{\Delta^n} \otimes \id_{\Delta^{n-k}}) 
+    \mid  0 \leq  k \leq  n\right\} 
+  \]
+
+  The functor $C_*^{\sing}(\blank \times  \blank ; \mathbb{Z}) \colon  \Top^2\to CH_+$
+  is free with model
+  \[
+    \left\{(\Delta^n, \Delta^n), \Delta^n \xrightarrow{diag} \Delta^n \times \Delta^n \right\} 
+  \]
+
+  We have $H_m(\Delta^n \times \Delta^n) = 0 = H_m(\Delta^k \times \Delta^{n-k}$ 
+  for all $m>0$.
+  Thus,  $C_*^{\sing}(- \times - ; \mathbb{Z})$ is acyclic.
+
+  Using Künneth, we see that also
+  $C_*^{\sing}( \blank ; \mathbb{Z}) \otimes _Z C_*^{\sing} (\blank ; \mathbb{Z})$ 
+  is acyclic (for both models).
+\end{example}
+
+\begin{theorem}
+  Let $F_*$ be free and  $G_*$ be acyclic.
+  For each natural transformation
+  $\overline{\varphi } \colon  H_0 \circ  F_*
+  \implies H_0 \circ  G_*$,
+  there exists a natural transformation $\varphi \colon F_* \implies G_*$
+  inducing $\overline{\varphi }$.
+
+  Moreover, any two such transformations are naturally chain homotopic.
+\end{theorem}
+
+\todo{in $R$-Koeffizienten umformulieren}
+
+\begin{proof}[Proof of Eilenberg-Zilber]
+  It suffices to prove the theorem with $R = \mathbb{Z}$.
+  As before, denote $C_*(X) \coloneqq C_*^{\sing}(X ; \mathbb{Z})$.
+
+  We have
+  \[
+    H_0(C(X) \otimes C(Y))
+    \stackrel{\text{Künneth}}{\cong}
+    H_0(X) \otimes H_0(Y)
+  \]
+  We have a natural isomorphism
+  $H_0(X \times Y) \cong H_0(X) \otimes H_0(Y)$,
+  because both have pairs of path components as a basis.
+
+  Hence we get natural transformations
+  \[
+    \psi \colon  C_*(\blank) \otimes C_*(\blank) \implies C_*( \blank \times  \blank )
+  \]
+  and
+  \[
+  \varphi  \colon  C_*( \blank \times  \blank ) \implies C_* ( \blank ) \otimes  C_* ( \blank )
+  \]
+  by 3.6
+
+  Both compositions induce the identity on $H_0$.
+  Thus, they are chain homotopic to the identity.
+
+  Thus, $\psi $ is a chain homotopy equivalence.
+\end{proof}
+
+\begin{oral}
+  note that we are using that both functors are not
+  only acyclic for their own model but for both.
+\end{oral}
+
+\begin{question}
+  In 3.6, do we mean $G_*$ acyclic wrt. to the models of  $F_*$.
+  Yes.
+\end{question}
+
+\begin{proof}[of 3.6]
+  We will specify $\varphi _n(b_{n,j})$ (and thus $\varphi _n$) inductively
+  such that
+  $d_n^G \varphi _n = \varphi _{n-1} d_n^F$.
+
+  Choose $\varphi_0 ( b_{0,j})$ as a representative of
+  $\overline{\varphi }([b_{0,j}])$.
+  Assume that $\varphi _{n-1}$ is defined,
+  we will now define $\varphi _n$.
+
+  We have $\varphi _{n-1} ( d_n^F(b_{n,j})) \in  G_{n-1}(B_{n,j})$.
+  \begin{claim}
+    This is a boundary.
+  \end{claim}
+  \begin{proof}
+    Consider first $n=1$.
+    Then  $d_1^F(b_{1,j}) \in F_0 ( B_{1,j})$ is a boundary,
+    hence trivial in homology.
+    Thus, $\varphi _0 (d_1^F(b_{1,j}))$ is trivial in homology.
+    Thus, it is a boundary.
+
+    Consider $n\geq 2$, then
+    \[
+      d_{n-1}^G \varphi _{n-1} ( d_n^F ( b_{n,j})) = \varphi _{n-2} d_{n-1}^F d_n ^F ( b_{n,j}) = 0
+    .\]
+    As $G$ is acyclic, $\varphi _{n-1} d_n^F ( b_{n,j})$ is a boundary.
+  \end{proof}
+  Choose $g_{n,j} \in  G_n(B_{n,j})$ such that
+  $d_n^G ( g_{n,j}) = \varphi _{n-1}(d_n^F(b_{n,j}))$
+  and define $\varphi _n (b_{n,j}) = g_{n,j}$.
+  It follows that $\varphi _*$ exists.
+
+  Now assume that $\varphi _*$ and  $\psi _*$ both induce $\overline{\varphi }$.
+  We will inductively define $S_n(b_{n,j}) \in  G_{n+1}(B_n,j)$
+  such that $d_{n+1}^G \circ  s_n = s_{n-1} \circ  d_n^F = \varphi _n - \psi _n$.
+
+  By definition, $\varphi _0(b_{0,j})$ and $\psi _0 (b_{0,j})$
+  represent the same class in homology.
+  Thus, $\varphi _0 ( b_{0,j}) - \psi _0 ( b_{0,j})$ is a boundary.
+  Pick $c_{0,j} \in  G_1(B_{0,j})$ such that
+  $d_1^G ( c_{0,j}) = \varphi _0(b_{0,j}) - \psi _0 (b_{0,j})$ 
+  and define $s_0(b_{0,j}) = c_{0,j}$.
+
+  Assume that $s_{n-1}$ is defined.
+  \begin{IEEEeqnarray*}{rCl}
+    d_n^G ( \varphi _n - \psi _n - s_{n-1} \circ  d_n^F)
+    &=& \left( \varphi _{n-1} - \psi _{n-1} - \varphi _{n-1} + \psi _{n-1} + s_{n-1} nach d_{n-1}^F \right) d_nF = 0
+  \end{IEEEeqnarray*}
+  Since $G_*$ is acyclic, there exists a  $C_{n,j} \in  G_{n+1}(B_{n,j})$ 
+  such that
+  \[
+    d_{n+1}^G ( G_{n,j}) = ( \varphi _n - \psi _n - s_{n-1} d_n^F) (b_{n,j})
+  \]
+  Define $s_n(b_{n,j)} \coloneqq  c_{n,j}$.
+  This gives our desired chain homotopy
+\end{proof}
