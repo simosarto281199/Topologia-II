@@ -10,7 +10,111 @@
     \item The $\Tor$ functor and its derived long exact sequences
     \item The UCT theorem for chain complexes and spaces
   \end{itemize}
+
+  Here, we give a brief overview over these, refer to the notes of last
+  semester for more details, especially for proofs.
 \end{editor}
+
+\begin{definition}[The $\Tor$ functor]
+  Let $M$ and  $N$ be  $R$-modules.
+  Pick a projective resolution $P$ of $M$ and define
+  \[
+  \Tor_n^R(M,N) \coloneqq  H_n ( P \otimes _R N )
+  .\] 
+\end{definition}
+
+\begin{lemma}
+  We have
+  \begin{enumerate}[h]
+    \item $\Tor_n^R(M,N) \cong \Tor_n^R (N,M)$.
+    \item  If  $R$ is a principal ideal domain,
+      then $\Tor_n^R = 0$ for $n\geq 2$.
+    \item If $M$ is a projective module,
+      then  $\Tor_n^R(M, \dash) = 0$ for $n\geq 1$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proposition}[$\Tor$ exact sequence]
+  \label{prop:tor-exact-sequence}
+
+  Let $0 \to  A \to  B \to  C \to 0$  be a short exact sequence
+  of $R$-modules.
+  Then, there is a long exact sequence of $R$-modules,
+  given by
+  \[
+    \begin{tikzcd}[column sep = tiny]
+         \ldots \ar{r} & \Tor_2(B,M) \ar{r} \ar[phantom, d, ""{coordinate, name=Z1}]& \Tor_2(C,M)
+        \ar[swap,dll,
+        "δ",
+        rounded corners,
+        to path = {
+            -- ([xshift=2em]\tikztostart.east)
+            |- (Z1) [near end]\tikztonodes
+            -| ([xshift=-2ex]\tikztotarget.west)
+        -- (\tikztotarget)}] \\
+         \Tor_1(A,M) \ar{r}
+         &
+         \Tor_1(B,M) \ar{r}
+         \ar[phantom, d, ""{coordinate, name=Z2}]
+         &
+         \Tor_1(C,M)
+        \ar[swap,dll,
+        "δ",
+        rounded corners,
+        to path = {
+            -- ([xshift=2em]\tikztostart.east)
+            |- (Z2) [near end]\tikztonodes
+            -| ([xshift=-2ex]\tikztotarget.west)
+        -- (\tikztotarget)}] \\
+        A \otimes  M \ar{r}
+        &
+        B \otimes  M \ar{r}
+        &
+        C \otimes M \ar{r}
+        &
+        0
+    \end{tikzcd}
+  \]
+\end{proposition}
+
+\begin{theorem}[UCT for chain complexes]
+  \label{thm:uct-for-chain-complexes}
+
+  Let $R$ be a  principal ideal domain,
+  $C$ a projective chain complex
+  and $M$ an  $R$-module.
+
+  Then, there is a natural short exact sequence
+  \[
+    \begin{tikzcd}[column sep = small, row sep = tiny]
+      0 \ar{r}
+      &
+      H_n(C) \otimes M \ar{r}
+      &
+      H_n(C \otimes M) \ar{r}
+      &
+      \Tor_1(H_{n-1}(C), M) \ar{r}
+      &
+      0 \\
+      &
+      \left[ a \right] \otimes m \ar[mapsto]{r}
+      &
+      \left[ a \otimes m \right] 
+    \end{tikzcd}
+  \]
+  Moreover, this sequence splits, but the splitting is not natural.
+\end{theorem}
+
+\begin{corollary}[UCT for spaces]
+  \label{cor:uct-for-spaces}
+  Let $R$ be a principal ideal domain, $X$ any space and  $M$ an  $R$-module.
+
+  Then, there is a  short exact sequence
+  \[
+    0 \to  H_n(X;R) \otimes M \to  H_n(X ; M) \to \Tor_1(H_{n-1}(X;R),M) \to 0
+  \] 
+  Moreover, this sequence splits, but the splitting is not natural.
+\end{corollary}
 
 \begin{exercise}
   Repeat the story with the  $\Hom$ and  $\Ext$ functors for cohomology.
@@ -18,39 +122,99 @@
 
 
 
+
 \section{The Künneth theorem}
 
-\begin{question}
-  Let $X$ and  $Y$ be spaces.
-  What is  $H_\chainbullet (X \times Y)$?
-\end{question}
+In this section, we want to develop tools for computing the
+homology of a product of spaces, i.e.~we want to know what
+$H_\chainbullet  (X \times Y)$ is.
 
 \begin{definition}
-  Let $C$ and  $D$ be  $R$-chain complexes.
-  Define a chain complex $C \otimes D$ by
+  \label{def:tensor-product-chain-complexes}
+  Let $C_\chainbullet $ and  $D_\chainbullet $ be  $R$-chain complexes.
+  We define the \vocab{tensor product of chain complexes}, denoted
+  $C_\chainbullet \chaintensor  D_\chainbullet $,
+  as the complex with modules
   \[
-    (C \otimes D)_n \coloneqq \bigoplus_{p + q = n} C_p \otimes D_q
+    (C_\chainbullet  \chaintensor D_\chainbullet )_n
+    \coloneqq
+    \directsum_{p + q = n} C_p \chaintensor D_q
   \]
-  and
+  and differential
   \[
-  d ( a \otimes b) \coloneqq  da \otimes b + (-1)^{\abs{a} } \cdot a \otimes db
-  \] 
+    d ( a \chaintensor b)
+    \coloneqq
+    da \chaintensor b + (-1)^{\chaindimension{a} } \cdot a \chaintensor db
+  .\] 
 \end{definition}
 
+\begin{well-definedness}
+  We have to check that the resulting complex
+  does indeed satisfy $d^2 = 0$.
+  The computation is straightforward:
+  \begin{IEEEeqnarray*}{rCl}
+    d^2 ( a \chaintensor b )
+    &=&
+    d ( da \chaintensor  b) + (-1)^{\chaindimension{a} } \cdot d ( a \chaintensor  db )
+    \\
+    &=&
+    d^2a
+    + (-1)^{\chaindimension{da}} da \chaintensor db
+    + (-1)^{\chaindimension{a}} da \chaintensor  db
+    + (-1)^{\chaindimension{a}} \cdot (-1)^{\chaindimension{a}} a \chaintensor d^2b
+    \\
+    &=&
+    0
+  \end{IEEEeqnarray*}
+\end{well-definedness}
+
 \begin{theorem}[Künneth for chain complexes]
+  \label{thm:künneth-for-chain-complexes}
   Let $R$ be a principal ideal domain,
-   $C$ a projective chain complex and  $D$ any chain complex.
-   Then, there is a natural short exact sequence.
-    \[
+  $C_\chainbullet $ a projective chain complex and  $D_\chainbullet $ any chain complex.
+  Then, there is a natural short exact sequence
+  \[
      0
      \to
-     \bigoplus_{p + q = n} H_pC \otimes H_q D 
+     \smashoperator{\directsum_{p + q = n}}
+     H_p(C_\chainbullet ) \otimes H_q (D _\chainbullet )
      \to
-     H_n (C \otimes D)
+     H_n (C_\chainbullet \otimes D_\chainbullet )
      \to 
-     \bigoplus_{p + q = n-1} \Tor_1(H_pC, H_qD)
+     \smashoperator{\directsum_{p + q = n-1}}
+     \Tor_1(H_p(C_\chainbullet ), H_q(D_\chainbullet ))
      \to
      0
-   \]
-   that splits (not naturally).
+  .\]
+  Moreover, this sequence splits, but the splitting is not natural.
 \end{theorem}
+
+\begin{remark}[UCT as special case of \nameref{thm:künneth-for-chain-complexes}]
+  Let $C_\chainbullet $ be a chain complex and $M$ an $R$-module. 
+  Define the complex $D_\chainbullet $ as the complex
+  \[
+    \ldots \to  0 \to  M \to  0 \to  \ldots
+  \]
+  where $M$ is in degree $0$.
+  Then the degreewise tensor with $M$ agrees
+  with the tensor product of chain complexes with $D_\chainbullet $,
+  i.e.~we have $C\chaintensor  D_\chainbullet  = C_\chainbullet \tensor M$.
+  Furthermore, \autoref{thm:künneth-for-chain-complexes} specializes
+  to the \nameref{thm:uct-for-chain-complexes}.
+\end{remark}
+
+\begin{refproof}{thm:künneth-for-chain-complexes}
+  As usual, we denote the boundaries and cycles of $C_\chainbullet $ by
+  \[
+    Z_p \coloneqq \set{ a\in C_p \suchthat da = 0 },
+    \qquad
+    B_p \coloneqq \set{ da \suchthat  a \in C_{p+1} } 
+  \]
+  We have the short exact sequence
+  \[
+    0 \to  Z_p \xrightarrow{ι}   C_p \xrightarrow{d}  B_{p-1} \to 0
+  \]
+  Since $R$ is a  principal ideal domain and $C_p$ is projective,
+  $Z_p$ and  $B_p$ are also projective as direct summands
+  of a projective module.
+\end{refproof}

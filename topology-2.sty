@@ -1,6 +1,6 @@
 \ProvidesPackage{topology-2}[2022/02/10 - Style file for notes of Topology II]
 
-\usepackage{fancythm}
+\usepackage[cache, number in = section]{fancythm}
 \usepackage{mkessler-enumerate}
 \usepackage{mkessler-math}
 \usepackage{mkessler-todo}
@@ -10,8 +10,37 @@
 
 \usepackage{mkessler-incfig}
 \usepackage{mkessler-counters}
-\usepackage{mkessler-refproof}
 \usepackage{mkessler-enumerate}
 \usepackage{csquotes}
+\usepackage{import}
+
+\NewFancyTheorem[thmtools={style=thmblackmargin}, group=small, name = Editor's note]{editor}
 
 \def\blank{-}
+\def\dash{-}
+\let\chaindimension\abs
+\let\tensor\otimes
+\let\chaintensor\tensor
+\let\directsum\bigoplus
+
+
+
+% This should normally be less hackier, but mkessler-refproof seems to be bugged
+\let\oldproofstart \proof
+\let\oldproofend   \endproof
+\usepackage{mkessler-refproof}
+\renewenvironment{oldproof}{\oldproofstart}{\oldproofend}
+\usepackage{mkessler-refproof}
+
+\NewDocumentEnvironment{well-definedness}{}
+  {%
+    \begin{oldproof}[Well-definedness]%
+  }%
+  {%
+    \end{oldproof}%
+  }%
+
+\NewDocumentCommand\set{m}
+  {
+    \left\{ #1 \right\}
+  }
