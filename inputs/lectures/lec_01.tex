@@ -527,6 +527,7 @@ $H_\chainbullet  (X \times Y)$ is.
 \end{remark}
 
 \begin{remark}
+  \label{rm:cellular-chain-complex-of-product-of-cw-complexes-is-tensor-product}
   Let $X$,  $Y$ be  CW-complexes and let $Y$ be locally finite.
   Then,  $X\times Y$ is again a CW-complex with its set of
   $n$-cells given by 
@@ -587,3 +588,46 @@ $H_\chainbullet  (X \times Y)$ is.
       0
     \end{IEEEeqnarray*}
 \end{corollary}
+\begin{proof}*
+  Apply \autoref{thm:künneth-for-chain-complexes} to the
+  cellular chain complexes of $X$ and  $Y$,
+  using the facts we observed in
+  \autoref{rm:cellular-chain-complex-of-product-of-cw-complexes-is-tensor-product}.
+\end{proof}
+
+\begin{example}
+  \begin{enumerate}[1.]
+    \item Let $d\geq 1$.
+      Then
+      \[
+        H_n(S^d;R)
+        =
+        \begin{cases}
+          R & \text{if $n=0$ or  $n=d$} \\
+          0 & \text{else}
+        \end{cases}
+      \]
+      Moreover, $\Tor_1^R(M,R) = 0$ for all $M$,
+      since $R$ is free and thus projective.
+      Thus, for CW-complexes $X$, we obtain the formula
+       \[
+        H_n( X \times S^d ; R)
+        \cong
+        H_n(X ; R)
+        \oplus
+        H_{n-d}(X;R)
+      \]
+      Inductively, this yields formulas for the homology
+      of $S^{d_1} \times  \dotsb \times S^{d_n};\mathbb{Z}$.
+    \item Recall that
+      $H_n(\mathbb{R}\mathbb{P}^2;\mathbb{Z}) = \mathbb{Z}, \mathbb{Z} /2, 0, \ldots$
+      and that $\Tor_1^{\mathbb{Z}}( \mathbb{Z}/2, \mathbb{Z}/2 ) = \mathbb{Z}/2$.
+
+      Thus we obtain
+      \[
+        H_n(\mathbb{R}\mathbb{P}^2 \times \mathbb{R}\mathbb{P}^2; \mathbb{Z})
+        =
+        \mathbb{Z}, ( \mathbb{Z}/2)^2, \mathbb{Z}/2, \mathbb{Z}/2,0,\ldots
+      \] 
+  \end{enumerate}
+\end{example}
