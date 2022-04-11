@@ -525,3 +525,65 @@ $H_\chainbullet  (X \times Y)$ is.
      \eqref{eq:künneth-tor-exact-sequence}.
   \end{itemize}
 \end{remark}
+
+\begin{remark}
+  Let $X$,  $Y$ be  CW-complexes and let $Y$ be locally finite.
+  Then,  $X\times Y$ is again a CW-complex with its set of
+  $n$-cells given by 
+  \[
+    I_n(X\times Y) = \coprod_{p+q = n} I_p(X) \times I_q(Y)
+  .\]
+  In particular,
+  \[
+    C_n^{\cell}(X\times Y;R)
+    =
+    \directsum_{p+q = n}
+    C_p^{\cell}(X;R) \tensor C_q^{\cell}(Y;R)
+  .\]
+  By inspecting the attaching maps,
+  we see that
+  \[
+    d(a \tensor b)
+    =
+    da \tensor b + (-1)^{\chaindimension{a}} \cdot a \tensor db
+  \]
+  and thus also
+  \[
+    C_\chainbullet ^{\cell}(X\times Y;R)
+    \cong
+    C_\chainbullet ^{\cell}(X;R) \tensor C_\chainbullet ^{\cell}(Y;R)
+  \] 
+\end{remark}
+
+\begin{corollary}[Künneth for CW-complexes]
+  \label{cor:künneth-for-cw-complexes}
+    Let $R$ be a principal ideal domain,
+    let $X$, $Y$ be  CW-complexes
+    and let $Y$ be locally finite.
+
+    Then, there exists a natural short exact sequence
+    \begin{IEEEeqnarray*}{rCClCl}
+      0
+      &
+      \to
+      &
+      \directsum_{p+q=n}
+      &
+      H_p(X;R) \tensor H_q(Y;R)
+      &
+      \to
+      &
+      H_n(X\times Y;R)
+      \\
+      &
+      \to
+      &
+      \directsum_{p+q=n-1}
+      &
+      \Tor_1(H_p(X;R), H_q(Y;R))
+      &
+      \to
+      &
+      0
+    \end{IEEEeqnarray*}
+\end{corollary}
