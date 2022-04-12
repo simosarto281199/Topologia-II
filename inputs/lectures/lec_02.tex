@@ -1,3 +1,226 @@
 %! TEX root = ../../master.tex
 \lecture[]{Mo 11 Apr 2022}{Untitled}
 
+\begin{example}[The Künneth splitting is not natural]
+  \label{ex:künneth-splitting-is-not-natural}
+  Let $p\colon \mathbb{R}\mathbb{P}^2 \to S^2$ be the map that collapses the $1$-skeleton.
+  From the cellular chain complex, we see that then the map
+  $\id\times p\colon \mathbb{R}\mathbb{P}^2\times \mathbb{R}\mathbb{P}^2
+  \to \mathbb{R}\mathbb{P}^2\times S^2$
+  induces an isomorphism on $H_3(\dash ; \mathbb{Z})$.
+  A straightforward computation shows that the induced map
+  of Künneth sequences (ignoring the outer zeros) has the form
+  \[
+    \begin{tikzcd}[column sep = small]
+      0
+      \ar{d}
+      \ar{r}
+      &
+      H_3(\mathbb{R}\mathbb{P}^2 \times \mathbb{R}\mathbb{P}^2; \mathbb{Z})
+      \ar{d}{\cong}
+      \ar{r}{\cong}
+      &
+      \Tor_1^{\mathbb{Z}}(H_1(\mathbb{R}\mathbb{P}^2; \mathbb{Z}), H_1(\mathbb{R}\mathbb{P}^2;\mathbb{Z}))
+      \ar{d}
+      \\
+      H_1(\mathbb{R}\mathbb{P}^2 ;\mathbb{Z}) \tensor H_2(S^2;\mathbb{Z})
+      \ar{r}{\cong}
+      &
+      H_3(\mathbb{R}\mathbb{P}^2\times S^2;\mathbb{Z})
+      \ar{r}{\cong}
+      &
+      0
+    \end{tikzcd}
+  .\]
+  This shows that the splitting can't be natural, since it would have
+  to factorize over $0$.
+\end{example}
+
+We would like to generalize the
+\autoref{cor:künneth-for-cw-complexes}
+to arbitrary spaces.
+As this means returning to singular homology instead of cellular homology again,
+however, the chain complex of the product space $X\times Y$ is no longer
+isomorphic to the product of chain complexes of $X$ and  $Y$
+(compare
+\autoref{rm:cellular-chain-complex-of-product-of-cw-complexes-is-tensor-product}
+).
+
+However, it is still a homotopy equivalence, which will allow us to deduce
+Künneth nonetheless.
+
+
+\begin{theorem}[Eilenberg-Zilber]
+  \label{thm:eilenberg-zilber}
+  Let $R$ be a ring and let  $X$, $Y$ be spaces.
+  There is a natural chain homotopy equivalence
+  \[
+    \mu\colon
+    C_\chainbullet ^{\sing}(X;R) \chaintensor _R C_\chainbullet ^{\sing}(Y;R)
+    \xrightarrow{\simeq} 
+    C_\chainbullet ^{\sing}(X\times Y;R)
+  .\] 
+\end{theorem}
+
+\begin{theorem}[Künneth theorem]
+  \label{thm:künneth-theorem}
+  Let $R$ be a  principal ideal domain
+  and let $X$,  $Y$ be topological spaces.
+  Then, for all $n\geq 0$, there is a natural short exact sequence
+    \begin{IEEEeqnarray*}{rCClCl}
+      0
+      &
+      \to
+      &
+      \directsum_{p+q=n}
+      &
+      H_p(X;R) \tensor H_q(Y;R)
+      &
+      \to
+      &
+      H_n(X\times Y;R)
+      \\
+      &
+      \to
+      &
+      \directsum_{p+q=n-1}
+      &
+      \Tor_1^R(H_p(X;R), H_q(Y;R))
+      &
+      \to
+      &
+      0
+      .
+    \end{IEEEeqnarray*}
+    Moreover, the sequence splits, but the splitting is not natural.
+\end{theorem}
+\begin{proof}*
+  Use the \nameref{thm:künneth-for-chain-complexes} and apply
+  it to to the singular chain complexes of $X$ and  $Y$.
+  Then use
+  \nameref{thm:eilenberg-zilber}
+  to obtain the singular homology group $H_n(X\times Y;R)$.
+\end{proof}
+
+\begin{notation}
+  For brevity, we will often write $\Csing(\dash)$
+  for the singular chain complex $C_\chainbullet ^{\sing}(\dash;R)$.
+\end{notation}
+
+Next, we want to examine the relative case of homology.
+For this, we need the following lemma:
+
+\begin{lemma}
+  Let $(X,A)$ and  $(Y,B)$ be pairs of spaces
+  and let $R$ be a  principal ideal domain.
+  We have the following commutative diagrams with short exact rows:
+  \[
+    \begin{tikzcd}[column sep = tiny]
+      0
+      \ar{r}
+      &
+      \Csing(A) \chaintensor_R \Csing(Y)
+      \ar{r}
+      \ar{d}[swap]{\simeq}{\mu}
+      &
+      \Csing(X)\chaintensor _R \Csing(Y)
+      \ar{r}
+      \ar{d}[swap]{\simeq}{\mu}
+      &
+      \faktor{\Csing(X)}{\Csing(A) \chaintensor _R \Csing(Y)}
+      \ar{r}
+      \ar{d}[swap]{\simeq}
+      &
+      0
+      \\
+      0
+      \ar{r}
+      &
+      \Csing(A\times Y)
+      \ar{r}
+      &
+      \Csing(X\times Y)
+      \ar{r}
+      &
+      \faktor{\Csing(X\times Y)}{\Csing(A\times Y)}
+      \ar{r}
+      &
+      0
+    \end{tikzcd}
+  \]
+  and
+  \[
+    \begin{tikzcd}[column sep = tiny]
+      0
+      \ar{r}
+      &
+      \faktor{\Csing(X)}{\Csing(A)} \chaintensor \Csing(B)
+      \ar{r}
+      \ar{d}[swap]{\simeq}
+      &
+      \faktor{\Csing(X)}{\Csing(A)}\chaintensor \Csing(Y)
+      \ar{r}
+      \ar{d}[swap]{\simeq}
+      &
+      \faktor{\Csing(X)}{\Csing(A)} \chaintensor \faktor{\Csing(Y)}{\Csing(B)}
+      \ar{r}
+      \ar{d}[swap]{\simeq}
+      &
+      0
+      \\
+      0
+      \ar{r}
+      &
+      \faktor{\Csing(X\times B)}{\Csing(A\times B)}
+      \ar{r}
+      &
+      \faktor{\Csing(X\times Y)}{\Csing(A\times Y)}
+      \ar{r}
+      &
+      \faktor{\Csing(X\times Y)}{\Csing(\set{ A\times Y, X\times B })}
+      \ar{r}
+      &
+      0,
+    \end{tikzcd}
+  \]
+  where $\Csing(\set{ A\times Y, X\times B }) $ denotes the image of
+  $\Csing(A\times Y) \oplus \Csing(X\times B)$ in
+  $\Csing(X\times Y)$.
+\end{lemma}
+
+\begin{proof}
+  For the first diagram,
+  the top row is exact since $\Csing(Y)$ is free.
+  The bottom row is exact by construction.
+  From the naturality of $\mu$,
+  we get that the left square commutes,
+  and thus the right-hand map is induced as the map on cokernels.
+  
+  Using the induced natural long exact sequence on homology,
+  by the Five Lemma, we obtain the right-most map is an isomorphism
+  on homology.
+  Then, by
+  \autoref{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence} 
+  we get that it is also a homotopy equivalence.
+
+  For the bottom diagram,
+  the top row is exact since  $\Csing(X)/\Csing(A)$ is free,
+  the bottom row is exact by construction.
+  The first two maps are the induced ones in the first diagram.
+  By naturality of $\mu$ and naturality of the induced maps of the cokernel,
+  we get that the left square commutes.
+
+  As before, by using the long exact sequence in homology,
+  the Five Lemma and
+  \autoref{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence},
+  we deduce that the induced map on cokernels is a homotopy equivalence.
+\end{proof}
+
+\begin{lemma}*
+  \label{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence}
+  Let $C_\chainbullet $ and $D_\chainbullet $ be free chain complexes
+  and let $\mu\colon C_\chainbullet \to D_\chainbullet $
+  be a quasi-isomorphism.
+
+  Then, $\mu$ is already a homotopy equivalence.
+\end{lemma}

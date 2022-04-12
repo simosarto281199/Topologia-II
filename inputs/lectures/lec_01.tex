@@ -168,7 +168,7 @@ $H_\chainbullet  (X \times Y)$ is.
   \end{IEEEeqnarray*}
 \end{well-definedness}
 
-\begin{theorem}[Künneth for chain complexes]
+\begin{theorem}[Künneth theorem for chain complexes]
   \label{thm:künneth-for-chain-complexes}
   Let $R$ be a principal ideal domain,
   $C_\chainbullet $ a projective chain complex and  $D_\chainbullet $ any chain complex.
@@ -556,7 +556,7 @@ $H_\chainbullet  (X \times Y)$ is.
   \] 
 \end{remark}
 
-\begin{corollary}[Künneth for CW-complexes]
+\begin{corollary}[Künneth theorem for CW-complexes]
   \label{cor:künneth-for-cw-complexes}
     Let $R$ be a principal ideal domain,
     let $X$, $Y$ be  CW-complexes
@@ -581,12 +581,13 @@ $H_\chainbullet  (X \times Y)$ is.
       &
       \directsum_{p+q=n-1}
       &
-      \Tor_1(H_p(X;R), H_q(Y;R))
+      \Tor_1^R(H_p(X;R), H_q(Y;R))
       &
       \to
       &
       0
     \end{IEEEeqnarray*}
+  Moreover, this sequence splits, but the splitting is not natural.
 \end{corollary}
 \begin{proof}*
   Apply \autoref{thm:künneth-for-chain-complexes} to the
