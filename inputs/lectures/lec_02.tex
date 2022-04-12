@@ -102,15 +102,27 @@ Künneth nonetheless.
   to obtain the singular homology group $H_n(X\times Y;R)$.
 \end{proof}
 
+Next, we want to examine the relative case of homology.
+For this,
+we introduce some notation and need the following lemma:
+
 \begin{notation}
   For brevity, we will often write $\Csing(\dash)$
   for the singular chain complex $C_\chainbullet ^{\sing}(\dash;R)$.
 \end{notation}
 
-Next, we want to examine the relative case of homology.
-For this, we need the following lemma:
+\begin{notation}
+  Let $(X,A)$ and  $(Y,B)$ be pairs of spaces.
+  We denote by
+  $\Csing\set{ A\times Y, X\times B } $ 
+  the image of
+  $\Csing(A\times Y) \oplus \Csing(X\times B)$
+  in
+  $\Csing(X\times Y)$.
+\end{notation}
 
 \begin{lemma}
+  \label{lm:eilenberg-zilber-relative-spaces}
   Let $(X,A)$ and  $(Y,B)$ be pairs of spaces
   and let $R$ be a  principal ideal domain.
   We have the following commutative diagrams with short exact rows:
@@ -177,15 +189,12 @@ For this, we need the following lemma:
       \faktor{\Csing(X\times Y)}{\Csing(A\times Y)}
       \ar{r}
       &
-      \faktor{\Csing(X\times Y)}{\Csing(\set{ A\times Y, X\times B })}
+      \faktor{\Csing(X\times Y)}{\Csing \set{ A\times Y, X\times B }}
       \ar{r}
       &
-      0,
+      0.
     \end{tikzcd}
   \]
-  where $\Csing(\set{ A\times Y, X\times B }) $ denotes the image of
-  $\Csing(A\times Y) \oplus \Csing(X\times B)$ in
-  $\Csing(X\times Y)$.
 \end{lemma}
 
 \begin{proof}
@@ -218,9 +227,158 @@ For this, we need the following lemma:
 
 \begin{lemma}*
   \label{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence}
-  Let $C_\chainbullet $ and $D_\chainbullet $ be free chain complexes
+  Let $C_\chainbullet $ and $D_\chainbullet $ be projective chain complexes
   and let $\mu\colon C_\chainbullet \to D_\chainbullet $
   be a quasi-isomorphism.
 
   Then, $\mu$ is already a homotopy equivalence.
 \end{lemma}
+
+\begin{definition}+
+  Define the \vocab{homological cross product}
+  \[
+    \times \colon
+    H_p(X,A;R) \tensor H_q(Y,B;R)
+    \to
+    H_n(X\times Y, X\times B \cup A\times Y; R)
+  \]
+  as the composition
+  \begin{IEEEeqnarray*}{rCl}
+    H_p(\Csing (X,A)) \tensor H_q(\Csing(Y,B))
+    &
+    \to
+    &
+    H_{p+q}(\Csing(X,A) \chaintensor \Csing(Y,B))
+    \\
+    &
+    \xrightarrow{\mu, \cong} 
+    &
+    H_{p+q}( \Csing(X\times Y) / \Csing\set{ A\times Y, X\times B }
+    \\
+    &
+    \to
+    &
+    H_{p+q} ( \Csing(X\times Y) / \Csing (A\times Y \cup X\times B))
+    .
+  \end{IEEEeqnarray*}
+\end{definition}
+
+Note that the second map $\mu$ is an isomorphism by
+\autoref{lm:eilenberg-zilber-relative-spaces}
+and the second is just the natural map.
+We want to understand when this natural maps in in fact an isomorphism as well,
+for this recall
+
+\begin{definition}[Excisive triad]
+  \label{def:excisive-triad}
+  A triad $(X,A,B)$ (i.e.~$A$ and  $B$ are subspaces of  $X$)
+  is  \vocab{excisive} if
+  \[
+    H_n(A,A\cap B;R) \to H_n(A\cup B, B ;R)
+  \]
+  is an isomorphism for all $n$.
+\end{definition}
+
+\begin{example}+
+  A triad $(X,A,B)$ is excisive if
+   \begin{itemize}
+    \item $A$,  $B$ are open in  $X$
+    \item  $X$ is a  CW-complex and $A$,  $B$ are subcomplexes.
+  \end{itemize}
+\end{example}
+
+\begin{lemma}
+  Let $(X,A,B)$ be an excisive triad.
+  Then, the natural map
+   \[
+     \faktor{\Csing(X)}{\Csing \set{ A,B } }
+     \to
+     \faktor{\Csing(X)}{\Csing(A\cup B)}
+  \]
+  is a quasi-isomorphism.
+\end{lemma}
+
+\begin{proof}
+  Consider the short exact sequence
+  \[
+    0
+    \to
+    \Csing(A\cup B) / \Csing \set{ A,B }
+    \to 
+    \Csing(X) / \Csing \set{ A,B } 
+    \xrightarrow{α} 
+    \Csing(X) / \Csing( A \cup B)
+    \to 
+    0
+  .\]
+  The induced long exact sequence on homology
+  \[
+    \begin{tikzcd}[column sep = tiny]
+      &
+      \ldots
+      \connectingmark[Z]
+      \ar{r}
+      &
+      H_{n+1} (X, A\cup B)
+      \connectingmap[Z]{\partial }
+      \\
+      H_n( \Csing(A\cup B) / \Csing \set{ A,B } )
+      \ar{r}
+      &
+      H_n( \Csing(X) / \Csing \set{ A,B } )
+      \connectingmark[Y]
+      \ar{r}
+      &
+      H_n(X, A\cup B)
+      \connectingmap[Y]{\partial }
+      \\
+      H_{n-1}( \Csing(A\cup B) / \Csing \set{ A,B } )
+      \ar{r}
+      &
+      \ldots
+    \end{tikzcd}
+  \]
+  shows that $α$ is a quasi-isomorphism if (and only if)
+  $H_*(\Csing(A\cup B) / \Csing \set{ A,B } ) = 0$.
+  But now considering the short exact sequence
+  \[
+    0
+    \to
+    \Csing(A) / \Csing(A\cap B)
+    \to
+    \Csing(A\cup B) / \Csing(B)
+    \to
+    \Csing(A\cup B) / \Csing \set{ A,B } 
+    \to 
+    0
+  ,\]
+  the corresponding long exact sequence on homology
+  \[
+    \begin{tikzcd}[column sep = tiny]
+    &
+    \ldots
+    \connectingmark[Y]
+    \ar{r}
+    &
+    H_{n+1} ( \Csing(A\cup B) / \Csing \set{ A,B }  )
+    \connectingmap[Y]{\partial}
+    \\
+    H_n ( A, A\cap B )
+    \ar{r}
+    &
+    H_n ( A\cup B, B )
+    \connectingmark[Z]
+    \ar{r}
+    &
+    H_n ( \Csing(A\cup B) / \Csing \set{ A,B }  )
+    \connectingmap[Z]{\partial}
+    \\
+    H_{n-1} ( A, A\cap B )
+    \ar{r}
+    &
+    \ldots
+    \end{tikzcd}
+  \]
+  shows that this is the case if (and only if)
+  the triad $(X,A,B)$ is excisive.
+\end{proof}
