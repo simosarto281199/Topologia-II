@@ -234,7 +234,8 @@ we introduce some notation and need the following lemma:
   Then, $\mu$ is already a homotopy equivalence.
 \end{lemma}
 
-\begin{definition}+
+\begin{definition}+[Homological cross product]
+  \label{def:homological-cross-product}
   Define the \vocab{homological cross product}
   \[
     \times \colon
@@ -288,6 +289,7 @@ for this recall
 \end{example}
 
 \begin{lemma}
+  \label{lm:excisive-triad-quasi-isomorphism-relative-chain-complex}
   Let $(X,A,B)$ be an excisive triad.
   Then, the natural map
    \[
@@ -381,4 +383,103 @@ for this recall
   \]
   shows that this is the case if (and only if)
   the triad $(X,A,B)$ is excisive.
+\end{proof}
+
+\begin{corollary}[Künneth theorem]
+  Let $R$ be a  principal ideal domain
+  and let $(X,A)$  and $(Y,B)$ be pairs of spaces such that
+  $(X\times Y, A\times Y, X\times B)$ is an excisive triad.
+   
+  Then, for all $n\geq 0$,
+  there is a natural short exact sequence
+  \begin{IEEEeqnarray*}{rCl}
+    0
+    &
+    \to
+    &
+    \directsum_{p+q=n}
+    H_p(X,A;R) \tensor H_q(Y,B;R)
+    \\
+    &
+    \xrightarrow{\times } 
+    &
+    H_n(X\times Y, X\times B \cup A\times Y;R)
+    \\
+    &
+    \to
+    &
+    \directsum_{p+q=n-1}
+    \Tor_1^R(H_p(X,A;R), H_q(Y,B;R))
+    \\
+    &
+    \to
+    &
+    0
+    .
+  \end{IEEEeqnarray*}
+  Moreover, the sequence splits, but the splitting is not natural.
+\end{corollary}
+
+\begin{proof}
+  We will use the
+  \nameref{thm:künneth-for-chain-complexes}
+  for the chain complexes
+  $\Csing(X,A)$ and $\Csing(Y,B)$ again,
+  giving us a short exact sequence.
+  \begin{IEEEeqnarray}{rCClCl}
+    \label{eq:künneth-relative-ses-raw}
+    0
+    &
+    \to
+    &
+    \directsum_{p+q=n}
+    &
+    H_p(X,A;R) \tensor H_q(Y,B;R)
+    &
+    \to 
+    &
+    H_n( \Csing(X,A;R) \chaintensor \Csing(Y,B;R))
+    \IEEEnonumber
+    \\
+    &
+    \to
+    &
+    \directsum_{p+q=n-1}
+    &
+    \Tor_1^R(H_p(X,A;R), H_q(Y,B;R))
+    &
+    \to
+    &
+    0
+    .
+  \end{IEEEeqnarray}
+  Now note that by \autoref{lm:eilenberg-zilber-relative-spaces},
+  the map
+  \[
+    \Csing(X,A;R) \chaintensor \Csing(Y,B;R)
+    \xrightarrow{\mu}
+    \faktor{\Csing(X\times Y;R)} { \Csing \set{ A\times Y, X\times B } }
+  \]
+  is a homotopy equivalence and by
+  \autoref{lm:excisive-triad-quasi-isomorphism-relative-chain-complex},
+  also the natural map
+  \[
+    \faktor{\Csing(X,Y;R)}{\Csing \set{ A\times Y, X\times B } }
+    \to 
+    \faktor{\Csing(X\times Y;R)}{\Csing(A\times Y \cup X\times B;R)}
+  \]
+  is a homotopy equivalence.
+  Together, these induce an isomorphism
+  \[
+    H_n(\Csing(X,A;R) \chaintensor \Csing(Y,B;R))
+    \xrightarrow{\cong}  
+    H_n(\Csing(X\times Y, X \times B \cup A\times Y;R))
+  .\]
+  Using this together with
+  \eqref{eq:künneth-relative-ses-raw}
+  yields the desired short exact sequence.
+  Note that the
+  \nameref{def:homological-cross-product}
+  appears as the first map in the resulting short exact sequence
+  by definition.
 \end{proof}
