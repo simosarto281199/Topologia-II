@@ -37,41 +37,94 @@
   weaker than the notion of a finite type $CW$-complex.
 \end{oral}
 
+\begin{remark}
+  The $n+1$ in the  $\Tor$-term is correct.
+  This is because we apply Künneth to  $\Csing*(X,A) \chaintensor \Csing*(X,B)$
+  and for cochain complexes,
+  the differential actually increases the degree by one.
+
+  To convince yourself,
+  you can compare the computations of
+  $H^*(\mathbb{R}\mathbb{P}^2 \times \mathbb{R}\mathbb{P}^2)$
+  using Künneth and using the UCT.
+\end{remark}
+
 \begin{proof}
-  Finite type is needed because in general,
-  \[
-  C^{\chainbullet}(X,A) \otimes _R C^{\chainbullet} (Y,B)
-  \to
-  \left( C_\chainbullet (X,A) \otimes _R C_\chainbullet (Y,B) \right) ^{\chainbullet}
-  \]
-  is \emph{not} a chain homotopy equivalence.
-
-  If $C_\chainbullet (X,A)$ is finitely generated (free) in each degree,
-  then the above map \emph{is} an isomorphism.
-  Using
-  $\Hom_R(R^n, R) \otimes _R A \xrightarrow{\cong}  \Hom_R(R^n,A)$
-  and
-  $\Hom(A, \Hom(B,R)) \cong \Hom(A \otimes B, R)$.
-
-  If $(X,A)$ is of finite type,
-   $C_\chainbullet (X,A)$ is chain homotopy equivalent
-   to a chain complex
-   $C_\chainbullet $ such that $C_n$ is finitely generated
-   for all  $n$:
+  We want to argue similar to the case of homology,
+  i.e.~as in
+  \autoref{cor:künneth-theorem-homology}.
+  For the \nameref{def:cohomological-cross-product}
+  to come into play, we need the following:
+  \begin{claim}
+    The map
+    \begin{equation}
+      \label{ex:künneth-cohomology-morphism}
+      \Csing*(X,A) \chaintensor  _R \Csing* (Y,B)
+      \to
+      \left( \Csing (X,A) \otimes _R \Csing (Y,B) \right) ^{\chainbullet}
+    \end{equation}
+    is an isomorphism on (co)homology.
+  \end{claim}
+  \begin{proof}
+    Assume for now that $\Csing(X,A)$ is finitely generated (and free)
+    in each degree.
+    Then,
+    \eqref{ex:künneth-cohomology-morphism}
+    is in fact an isomorphism using the isomorphisms
     \[
-   \begin{tikzcd}
-     C^*(X,A) \otimes C^(Y,B) \ar[phantom]{d}[rotate=90]{\simeq} \ar{r}{} & (C_*(X,A) \otimes _R C_*(Y,B))^* \ar[phantom]{d}[rotate=90]{\simeq} \\
-     C^* \otimes C^*(Y,B) \ar[swap]{r}{} & (C_* \otimes _R C_*(Y,B))^*
-   \end{tikzcd}
-   \]
+      \Hom_R(R^n, R) \tensor _R A \xrightarrow{\cong} \Hom_r(R^n,A),
+      \qquad
+      \Hom(A, \Hom(B,R)) \cong \Hom(A \tensor B, R)
+    ,\]
+    plugging in $A = \Csing*(Y,B)$ in the first case and
+    $A = \Csing(X,A)$ as well as $B=\Csing(Y,B)$ in the second case.
+
+    For the general case, as $(X,A)$ is of finite type,
+    by the solution of Exercise 2.3,
+    \todoref
+    $\Csing (X,A)$ is chain homotopy equivalent
+    to a chain complex
+    $\Csing $ such that $C_n$ is finitely generated
+    for all  $n$, that is
+    \[
+       \begin{tikzcd}
+         \Csing*(X,A) \chaintensor  \Csing*(Y,B)
+         \ar[phantom]{d}[rotate=90]{\simeq} \ar{r}{}
+         &
+         (\Csing(X,A) \chaintensor _R \Csing(Y,B))^{\chainbullet}
+         \ar[phantom]{d}[rotate=90]{\simeq}
+         \\
+         \Csing* \chaintensor  \Csing*(Y,B)
+         \ar[swap]{r}{}
+         &
+         (\Csing \chaintensor  _R \Csing(Y,B))^{\chainbullet}
+       \end{tikzcd}
+     .\]
+     It follows that this is then a quasi-isomorphism.
+  \end{proof}
+  With this claim at hand,
+  the theorem follows easily, arguing similar as in
+  \autoref{cor:künneth-theorem-homology}.
 \end{proof}
 
-\section{Eilenberg-Zilber theorem}
+\begin{remark}+
+  The finite type condition is needed because in general,
+  \eqref{ex:künneth-cohomology-morphism}
+  is \emph{not} an isomorphism (on (co)homology).
+\end{remark}
 
-Denote with $CH_+$ the category of chain complexes,
-where  $C_n = 0$ for  $n<0$ with chain maps.
 
-Let $F_*$, $G_*\colon \mathcat{C} \to  CH_+$ be functors
+
+\section{The Eilenberg-Zilber theorem}
+
+We want to introduce the theory of acyclic models.
+
+\begin{notation}
+  Denote with $\CHp$ the category of chain complexes with $C_n = 0$ for  $n<0$
+  along with the chain maps as morphism.
+\end{notation}
+
+Let $F_*$, $G_*\colon \mathcat{C} \to  \CHp$ be functors
 and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 
 \begin{definition}
@@ -120,7 +173,7 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 \end{proof}
 
 \begin{definition}
-  We call $F_* \colon  \mathcat{C} \to  CH_+$ free if each $F_n$ is free.
+  We call $F_* \colon  \mathcat{C} \to  \CHp$ free if each $F_n$ is free.
   We call  $G_*$ acyclic with respect to the models
    $\left\{(B_{n,j}, b_{n,j})\right\} $ 
    if $H_m(G_*(B_{n,j})) = 0$ for all $m>0$ and all $n$,  $j$.
@@ -128,7 +181,7 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 
 \begin{example}
   Consider the functor
-  $C_\chainbullet ^{\sing}(\blank ; \mathbb{Z})\colon \Top \to CH_+$.
+  $C_\chainbullet ^{\sing}(\blank ; \mathbb{Z})\colon \Top \to \CHp$.
   This is free with model $(\Delta^n, \id_{\Delta^n})$ in degree $n$.
   This is also acyclic.
 \end{example}
@@ -136,14 +189,14 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 \begin{example}
   Consider
   $C_\chainbullet ^{\sing}(\blank ; \mathbb{Z}) \otimes _{\mathbb{Z}} C_\chainbullet ^{\sing}
-  (\blank ; \mathbb{Z}) \colon  \Top^2 \to  CH_+$.
+  (\blank ; \mathbb{Z}) \colon  \Top^2 \to  \CHp$.
   This functor is free with models given by
   \[
     \left\{(\Delta^k, \Delta^{n-k}), (\id_{\Delta^n} \otimes \id_{\Delta^{n-k}}) 
     \mid  0 \leq  k \leq  n\right\} 
   \]
 
-  The functor $C_*^{\sing}(\blank \times  \blank ; \mathbb{Z}) \colon  \Top^2\to CH_+$
+  The functor $C_*^{\sing}(\blank \times  \blank ; \mathbb{Z}) \colon  \Top^2\to \CHp$
   is free with model
   \[
     \left\{(\Delta^n, \Delta^n), \Delta^n \xrightarrow{diag} \Delta^n \times \Delta^n \right\} 
