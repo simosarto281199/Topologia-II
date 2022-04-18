@@ -65,6 +65,15 @@
   }
 \newcommand\personal{\todo[color=gray!5]}
 
-\newcommand\Csing{C_{\chainbullet}}
+\NewDocumentCommand\Csing{s}
+{
+  \IfBooleanTF{#1}
+  {
+    C^{\chainbullet}
+  }
+  {
+    C_{\chainbullet}
+  }
+}
 
 \AddProvidedFancyTheoremToGroup{remark}{big}

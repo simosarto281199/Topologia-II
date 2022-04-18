@@ -107,6 +107,7 @@ For this,
 we introduce some notation and need the following lemma:
 
 \begin{notation}
+  \label{not:csing-abbreviation}
   For brevity, we will often write $\Csing(\dash)$
   for the singular chain complex $C_\chainbullet ^{\sing}(\dash;R)$.
 \end{notation}
@@ -197,7 +198,20 @@ we introduce some notation and need the following lemma:
   \]
 \end{lemma}
 
-\begin{proof}
+
+\begin{lemma}*
+  \label{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence}
+  Let $C_\chainbullet $ and $D_\chainbullet $ be projective chain complexes
+  and let $\mu\colon C_\chainbullet \to D_\chainbullet $
+  be a quasi-isomorphism.
+
+  Then, $\mu$ is already a homotopy equivalence.
+\end{lemma}
+\begin{proof}*
+  This was proved in the last lecture of last term.
+\end{proof}
+
+\begin{refproof}{lm:eilenberg-zilber-relative-spaces}
   For the first diagram,
   the top row is exact since $\Csing(Y)$ is free.
   The bottom row is exact by construction.
@@ -223,16 +237,8 @@ we introduce some notation and need the following lemma:
   the Five Lemma and
   \autoref{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence},
   we deduce that the induced map on cokernels is a homotopy equivalence.
-\end{proof}
+\end{refproof}
 
-\begin{lemma}*
-  \label{lm:quasi-isomorphism-of-free-chain-complexes-is-homotopy-equivalence}
-  Let $C_\chainbullet $ and $D_\chainbullet $ be projective chain complexes
-  and let $\mu\colon C_\chainbullet \to D_\chainbullet $
-  be a quasi-isomorphism.
-
-  Then, $\mu$ is already a homotopy equivalence.
-\end{lemma}
 
 \begin{definition}+[Homological cross product]
   \label{def:homological-cross-product}
@@ -300,7 +306,39 @@ for this recall
   is a quasi-isomorphism.
 \end{lemma}
 
+\begin{corollary}+[Relative Eilenberg Zilber]
+  \label{cor:relative-eilenberg-zilber}
+  Let $(X,A)$ and  $(Y,B)$ be pairs of spaces such that
+  $(X\times Y, A\times Y, X\times B)$ is an excisive 
+  triad.
+  Then, there is a natural chain homotopy equivalence
+  \[
+    \mu \colon
+    \Csing(X,A) \chaintensor \Csing(Y,B)
+    \xrightarrow{\simeq}
+    \Csing(X\times Y, A\times Y \cup X\times B)
+  .\] 
+\end{corollary}
 \begin{proof}
+  Follows as a direct implication of
+  \autoref{lm:eilenberg-zilber-relative-spaces}
+  and
+  \autoref{lm:excisive-triad-quasi-isomorphism-relative-chain-complex} 
+\end{proof}
+
+\begin{editor}
+  We did not explicitly state
+  \autoref{cor:relative-eilenberg-zilber}
+  in the lecture, but given its subsequent uses,
+  I think it is fine to state it separately.
+
+  Otherwise, just always use
+  \autoref{lm:eilenberg-zilber-relative-spaces} 
+  and
+  \autoref{lm:excisive-triad-quasi-isomorphism-relative-chain-complex}.
+\end{editor}
+
+\begin{refproof}{lm:excisive-triad-quasi-isomorphism-relative-chain-complex}
   Consider the short exact sequence
   \[
     0
@@ -383,7 +421,7 @@ for this recall
   \]
   shows that this is the case if (and only if)
   the triad $(X,A,B)$ is excisive.
-\end{proof}
+\end{refproof}
 
 \begin{corollary}[Künneth theorem]
   Let $R$ be a  principal ideal domain
@@ -438,7 +476,7 @@ for this recall
     &
     \to 
     &
-    H_n( \Csing(X,A;R) \chaintensor \Csing(Y,B;R))
+    H_n( \Csing(X,A) \chaintensor \Csing(Y,B))
     \IEEEnonumber
     \\
     &
@@ -453,23 +491,8 @@ for this recall
     0
     .
   \end{IEEEeqnarray}
-  Now note that by \autoref{lm:eilenberg-zilber-relative-spaces},
-  the map
-  \[
-    \Csing(X,A;R) \chaintensor \Csing(Y,B;R)
-    \xrightarrow{\mu}
-    \faktor{\Csing(X\times Y;R)} { \Csing \set{ A\times Y, X\times B } }
-  \]
-  is a homotopy equivalence and by
-  \autoref{lm:excisive-triad-quasi-isomorphism-relative-chain-complex},
-  also the natural map
-  \[
-    \faktor{\Csing(X,Y;R)}{\Csing \set{ A\times Y, X\times B } }
-    \to 
-    \faktor{\Csing(X\times Y;R)}{\Csing(A\times Y \cup X\times B;R)}
-  \]
-  is a homotopy equivalence.
-  Together, these induce an isomorphism
+  Now using \nameref{cor:relative-eilenberg-zilber},
+  we get the following induced isomorphism on homology
   \[
     H_n(\Csing(X,A;R) \chaintensor \Csing(Y,B;R))
     \xrightarrow{\cong}  
@@ -483,3 +506,98 @@ for this recall
   appears as the first map in the resulting short exact sequence
   by definition.
 \end{proof}
+
+\begin{notation}
+  Similar to
+  \autoref{not:csing-abbreviation},
+  we will write
+  $\Csing*(\dash)$
+  for the singular cohomology
+   $C^{\chainbullet}_{\sing}(\dash; R)$.
+
+   More generally,
+   for a given chain complex $D_\chainbullet $,
+   let us denote by $D^{\chainbullet}$ the corresponding
+   cochain complex $\Hom(D_\chainbullet , M)$.
+\end{notation}
+
+\begin{definition}+
+  Let $C^{\chainbullet}$ and $D^{\chainbullet}$ be $R$-cochain complexes.
+  Similar to
+  \autoref{def:tensor-product-chain-complexes},
+  define the \vocab{tensor product of cochain complexes}
+  as the cochain complex with modules
+  \[
+    (C^{\chainbullet} \chaintensor D^{\chainbullet})_n
+    \coloneqq 
+    \bigoplus_{p+q=n} C^{p} \tensor D^q
+  \]
+  and the differential
+  \[
+    d(a \chaintensor b) \coloneqq
+    da \tensor  b + (-1)^{\chaindimension{a}} a \tensor db.
+  \] 
+\end{definition}
+\begin{well-definedness}
+  Same as in
+  \autoref{def:tensor-product-chain-complexes}.
+\end{well-definedness}
+
+\begin{definition}+[Cohomological cross product]
+  Let $(X,A)$ and  $(Y,B)$ be pairs of spaces such that
+   $(X\times Y, A\times Y, X\times B)$ is an excisive triad.
+  We define the \vocab{cohomological cross product} as the composition
+  of
+  \begin{IEEEeqnarray*}{Cl}
+    &
+    H_p(\Csing*(X,A)) \tensor H_q(\Csing*(Y,B))
+    \\
+    \to
+    &
+    H_{p+q}(\Csing*(X,A) \tensor \Csing*(Y,B))
+    \\
+    \to
+    &
+    H_{p+q}((\Csing(X,A) \tensor \Csing(Y,B))^{\chainbullet})
+    \\
+    \xleftarrow{\mu^*, \cong}
+    &
+    H_{p+q}( \left( \Csing(X\times Y) / \Csing \set{ A\times Y, X\times B }  \right) ^{\chainbullet} )
+    \\
+    \xleftarrow{\cong}
+    &
+    H_{p+q}((\Csing(X\times Y) / \Csing( A\times Y \cup X\times B))^{\chainbullet})
+    \\
+    =
+    &
+    H^{p+q}(X\times Y, A\times Y \cup X\times B; R)
+    .
+  \end{IEEEeqnarray*}
+\end{definition}
+\begin{well-definedness}
+  Note that the third and fourth map exist as the induced map on
+  cohomology of
+  \nameref{cor:relative-eilenberg-zilber}.
+\end{well-definedness}
+
+\begin{definition}+[Cup product]
+  \label{def:cup-product}
+  Let $(X,A)$ and  $(Y,B)$ be pairs of spaces such that
+   $(X\times Y, A\times Y, X\times B)$ is excisive.
+  Define the \vocab{cup product} on singular cohomology
+  as the composition
+  \begin{IEEEeqnarray*}{rCl}
+    \cup \colon H^p(X,A;R) \tensor H^q(X,B;R)
+    &
+    \xrightarrow{\times }
+    &
+    H^{p+q}(X\times X, X\times B \cup A\times X ;R)
+    \\
+    &
+    \xrightarrow{\Delta^*}
+    &
+    H^{p+q}(X, A\cup B;R)
+    ,
+  \end{IEEEeqnarray*}
+  where $\Delta\colon  X \to X\times X$ is the diagonal map as usual.
+\end{definition}
