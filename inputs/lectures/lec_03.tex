@@ -1,23 +1,35 @@
 %! TEX root = ../../master.tex
-\lecture[]{Mo 11 Apr 2022}{Untitled}
+\lecture[]{Mo 11 Apr 2022}{Eilenberg Zilber}
 
-test
-
-\begin{theorem}
+\begin{theorem}[Künneth in cohomology]
   Let $R$ be a PID.
-  Let  $(X,A)$ and  $(Y,B)$ be spaces such that
-   \begin{enumerate}[p]
-    \item
-      $(X \times Y, A\times Y, X\times B)$ is excisive
-      and $(X,A)$ is of finite type, i.e.~ $H_n(X,a;R)$ is finitely generated for all $n$.
-      Then there is a short exact sequence
-      \[
-      0 \to  \bigoplus_{p+q} H^p(X,A;R) \otimes H^q(Y,B;R)
-      \xrightarrow{\times } H^n(X\times Y, X\times B \cup A\times Y;R)
-      \to \bigoplus_{p+q=n-1} \Tor_1^R(H^p(X,A;R) H^q(Y,B,R))
-      \]
-      and the sequence splits, but not naturally.
-  \end{enumerate}
+  Let  $(X,A)$ and  $(Y,B)$ be spaces
+  such that $(X \times Y, A\times Y, X\times B)$ is excisive
+  and $(X,A)$ is of finite type,
+  i.e.~ $H_n(X,A;R)$ is finitely generated for all $n$.
+  Then, there is a natural short exact sequence
+    \begin{IEEEeqnarray*}{rCCl}
+      0
+      &
+      \to
+      &
+      \directsum_{p+q=n}
+      &
+      H^p(X,A;R) \tensor H^q(Y,B;R)
+      \xrightarrow{\times } 
+      H_n(X\times Y, X\times B \cup A\times Y;R)
+      \\
+      &
+      \to
+      &
+      \directsum_{p+q=n+1}
+      &
+      \Tor_1^R(H^p(X,A;R), H^q(Y,B;R))
+      \to
+      0
+      .
+    \end{IEEEeqnarray*}
+    Moreover, the sequence splits, but the splitting is not natural.
 \end{theorem}
 
 \begin{oral}
