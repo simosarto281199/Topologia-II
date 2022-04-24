@@ -1,5 +1,5 @@
 %! TEX root = ../../master.tex
-\lecture[]{Mi 13 Apr 2022}{Untitled}
+\lecture[$(p,q)$-shuffles. The maps in Eilenberg-Zilber, the Alexander-Whitney map. Cross product definitions. Topological manifolds.]{Mi 13 Apr 2022}{Manifolds and orientations}
 
 \begin{example}
   We want to give two concrete examples of chain maps
@@ -153,9 +153,99 @@ Recall that last semester, we gave another definition of the cup product:
     \pr_X^* \varphi \cdot \pr_Y^* \psi
   ,\]
   which is precisely the map given in
-  \autoref{def:cup-product-last-term}.
+  \autoref{def:cup-and-cross-product-last-term}.
   Note that the direct sum present in the Alexander-Whitney map
   disappeared, as all summands except $(p,q)$ vanish
   as seen in
   \eqref{eq:cross-product-definition-first-two-maps}.
+\end{proof}
+
+
+
+\section{Manifolds and orientations}
+
+\begin{definition}[Manifold]
+  \label{def:topological-manifold}
+  A \vocab{$d$-dimensional (topological) manifold} $M$
+  is a second countable Hausdorff space
+  that is locally homeomorphic to $\mathbb{R}^d$.
+
+  That is, for each $x\in M$, there exists an open neighborhood $U \ni x$
+  with  $U \cong \mathbb{R}^d$.
+\end{definition}
+
+\begin{oral}
+  As each open subset of $\mathbb{R}^d$ contains an open ball,
+  which is itself homeomorphic to $\mathbb{R}^d$,
+  one can also relax the definition and require that each
+  point has an open neighborhood homeomorphic to some
+  open subset of $\mathbb{R}^d$.
+\end{oral}
+
+\begin{oral}[Smooth manifolds]
+  There is also the notion of a \vocab{smooth manifold},
+  which you actually might have encountered first.
+
+  In this case, one calls the homeomorphism of open neighborhoods
+  of  $x$ to  $\mathbb{R}^d$ \vocab{charts} and requires
+  the composition of two charts (as a map $\mathbb{R}^d -> \mathbb{R}^d$)
+  to be differentiable.
+\end{oral}
+
+\begin{example}
+  The spaces $S^d$,  $R^d$,  $T^d \coloneqq \prod_{i=1}^d S^1$, $\Sigma_g$
+  are all topological (and in fact smooth) manifolds.
+
+  We will also see that $\mathbb{R}\mathbb{P}^d$ and $\mathbb{C}\mathbb{P}^d$
+  are manifolds.
+\end{example}
+
+In the following, we  want to study (co)homology of manifolds.
+
+\begin{lemma}
+  \label{lm:relative-homology-around-point-in-manifold}
+  Let $M$ be a $d$-dimensional manifold,
+  $R$ be a ring
+  and  $N$ be an  $R$-module.
+
+  For all  $x\in M$, we have
+  \[
+    H_i(M, M \setminus \set{ x } ;N ) \cong \begin{cases}
+      N & i = d \\
+      0 & \text{else}
+    \end{cases}
+  .\]
+\end{lemma}
+
+\begin{proof}
+  Since $M$ is a manifold,
+  there exists an open neighborhood $U$ of  $x$ with a homeomorphism
+   $(U,x) \cong (\mathbb{R}^d, 0)$.
+   Hence by excision, we get that
+   \begin{IEEEeqnarray*}{rCl}
+     H_i(M, M \setminus \set{ x } ; N)
+     &
+     \cong
+     &
+     H_i(U, U \setminus \set{ x } ;N)
+     \\
+     &
+     \cong
+     &
+     H_i (\mathbb{R}^d , \mathbb{R}^d \setminus \set{ 0 } ;N)
+     \\
+     &
+     \cong
+     &
+     H_i(D^d, S^{d-1};N)
+     \\
+     &
+     \cong
+     &
+     \begin{cases}
+       N & i = d \\
+       0 & \text{else}
+     \end{cases}
+     .
+   \end{IEEEeqnarray*}
 \end{proof}
