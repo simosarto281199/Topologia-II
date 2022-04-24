@@ -407,34 +407,39 @@ We need to establish a few things for this.
 \end{lemma}
 
 \begin{proof}
-  First, assume that $M = \mathbb{R}^d$ and $K$ is convex.
-  By translation and scaling, we can assume that
-  $0\in K\subset \mathring{D}^d$.
+  \begin{claim}
+    The lemma holds for $M = \mathbb{R}^d$ and convex $K$.
+  \end{claim}
+  \begin{proof}
+    First, assume that $M = \mathbb{R}^d$ and $K$ is convex.
+    By translation and scaling, we can assume that
+    $0\in K\subset \mathring{D}^d$.
 
-  Now, consider the homotopy
-    \begin{equation*}
-    H: \left| \begin{array}{c c l} 
-      (D^d \setminus \set{ 0 } ) \times [0,1]
-      & \longrightarrow &
-      (D^d \setminus \set{ 0 } ) \\
-      (x,t) & \longmapsto &  tx + (1-t) \frac{x}{\norm{x}}
-    \end{array} \right.
-    .
-  \end{equation*}
-  Since $K$ is convex, this also induces a homotopy
-  $(D^d \setminus K) \times [0,1] \to  (D^d \setminus K)$.
-  It follows that
-  \[
-    (D^d, D^d \setminus K) \to (D^d, D^d \setminus \set{ 0 } )
-  \]
-  is a homotopy equivalence,
-  as both are homotopy equivalent to $(D^d, S^{d-1})$.
-  Thus, by excision we deduce that
-  \[
-    H_n(\mathbb{R}^d, \mathbb{R}^d \setminus K;N)
-    \xrightarrow{(i_0)_*} 
-    H_n(\mathbb{R}^d, \mathbb{R}^d \setminus \set{ 0 } ;N)
-  \]
-  is an isomorphism.
-  The claims follow easily.
+    Now, consider the homotopy
+      \begin{equation*}
+      H: \left| \begin{array}{c c l} 
+        (D^d \setminus \set{ 0 } ) \times [0,1]
+        & \longrightarrow &
+        (D^d \setminus \set{ 0 } ) \\
+        (x,t) & \longmapsto &  tx + (1-t) \frac{x}{\norm{x}}
+      \end{array} \right.
+      .
+    \end{equation*}
+    Since $K$ is convex, this also induces a homotopy
+    $(D^d \setminus K) \times [0,1] \to  (D^d \setminus K)$.
+    It follows that
+    \[
+      (D^d, D^d \setminus K) \to (D^d, D^d \setminus \set{ 0 } )
+    \]
+    is a homotopy equivalence,
+    as both are homotopy equivalent to $(D^d, S^{d-1})$.
+    Thus, by excision we deduce that
+    \[
+      H_n(\mathbb{R}^d, \mathbb{R}^d \setminus K;N)
+      \xrightarrow{(i_0)_*} 
+      H_n(\mathbb{R}^d, \mathbb{R}^d \setminus \set{ 0 } ;N)
+    \]
+    is an isomorphism.
+    The claims follow easily.
+  \end{proof}
 \end{proof}
