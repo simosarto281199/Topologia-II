@@ -247,5 +247,194 @@ In the following, we  want to study (co)homology of manifolds.
        0 & \text{else}
      \end{cases}
      .
+     \qedhere
    \end{IEEEeqnarray*}
+\end{proof}
+
+Any element $A\in \GL_n(\mathbb{R})$ induces an automorphism of
+$H_n(\mathbb{R}^n, \mathbb{R}^n \setminus \set{ 0 }; \mathbb{Z}) \cong \mathbb{Z} $.
+It is the identity if and only if $\det (A) > 0$.
+So picking a generator of
+$H_n(\mathbb{R}^n, \mathbb{R}^n \setminus \set{ 0 }; \mathbb{Z})$
+is like picking an orientation of $\mathbb{R}^n$.
+
+\begin{definition}[Orientation]
+  \label{def:orientation}
+  Let $M$ be a  $d$-dimensional manifold and $R$ a ring.
+
+  An \vocab{$R$-orientation} of $M$ is a choice of generators 
+  $\mu_x \in H_d(M, M \setminus \set{ x };R) \cong R $ 
+  for each $x\in M$,
+  such that for all $x\in M$,
+  there exists a neighborhood $U$ of $x$
+  and an element $\mu_U \in H_d(M, M \setminus U ; R)$ 
+  such that for all $y\in U$, the map
+  \[
+    H_d(M, M \setminus U; R) \to H_d( M, M\setminus \set{ y } ;R)
+  \]
+  sends $\mu_X$ to  $\mu_y$.
+
+  $M$ is called \vocab{$R$-orientable} if an $R$-orientation exists
+  and  \vocab{$R$-oriented} if such an orientation is chosen.
+  If we omit $R$, implicitly  $\mathbb{Z}$ is meant,
+  so we will refer to just \enquote{an oriented manifold}.
+\end{definition}
+
+\begin{example}
+  For $x\in \mathbb{R}^d$ let $h_x$ denote translation by $x$.
+  Pick a generator
+  $\mu_0 \in H_d(\mathbb{R}^d , \mathbb{R}^d \setminus \set{ 0 };\mathbb{Z})$
+  and define
+  $\mu_x \coloneqq (h_x)_*(\mu_0)$.
+  This defines an orientation of $\mathbb{R}^d$.
+\end{example}
+
+\begin{lemma}
+  \label{lm:each-manifold-is-uniquely-orientable-in-z-2}
+  Every manifold has a unique $\mathbb{Z}/2$-orientation.
+\end{lemma}
+
+\begin{proof}
+  Since $\mathbb{Z}/2$ has a unique generator,
+  there only is one choice for $\mu_x$ for each  $x$,
+  hence the orientation is unique.
+  It remains to show that the only choice of $\mu_x$ is in fact
+  an orientation.
+
+  For $x\in M$, there exists a neighborhood $V$ with a homeomorphism
+  $(V,x) \cong (\mathbb{R}^d, 0)$.
+  Let $U\subset V$ be the image of the open unit ball.
+  Then
+  \[
+    H_d(M, M\setminus U;\mathbb{Z}/2)
+    \to
+    H_d(M, M\setminus \set{ y }; \mathbb{Z}/2 )
+  \]
+  is an isomorphism for all $y \in U$.
+  Hence the generator $\mu_X$ of $H_d(M, M \setminus U ; \mathbb{Z}/2)$
+  restricted to $\mu_y$ as required.
+\end{proof}
+
+\begin{proposition}
+  \label{prop:free-transitive-action-of-units-on-orientations-for-connected-manifolds}
+  Let $R$ be a ring,
+  $M$ a connected, $d$-dimensional, $R$-orientable manifold.
+  Then the units  $R^{\times}$ of $R$ act freely and transitively
+  on the set of $R$-orientations.
+\end{proposition}
+
+\begin{proof}
+  The action of $r\in R^{\times}$ is given by
+  sending an orientation $\set{ \mu_x }_{x\in M} $
+  to $\set{ r\cdot \mu_x }_{x\in M} $.
+  By replacing $\mu_U$ with $r\cdot \mu_U$,
+  we see that this is also an orientation
+  and it is easy to check that this is indeed an action.
+
+  The action is obviously free and transitive on the
+  generators of $H_d(M, M\setminus \set{ x }; R) \cong R$ 
+  for every $x$.
+
+  Hence the action on $\set{ \mu_x } $ is free.
+
+  To see that the action is transitive,
+  we have to show that two orientations agree when they
+  agree for a single $x$.
+  Since $M$ is connected,
+  it satisfies to show that two orientations agree
+  on a neighborhood if they agree for $x$.
+  This follows from
+  \autoref{lm:orientation-can-locally-be-given-as-isomorphism}.
+\end{proof}
+
+\begin{lemma}
+  \label{lm:orientation-can-locally-be-given-as-isomorphism}
+  Let $M$ be a $d$-dimensional manifold.
+  Let $\set{ \mu_x } $ be an $R$-orientation.
+  Then, for every  $x\in M$,
+  there exists a neighborhood $U$ and
+  $\mu_U \in H_d(M, M \setminus U;R)$ 
+  such that
+  \[
+    H_d(M, M\setminus U;R) \to H_d(M, M\setminus \set{ y } ;R)
+  \]
+  is an isomorphism sending $\mu_U$ by  $\mu_y$.
+\end{lemma}
+
+\begin{proof}
+  Let $V$ be any neighborhood satisfying
+  the restriction condition for $x$, i.e.~$\mu_V$ exists.
+  Then there is a neighborhood of $x$ in $V$ which is homeomorphic
+  to $\mathbb{R}^d$.
+  Then
+  \[
+    H_d(M, M\setminus U;R \to H_d(M, M\setminus \set{ y } ;R)
+  \]
+  is an isomorphism for all $y$ and the image of  $\mu_V$
+  in  $H_d(M, M\setminus U;R)$ is $\mu_U$.
+\end{proof}
+
+\begin{oral}
+  Note that for a manifold $M$ and a point  $x\in M$,
+  we can actually find an open neighborhood $x\in U \cong \mathbb{R}^d$
+  contained in any given neighborhood $V$ of  $x$.
+\end{oral}
+
+\begin{example}
+  Since $\mathbb{Z}^{\times} = \set{ \pm 1 } $,
+  every connected manifold has either $0$ or  $2$ orientations.
+\end{example}
+
+In the following,
+we want to show that every compact, connected,
+$R$-orientable manifold $M$ satisfies
+$H_d(M;R) \cong R$ and that a generator corresponds
+to an orientation.
+We need to establish a few things for this.
+
+\begin{lemma}
+  \label{lm:top-homology-of-manifold-relative-to-cocompact-subset}
+  Let $M$ be a $d$-dimensional manifold, $N$ an  $R$-module
+  and  $K\subset M$ be compact.
+  Then, the following holds
+  \begin{enumerate}[h]
+    \item $H_i(M, M\setminus K ; N) = 0$ for $i>d$.
+    \item Let $u\in H_d(M, M \setminus K;N)$ and denote
+      $i_x\colon (M, M \setminus K) \to  (M, M \setminus \set{ x } )$
+      for the inclusion.
+      If $(i_x)_* u = 0$ for all  $x$, then $u=0$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  First, assume that $M = \mathbb{R}^d$ and $K$ is convex.
+  By translation and scaling, we can assume that
+  $0\in K\subset \mathring{D}^d$.
+
+  Now, consider the homotopy
+    \begin{equation*}
+    H: \left| \begin{array}{c c l} 
+      (D^d \setminus \set{ 0 } ) \times [0,1]
+      & \longrightarrow &
+      (D^d \setminus \set{ 0 } ) \\
+      (x,t) & \longmapsto &  tx + (1-t) \frac{x}{\norm{x}}
+    \end{array} \right.
+    .
+  \end{equation*}
+  Since $K$ is convex, this also induces a homotopy
+  $(D^d \setminus K) \times [0,1] \to  (D^d \setminus K)$.
+  It follows that
+  \[
+    (D^d, D^d \setminus K) \to (D^d, D^d \setminus \set{ 0 } )
+  \]
+  is a homotopy equivalence,
+  as both are homotopy equivalent to $(D^d, S^{d-1})$.
+  Thus, by excision we deduce that
+  \[
+    H_n(\mathbb{R}^d, \mathbb{R}^d \setminus K;N)
+    \xrightarrow{(i_0)_*} 
+    H_n(\mathbb{R}^d, \mathbb{R}^d \setminus \set{ 0 } ;N)
+  \]
+  is an isomorphism.
+  The claims follow easily.
 \end{proof}
