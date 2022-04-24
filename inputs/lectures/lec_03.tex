@@ -118,65 +118,133 @@
 \section{The Eilenberg-Zilber theorem}
 
 We want to introduce the theory of acyclic models.
+Throughout the section, let $\mathcat{C}$ denote any category.
 
 \begin{notation}
   Denote with $\CHp$ the category of chain complexes with $C_n = 0$ for  $n<0$
   along with the chain maps as morphism.
 \end{notation}
 
-Let $F_*$, $G_*\colon \mathcat{C} \to  \CHp$ be functors
-and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
+We recall:
 
-\begin{definition}
-  A natural chain homotopy $s_* \colon  \varphi _* \simeq \psi _*$
-  is a natural transformation $F_* \to  G_{* + 1}$
+\begin{definition}[Natural Chain homotopy]
+  Let $F_\chainbullet$, $G_\chainbullet \colon \mathcat{C} \to  \CHp$ be functors
+  and $\varphi _{\chainbullet}$,
+  $\psi _{\chainbullet}\colon  F_{\chainbullet} \implies G_{\chainbullet}$
+  natural transformations.
+  A \vocab{natural chain homotopy}
+  $s_{\chainbullet} \colon  \varphi _{\chainbullet} \simeq \psi _{\chainbullet}$
+  is a natural transformation $F_{\chainbullet} \to  G_{\chainbullet + 1}$
   such that
   \[
-  d_{n+1}^G \circ  s_n + s_{n-1} \circ  d_n^F = \varphi _n - \psi _n
+    d_{n+1}^G \circ  s_n + s_{n-1} \circ  d_n^F = \varphi _n - \psi _n
   \] 
 \end{definition}
 
-\begin{definition}
-  A functor $F_n\colon \mathcat{C} \to \Mod_{\mathbb{Z}}$
+\begin{definition}[Free functors]
+  A functor $\mathcal{F}\colon \mathcat{C} \to \Mod_{R}$
   is called \vocab{free} if there exists a family
-  $\left\{(B_{n,j}, b_{n,j} \mid  j\in J(n) \right\} $ 
-  of objects $B_{n,j}$ (called \vocab{models}) in $\mathcat{C}$
-  and elements $b_{n,j} \in F_n(B_{n,j})$,
+  $\left\{(B_j, b_j) \right\}_{j\in J} $ 
+  of objects $B_j$ (called \vocab{models}) in $\mathcat{C}$
+  and elements $b_j \in \mathcal{F}(B_j)$,
   such that for all $X\in \Ob(\mathcat{C})$,
   \[
-  \left\{F_n(f) (b_{n,j}) \mid  j\in J(n), f\in \Hom_{\mathcat{C}}(B_{n,j},X) \right\} 
+  \left\{\mathcal{F}(f) (b_j) \mid  j\in J, f\in \Hom_{\mathcat{C}}(B_j,X) \right\} 
   \]
-  is a basis of $F_n(X)$.
+  is a basis of $\mathcal{F}(X)$.
 \end{definition}
 
-\begin{remark}
-  Assume that $F_n\colon \mathcat{C} \to  \Ab$ is free,
-  $G_n$ another functor  $\mathcat{C} \to  \Ab$.
-  Then any natural transformation $\varphi _n \colon F_n \implies G_n$
-  is determined by $\varphi _n(b_{n,j})$
+\begin{lemma}+
+  Assume that $\mathcal{F}\colon \mathcat{C} \to \Mod_R$ is free,
+  $\mathcal{G}$ another functor  $\mathcat{C} \to  \Mod_R$.
+  Then any natural transformation $\varphi \colon \mathcal{F} \implies \mathcal{G}$
+  is determined by the $\varphi(b_j)$
   and any set of such values determines a natural transformation.
-\end{remark}
+  $\varphi \colon \mathcal{F} \to  \mathcal{G}$.
+\end{lemma}
 
 \begin{proof}
-  We note that
+  We note that for any $f\colon B_j \to X$, the diagram
   \[
-  \begin{tikzcd}
-    F_n(B_{n,j)} \ar[swap]{d}{} \ar{r}{} & F_n(X) \ar{d}{} \\
-   G_n(B_{n,j})  \ar[swap]{r}{} & G_n(X)
-  \end{tikzcd}
+    \begin{tikzcd}
+      b_j
+      \ar[mapsto]{rrr}
+      \ar[mapsto, swap]{ddd}{\varphi }
+      &
+      &
+      &
+      \mathcal{F}(f)(b_j)
+      \ar[mapsto]{ddd}{\varphi }
+      \\
+      &
+      \mathcal{F}(B_j)
+      \ar[swap]{d}{\varphi_{B_j}}
+      \ar{r}{}
+      &
+      \mathcal{F}(X)
+      \ar{d}{\varphi _{X}}
+      \\
+      &
+      \mathcal{G}(B_j)
+      \ar[swap]{r}{}
+      &
+      \mathcal{G}(X)
+      \\
+      \varphi _{B_j}(b_j)
+      \ar[mapsto]{rrr}
+      &
+      &
+      &
+      \mathcal{G}(f)(\varphi (b_j))
+    \end{tikzcd}
   \]
-  commutes, so any given transformation is determined by the $\varphi (b_{n,j})$.
+  commutes, so any given transformation is determined by the $\varphi (b_j)$.
 
-  Conversely, we can define a transformation having such $b_{n,j}$
-  in a canonical way.
-  For checking commutativity, use the basis again.
+  Conversely, given such $b_j$, we can define $\varphi _X$ by defining
+  $\mathcal{F}(f)(b_j) \mapsto \mathcal{G}(f)(\varphi (b_j))$,
+  as these form a basis of $\mathcal{F}(X)$.
+  One easily checks naturality of this defined transformation
+  for any $g\colon  X \to  Y$:
+  \[
+    \begin{tikzcd}
+      \mathcal{F}(f)(b_j)
+      \ar[mapsto, swap]{ddd}{\varphi }
+      \ar[mapsto]{rrr}{\mathcal{F}(g)}
+      &
+      &
+      &
+      \mathcal{F}(gf)(b_j)
+      \ar[mapsto]{ddd}{\varphi }
+      \\
+      &
+      \mathcal{F}(X)
+      \ar{r}{\mathcal{F}(g)}
+      \ar[swap]{d}{\varphi }
+      &
+      \mathcal{F}(Y)
+      \ar{d}{\varphi }
+      \\
+      &
+      \mathcal{G}(X)
+      \ar[swap]{r}{\mathcal{G}(g)}
+      &
+      \mathcal{G}(Y)
+      \\
+      \mathcal{G}(f)(\varphi (b_j))
+      \ar[mapsto]{rrr}{\mathcal{G}(g)}
+      &
+      &
+      &
+      \mathcal{G}(gf)(\varphi (b_j))
+    \end{tikzcd}
+  .\] 
 \end{proof}
 
 \begin{definition}
-  We call $F_* \colon  \mathcat{C} \to  \CHp$ free if each $F_n$ is free.
-  We call  $G_*$ acyclic with respect to the models
+  We call $F_{\chainbullet} \colon  \mathcat{C} \to  \CHp$ free if each $F_n$ is free.
+  We call  $G_{\chainbullet}$ acyclic with respect to the models
    $\left\{(B_{n,j}, b_{n,j})\right\} $ 
-   if $H_m(G_*(B_{n,j})) = 0$ for all $m>0$ and all $n$,  $j$.
+   if $H_m(G_{\chainbullet}(B_{n,j})) = 0$ for all $m>0$ and all $n$,  $j$.
 \end{definition}
 
 \begin{example}
@@ -196,7 +264,7 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
     \mid  0 \leq  k \leq  n\right\} 
   \]
 
-  The functor $C_*^{\sing}(\blank \times  \blank ; \mathbb{Z}) \colon  \Top^2\to \CHp$
+  The functor $C_{\chainbullet}^{\sing}(\blank \times  \blank ; \mathbb{Z}) \colon  \Top^2\to \CHp$
   is free with model
   \[
     \left\{(\Delta^n, \Delta^n), \Delta^n \xrightarrow{diag} \Delta^n \times \Delta^n \right\} 
@@ -204,19 +272,19 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 
   We have $H_m(\Delta^n \times \Delta^n) = 0 = H_m(\Delta^k \times \Delta^{n-k}$ 
   for all $m>0$.
-  Thus,  $C_*^{\sing}(- \times - ; \mathbb{Z})$ is acyclic.
+  Thus,  $C_{\chainbullet}^{\sing}(- \times - ; \mathbb{Z})$ is acyclic.
 
   Using Künneth, we see that also
-  $C_*^{\sing}( \blank ; \mathbb{Z}) \otimes _Z C_*^{\sing} (\blank ; \mathbb{Z})$ 
+  $C_{\chainbullet}^{\sing}( \blank ; \mathbb{Z}) \otimes _Z C_{\chainbullet}^{\sing} (\blank ; \mathbb{Z})$ 
   is acyclic (for both models).
 \end{example}
 
 \begin{theorem}
-  Let $F_*$ be free and  $G_*$ be acyclic.
+  Let $F_{\chainbullet}$ be free and  $G_{\chainbullet}$ be acyclic.
   For each natural transformation
-  $\overline{\varphi } \colon  H_0 \circ  F_*
-  \implies H_0 \circ  G_*$,
-  there exists a natural transformation $\varphi \colon F_* \implies G_*$
+  $\overline{\varphi } \colon  H_0 \circ  F_{\chainbullet}
+  \implies H_0 \circ  G_{\chainbullet}$,
+  there exists a natural transformation $\varphi \colon F_{\chainbullet} \implies G_{\chainbullet}$
   inducing $\overline{\varphi }$.
 
   Moreover, any two such transformations are naturally chain homotopic.
@@ -226,7 +294,7 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 
 \begin{proof}[Proof of Eilenberg-Zilber]
   It suffices to prove the theorem with $R = \mathbb{Z}$.
-  As before, denote $C_*(X) \coloneqq C_*^{\sing}(X ; \mathbb{Z})$.
+  As before, denote $C_{\chainbullet}(X) \coloneqq C_{\chainbullet}^{\sing}(X ; \mathbb{Z})$.
 
   We have
   \[
@@ -240,11 +308,11 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 
   Hence we get natural transformations
   \[
-    \psi \colon  C_*(\blank) \otimes C_*(\blank) \implies C_*( \blank \times  \blank )
+    \psi \colon  C_{\chainbullet}(\blank) \otimes C_{\chainbullet}(\blank) \implies C_{\chainbullet}( \blank \times  \blank )
   \]
   and
   \[
-  \varphi  \colon  C_*( \blank \times  \blank ) \implies C_* ( \blank ) \otimes  C_* ( \blank )
+  \varphi  \colon  C_{\chainbullet}( \blank \times  \blank ) \implies C_{\chainbullet} ( \blank ) \otimes  C_{\chainbullet} ( \blank )
   \]
   by 3.6
 
@@ -260,7 +328,7 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
 \end{oral}
 
 \begin{question}
-  In 3.6, do we mean $G_*$ acyclic wrt. to the models of  $F_*$.
+  In 3.6, do we mean $G_{\chainbullet}$ acyclic wrt. to the models of  $F_{\chainbullet}$.
   Yes.
 \end{question}
 
@@ -294,9 +362,9 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
   Choose $g_{n,j} \in  G_n(B_{n,j})$ such that
   $d_n^G ( g_{n,j}) = \varphi _{n-1}(d_n^F(b_{n,j}))$
   and define $\varphi _n (b_{n,j}) = g_{n,j}$.
-  It follows that $\varphi _*$ exists.
+  It follows that $\varphi _{\chainbullet}$ exists.
 
-  Now assume that $\varphi _*$ and  $\psi _*$ both induce $\overline{\varphi }$.
+  Now assume that $\varphi _{\chainbullet}$ and  $\psi _{\chainbullet}$ both induce $\overline{\varphi }$.
   We will inductively define $S_n(b_{n,j}) \in  G_{n+1}(B_n,j)$
   such that $d_{n+1}^G \circ  s_n = s_{n-1} \circ  d_n^F = \varphi _n - \psi _n$.
 
@@ -312,7 +380,7 @@ and $\varphi _*$, $\psi _*\colon  F_* \implies G_*$ natural transformations.
     d_n^G ( \varphi _n - \psi _n - s_{n-1} \circ  d_n^F)
     &=& \left( \varphi _{n-1} - \psi _{n-1} - \varphi _{n-1} + \psi _{n-1} + s_{n-1} nach d_{n-1}^F \right) d_nF = 0
   \end{IEEEeqnarray*}
-  Since $G_*$ is acyclic, there exists a  $C_{n,j} \in  G_{n+1}(B_{n,j})$ 
+  Since $G_{\chainbullet}$ is acyclic, there exists a  $C_{n,j} \in  G_{n+1}(B_{n,j})$ 
   such that
   \[
     d_{n+1}^G ( G_{n,j}) = ( \varphi _n - \psi _n - s_{n-1} d_n^F) (b_{n,j})
