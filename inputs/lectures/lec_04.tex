@@ -71,3 +71,91 @@
    identity in the zero dimension.
    Thus it is the inverse map that appears in \nameref{thm:eilenberg-zilber}.
 \end{example}
+
+Recall that last semester, we gave another definition of the cup product:
+
+\begin{definition}+[Last years version of cup and cross product]
+  \label{def:cup-and-cross-product-last-term}
+  For singular cohomology, define the cup and cross product by
+  \[
+    (\varphi  \cup \psi ) (σ)
+    =
+    \varphi (\frestriction{σ}{[0,\dotsc,p]})
+    \cdot
+    \psi ( \frestriction{σ}{[p, \dotsc, p+q]}
+  \]
+  and
+  \begin{IEEEeqnarray*}{RrCl}
+    \times \colon
+    &
+    H^p(X) \tensor H^q(Y)
+    &
+    \xrightarrow{\pr_X^* \tensor \pr_Y^*}
+    &
+    H^p(X\times Y) \tensor H^q(X\times Y)
+    \\
+    &
+    &
+    \xrightarrow{\cup } 
+    &
+    H^{p+q}(X\times Y)
+  \end{IEEEeqnarray*}
+\end{definition}
+
+\begin{proposition}+
+  \label{prop:cup-product-definitions-agree}
+  The definitions of the cross product given in
+  \autoref{def:cohomological-cross-product}
+  and
+  \autoref{def:cup-and-cross-product-last-term}
+  agree.
+\end{proposition}
+
+\begin{proof}
+  Examining the first two maps of
+  \autoref{def:cohomological-cross-product},
+  we get that
+  \begin{IEEEeqnarray*}{rCl}
+    H_p(\Csing*(X,A)) \tensor H_q(\Csing*(Y,B))
+    &
+    \to
+    &
+    H_{p+q}(\Csing*(X,A) \tensor \Csing*(Y,B))
+    \\
+    &
+    \to
+    &
+    H_{p+q}((\Csing(X,A) \tensor \Csing(Y,B))^{\chainbullet})
+  \end{IEEEeqnarray*}
+  is given by
+  \begin{equation}
+    \label{eq:cross-product-definition-first-two-maps}
+    [\varphi ] \tensor [\psi ]
+    \mapsto
+    [ σ \tensor τ \mapsto
+    \begin{cases}
+      0 & \text{$\abs{σ} \neq p $ or $\abs{τ} \neq q $}
+      \\
+      \psi (σ) \psi (τ)  & \text{else}
+    \end{cases}
+    .
+  \end{equation}
+  Now apply the Alexander-Whitney map to obtain
+  \[
+    \left[
+    σ
+    \mapsto
+    \left( \pr_X \circ \frestriction{σ}{[0,\dotsc,p]} \right)
+    \cdot
+    \left( \pr_Y \circ \frestriction{σ}{[p,\dotsc,p+q]} \right)
+    \right]
+    =
+    \pr_X^* \varphi \cdot \pr_Y^* \psi
+  ,\]
+  which is precisely the map given in
+  \autoref{def:cup-product-last-term}.
+  Note that the direct sum present in the Alexander-Whitney map
+  disappeared, as all summands except $(p,q)$ vanish
+  as seen in
+  \eqref{eq:cross-product-definition-first-two-maps}.
+\end{proof}
