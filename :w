@@ -1,0 +1,10 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mi 13 Apr 2022}{Untitled}
+
+\begin{example}
+  We want to give two concrete examples of chain maps
+  appearing in \autoref{thm:eilenberg-zilber}.
+
+  If $p$ and  $q$ are non-negative integers,
+  a  \vocab{$(p,q)$-shuffle} is a pair of disjoint sets of integers.
+\end{example}

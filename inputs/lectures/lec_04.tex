@@ -1,0 +1,73 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mi 13 Apr 2022}{Untitled}
+
+\begin{example}
+  We want to give two concrete examples of chain maps
+  appearing in \autoref{thm:eilenberg-zilber}.
+
+  If $p$ and  $q$ are non-negative integers,
+  a  \vocab{$(p,q)$-shuffle} is a pair of disjoint sets of integers
+  $1 \leq \mu_1 < μ_2 < \dotsb < \mu_p \leq p + q$
+  and
+  $1 \leq \nu_1 < \nu_2 < \dotsb < \nu_q \leq p + q$.
+  Let $\sgn(μ,ν)$ be the sign of the permutation given by
+   $(\mu_1, \dotsc, \mu_p, \nu_1, \dotsc, \nu_q)$.
+
+   Define a linear map $\eta^{\mu}\colon \Delta^{p+q} \to  \Delta^p$ 
+   by $\eta^{\mu}(e_i) = e_j$ if $\mu_j \leq i < \mu_{j+1}$
+   (where by convention we have $\mu_0 = 0$, $\mu_{p+1} = p + q + 1$ ).
+
+   Define homomorphisms
+   %
+   \begin{equation*}
+     \nabla_{p,q}: \left| \begin{array}{c c l} 
+     C^{\sing}_p (X;R) \tensor _R C_q^{\sing}(Y;R) & \longrightarrow & C^{\sing}_{p+q}(X\times Y;R) \\
+     σ \tensor τ & \longmapsto &
+     \sum\limits_{\substack{(\mu, \nu) \\ \text{$(p,q)$-shuffle}} }
+     \sgn(\mu, \nu) (σ \circ \eta^{\mu}, τ \circ  \eta^{\nu})
+     \end{array} \right.
+   \end{equation*}
+   %
+   Then
+   \[
+     (\Csing(X;R) \tensor _R \Csing(Y;R))_n
+     =
+     \directsum_{p+q=n} \C_p(X;R) \tensor _R C_q(Y;R)
+     \xrightarrow{\oplus \nabla_{p,q}} 
+     C_{p+q}(X\times Y;R)
+   \]
+   is a chain homotopy equivalence, as one checks.
+   By checking that this induces our isomorphism on $H_0$,
+   one also sees that this has to be the map in \nameref{thm:eilenberg-zilber}.
+
+   An inverse is given as follows:
+
+   Define
+     \begin{equation*}
+     \nu_{p,q}: \left| \begin{array}{c c l} 
+     \Delta^p& \longrightarrow & \Delta^{p+q} \\
+     e_i & \longmapsto & e_i
+     \end{array} \right.
+   \end{equation*}
+   and
+     \begin{equation*}
+     h_{p,q}: \left| \begin{array}{c c l} 
+     \Delta^q & \longrightarrow & \Delta^{p+q} \\
+     e_i & \longmapsto &  e_{p+i}
+     \end{array} \right.
+     .
+   \end{equation*}
+   The \vocab{Alexander-Whitney} map is then defined as
+     \begin{equation*}
+     A: \left| \begin{array}{c c l} 
+     \Csing(X\times Y;R) & \longrightarrow & \Csing(X;R) \tensor \Csing(Y;R) \\
+     σ & \longmapsto &
+     \directsum\limits_{p+q=n}
+     (\pr_X \circ σ \circ \nu_{p,q}) \tensor (\pr_Y \circ σ \circ h_{p,q})
+     \end{array} \right.
+     .
+   \end{equation*}
+   Again, check that this is indeed a chain map and induces the
+   identity in the zero dimension.
+   Thus it is the inverse map that appears in \nameref{thm:eilenberg-zilber}.
+\end{example}
