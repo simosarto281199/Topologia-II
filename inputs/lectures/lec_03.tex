@@ -240,9 +240,17 @@ We recall:
   .\] 
 \end{proof}
 
+\begin{notation}
+  If $F_\chainbullet \colon  \mathcat{C} \to  \CHp$ is a functor
+  and each $F_n$ is free,
+  we denote the model of  $F_n$ by
+  $\set{ (B_{n,j}, b_{n,j}) \suchthat j\in J(n) } $.
+\end{notation}
+
 \begin{definition}
-  We call $F_{\chainbullet} \colon  \mathcat{C} \to  \CHp$ free if each $F_n$ is free.
-  We call  $G_{\chainbullet}$ acyclic with respect to the models
+  We call $F_{\chainbullet} \colon  \mathcat{C} \to  \CHp$ \vocab{free} if each $F_n$ is free.
+  We call  $G_{\chainbullet}\colon \mathcat{C} \to  \CHp$
+  \vocab{acyclic} with respect to the models
    $\left\{(B_{n,j}, b_{n,j})\right\} $ 
    if $H_m(G_{\chainbullet}(B_{n,j})) = 0$ for all $m>0$ and all $n$,  $j$.
 \end{definition}
@@ -280,7 +288,9 @@ We recall:
 \end{example}
 
 \begin{theorem}
-  Let $F_{\chainbullet}$ be free and  $G_{\chainbullet}$ be acyclic.
+  \label{thm:natural-transformation-of-chain-functors-induced-on-h0}
+  Let $F_{\chainbullet}$ be free and  $G_{\chainbullet}$ be acyclic
+  with respect to the models of $F_\chainbullet $.
   For each natural transformation
   $\overline{\varphi } \colon  H_0 \circ  F_{\chainbullet}
   \implies H_0 \circ  G_{\chainbullet}$,
@@ -292,7 +302,7 @@ We recall:
 
 \todo{in $R$-Koeffizienten umformulieren}
 
-\begin{proof}[Proof of Eilenberg-Zilber]
+\begin{refproof}{thm:eilenberg-zilber}
   It suffices to prove the theorem with $R = \mathbb{Z}$.
   As before, denote $C_{\chainbullet}(X) \coloneqq C_{\chainbullet}^{\sing}(X ; \mathbb{Z})$.
 
@@ -320,19 +330,14 @@ We recall:
   Thus, they are chain homotopic to the identity.
 
   Thus, $\psi $ is a chain homotopy equivalence.
-\end{proof}
+\end{refproof}
 
 \begin{oral}
   note that we are using that both functors are not
   only acyclic for their own model but for both.
 \end{oral}
 
-\begin{question}
-  In 3.6, do we mean $G_{\chainbullet}$ acyclic wrt. to the models of  $F_{\chainbullet}$.
-  Yes.
-\end{question}
-
-\begin{proof}[of 3.6]
+\begin{refproof}{thm:natural-transformation-of-chain-functors-induced-on-h0}
   We will specify $\varphi _n(b_{n,j})$ (and thus $\varphi _n$) inductively
   such that
   $d_n^G \varphi _n = \varphi _{n-1} d_n^F$.
@@ -378,7 +383,7 @@ We recall:
   Assume that $s_{n-1}$ is defined.
   \begin{IEEEeqnarray*}{rCl}
     d_n^G ( \varphi _n - \psi _n - s_{n-1} \circ  d_n^F)
-    &=& \left( \varphi _{n-1} - \psi _{n-1} - \varphi _{n-1} + \psi _{n-1} + s_{n-1} nach d_{n-1}^F \right) d_nF = 0
+    &=& \left( \varphi _{n-1} - \psi _{n-1} - \varphi _{n-1} + \psi _{n-1} + s_{n-1} \circ  d_{n-1}^F \right) d_nF = 0
   \end{IEEEeqnarray*}
   Since $G_{\chainbullet}$ is acyclic, there exists a  $C_{n,j} \in  G_{n+1}(B_{n,j})$ 
   such that
@@ -387,4 +392,4 @@ We recall:
   \]
   Define $s_n(b_{n,j)} \coloneqq  c_{n,j}$.
   This gives our desired chain homotopy
-\end{proof}
+\end{refproof}
