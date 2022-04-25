@@ -340,11 +340,26 @@ is like picking an orientation of $\mathbb{R}^n$.
   To see that the action is transitive,
   we have to show that two orientations agree when they
   agree for a single $x$.
-  Since $M$ is connected,
-  it satisfies to show that two orientations agree
-  on a neighborhood if they agree for $x$.
-  This follows from
-  \autoref{lm:orientation-can-locally-be-given-as-isomorphism}.
+
+  For this, note that
+  \autoref{lm:orientation-can-locally-be-given-as-isomorphism}
+  in particular gives us that for each point $x$,
+  we can find a neighborhood $U$ of $x$ such that
+  if two orientations $\set{ μ_x }$ and  $\set{ ν_x } $ coincide on any
+  $y\in U$, then they already agree on $U$.
+
+  Now, let  $\set{ μ_x } $ and $\set{ ν_x } $ be any two orientations.
+  Considering the set  $U \coloneqq \set{ x\in X \suchthat μ_x = ν_x } $,
+  by the prior statement, we see that $U$ is open.
+  Now consider  $\overline{U}\subset X$, if $\overline{U}=X$,
+  then $U$ is also closed and by connectedness we deduce $U=X$
+  and hence $ \set{ μ_x }  = \set{ ν_x } $ as required.
+
+  If not, pick a point $y \in \partial U$ and a neighborhood
+  $V$ of $y$ with above property.
+  But then as $V\cap U \neq \emptyset$, there is a point in
+  $V$ where $\set{ μ_x } $ and $\set{ ν_x } $ coincide,
+  so that they also coincide on $y$, but $y\not\in U$, \contra.
 \end{proof}
 
 \begin{lemma}
