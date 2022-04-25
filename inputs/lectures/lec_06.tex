@@ -1,0 +1,238 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mo 25 Apr 2022}{Untitled}
+
+
+Let $(X,A,B)$ be a triple of spaces with  $A$,  $B\subset X$ open.
+Then, from the long exact sequence diagram
+
+\[
+  \begin{tikzcd}
+    \ldots
+    \ar{r}
+    &
+    H_n(X, A\cap B)
+    \ar{r}
+    \ar{d}
+    &
+    H_n(X,A)
+    \ar{r}
+    \ar{d}
+    &
+    H_n(A,A\cap B)
+    \ar{r}
+    \ar{d}{\cong}
+    &
+    \ldots
+    \\
+    \ldots
+    \ar{r}
+    &
+    H_n(X,B)
+    \ar{r}
+    &
+    H_n(X,A\cup B)
+    \ar{r}
+    &
+    H_n(A\cup B,B)
+    \ar{r}
+    &
+    \ldots
+  \end{tikzcd}
+\]
+where the isomorphism holds by $B \setminus A \subset B \subset A\cup B$ and excision,
+we get the Mayer Vietoris Sequence from last time.
+
+\begin{remark}
+  As
+  $H_d(M, M \setminus \set{ x } ,R)
+  \cong
+  H_d(M, M \setminus \set{ x } ; \mathbb{Z}) \tensor _{\mathbb{Z}} R$
+  by UCT,
+  a generator on the left side corresponds to
+  $e\tensor r$ with $r\in R^{\times}$ and
+  $e\in H_d(M, M \setminus \set{ x } ; \mathbb{Z})$
+  a generator.
+
+  For an $\mathbb{Z}$-orientation $\set{ \mu_x } $ and $r\in R^{\times}$,
+  we get an $R$-orientation  $\set{ \mu_x \tensor r} $.
+
+  Note that that $\set{ \mu_x \tensor r } $ is in fact an orientation,
+  as we have the commutative diagram
+  \[
+  \begin{tikzcd}
+    H_d(M, M \setminus U; \mathbb{Z}) \ar[swap]{d}{} \ar{r}{} & H_d(M, M\setminus \set{ y } ; \mathbb{Z}) \tensor R \ar{d}{} \\
+    H_d(M , M \setminus U; R) \ar[swap]{r}{} & H_d(M, M\setminus \set{ y } ; R)
+  \end{tikzcd}
+  \]
+\end{remark}
+
+
+
+
+\section{The mapping degree}
+
+\begin{definition}[Mapping degree]
+  \label{def:mapping-degree-oriented-closed-connected-manifolds}
+  Let $M$ and $N$ be oriented, connected, closed,
+  $d$-dimensional manifolds and $f\colon M\to N$.
+  The \vocab{mapping degree} $\deg(f)\in \mathbb{Z}$
+  is defined by as the unique integer such that
+  \[
+    f_*[M] = \deg(f)\cdot f_*[N]
+  .\] 
+\end{definition}
+
+\todo{introduce notation here.}
+
+\begin{lemma}
+  Let $M$, $N$ and $P$ be oriented, connected, closed,
+  $d$-dimensional manifolds and $f\colon M\to N$.
+  Let $\overline{M}$ and $\overline{N}$ denote $M$ and $N$
+  with the other orientation, respectively.
+  Then, the following hold:
+  \begin{enumerate}[h]
+    \item $\deg(f\colon M\to N) = \deg(f\colon \overline{M}\to \overline{N}) = -\deg(f\colon \overline{M}\to N)$.
+    \item The mapping degree is multiplicative,
+      that is,
+      \[
+        \deg(M\xrightarrow{f} N\xrightarrow{g} P)
+        =
+        \deg(f)\cdot \deg(g)
+      \]
+    \item If $\deg(f) \neq 0$, then $f$ is surjective.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  For $1)$ it suffices to note that $[\overline{M}] = - [M]$.
+
+  For $2)$, by functoriality, we have
+  \[
+    \deg(g \circ f) [P]
+    =
+    (g \circ f)_*[M]
+    =
+    g_*(f_*[M])
+    =
+    g_*(\deg(f)[N])
+    =
+    \deg(f)g_*[N]
+    =
+    \deg(f)\deg(g)[P]
+  \]
+
+  For $3)$, assume that  $y\not\in \im f$.
+  We will show that $\deg(f) = 0$.
+  Consider
+  \[
+    \begin{tikzcd}
+      H_d(M;\mathbb{Z})
+      \ar{r}{f_*}
+      &
+      H_d(N,\mathbb{Z})
+      \ar{r}{\cong}
+      &
+      H_d(N,N\setminus \set{ y } ;\mathbb{Z})
+      \\
+      \left[M\right]
+      \ar[mapsto]{r}
+      &
+      \deg(f)\left[N\right]
+      \ar[mapsto]{r}
+      &
+      \deg(f)\cdot \mu_y=0
+    \end{tikzcd}
+  \] 
+\end{proof}
+
+\begin{oral}
+  One immediately gets that homotopy equivalences between
+  oriented, closed, connected, $d$-dimensional manifolds
+  are surjective.
+\end{oral}
+
+\begin{proposition}
+  Let $M$,  $N$ and  $f$ be as before.
+  Let  $x\in N$ with a neighborhood $U$ such that
+  $f^{-1}(U) = \coprod_{i \in I}U_i$
+  such that each $U_i$ is mapped homeomorphically onto  $U$.
+  Then, for each $y_i \in f^{-1}(x) \cap U_i$,
+  \[
+    \begin{tikzcd}
+      H_d(M, M \setminus \set{ y } )
+      &
+      H_d(U_i, U_i \setminus \set{ y_i } )
+      \ar[swap]{l}{\cong}
+      \ar{r}{f}[swap]{\cong}
+      &
+      Hvd(U, U\setminus \set{ x } )
+      \ar{r}{\cong}
+      &
+      H_d(N, N\setminus \set{ x } )
+      \\
+      \mu_{y_i}
+      \ar[mapsto]{rrr}
+      &
+      &
+      &
+      \pm \mu_x
+      =\noloc ε_i
+    \end{tikzcd}
+  \]
+  Then,
+  \[
+    \deg(f) = \sum_{i \in I} ε_{i}
+  \] 
+\end{proposition}
+
+\begin{oral}
+  This property is not totally off the charts,
+  it will usually hold for at least some points.
+  Think coverings, for example.
+\end{oral}
+
+\begin{remark}+
+  One often phrases the statement as
+  \enquote{$deg(f) = \abs{f^{-1}(x)}$ with signs}.
+\end{remark}
+
+\begin{remark}
+  For the sum to make sense, we need that $I$ is finite.
+  But actually, this follows from $M$ being compact.
+\end{remark}
+
+\begin{proof}
+  Consider the diagram
+  \[
+    \begin{tikzcd}
+      &
+      H_d\left(\coprod U_i, \coprod U_i \setminus \set{ y_i } \right)
+      \ar{d}{\cong}
+      &
+      \directsum_{i \in I} H_d(U_i, U_i \setminus \set{ y_i } )
+      \ar[swap]{l}{\cong}
+      \ar{d}{\cong}
+      \ar[bend left = 100]{dd}{\text{sum of isos induced by $f$}}
+      \\
+      H_d(M)
+      \ar{r}
+      \ar{d}
+      &
+      H_d(M, M\setminus f^{-1}(x))
+      \ar{d}
+      \ar{r}
+      &
+      \directsum_{i \in I} H_d(M, M\setminus \set{ y_i } )
+      \\
+      H_d(N)
+      \ar{r}{\cong}
+      &
+      H_d(N,N\setminus \set{ x } )
+      &
+      H_d(U, U\setminus \set{ x } )
+      \ar[swap]{l}{\cong}
+    \end{tikzcd}
+  .\]
+  One checks commutativity.
+  Now it suffices to track where $[M]$ maps to.
+\end{proof}
