@@ -236,3 +236,142 @@ we get the Mayer Vietoris Sequence from last time.
   One checks commutativity.
   Now it suffices to track where $[M]$ maps to.
 \end{proof}
+
+\subsection{Recap of $\cup $ and $\cap $}
+
+Let $(X,A,B)$ be an excisive triad.
+Then, the cup product is a natural morphism
+ \[
+  \cup \colon H^k(X,A;R) \tensor _R H^l(X,b;R)
+  \xrightarrow{} H^{k+l}(X,A\cup B;R) 
+\]
+that satisfies
+\begin{enumerate}[h]
+  \item $x\cup y = (-1)^{\abs{x} \cdot \abs{y} } y\cup x$
+  \item $(x\cup y)\cup z = x\cup (y\cup z)$ 
+  \item $δ(\varphi \cup \psi )
+    =
+    (δ \varphi )\cup \psi + (-1)^{\abs{\varphi } } \varphi  \cup (δ\psi )$ on chain level.
+\end{enumerate}
+\todo{different sign convention?}
+
+The cap product is defined by
+\[
+  \varphi ^k \cap σ^n = \varphi (\frestriction{σ}{[n-k,\ldots,n} \frestriction{σ}{0,\dotsc, n-k}
+\]
+such that
+\[
+  \cap \colon H^k(X,A;R)\tensor_R H_{k+l}(X,A\cup B;R)
+  \to 
+  H_l(X,B;R)
+\]
+It is natural in the sense that
+\[
+  x \cap f_*α = f_*(f^*x \cap  α)
+\] 
+\todo{Hatcher: right modules}
+\begin{enumerate}[h]
+  \item We have $x \cap (y \cap α) = (x\cup y) \cap α$
+  \item On chain level, we have
+    \[
+      \partial (\varphi  \cap σ) = \varphi  \cap (\partial σ) + (-1)^{\abs{\varphi } \abs{σ} } (δ\varphi )\cap σ
+    \]
+  \item Let $x = [\varphi ] \in H^k(X;R)$ and $α = [σ] \in H_k(X;R)$,
+    then
+    \[
+      \left< x,α \right> =\varphi (σ)\in R
+    .\]
+    This yields the cap product if $R$ is connected. 
+    Thus
+    \[
+      \left< x, y \cap α \right>  = \left< x\cup y, α \right> 
+    .\] 
+\end{enumerate}
+
+\section{Poincaré duality}
+
+We will for now just state Poincaré duality.
+Later in the lecture, we will actually prove a stronger result.
+
+\begin{theorem}[Poincaré duality]
+  \label{thm:poincare-duality}
+  Let $M$ be a closed, oriented, $d$-dimensional manifold 
+  with fundamental class $[M]$ and  $N$ be an  $R$-module.
+
+  Then
+   \[
+     - \cap [M] \colon   H^n(M,N) \xrightarrow{\cong} H_{n-d}(M;N)
+  \]
+  is an isomorphism for all $n\in \mathbb{Z}$.
+\end{theorem}
+
+\begin{corollary}
+  We have $H^n(M;N) = H_n(M;N) = 0$ for all $n>d$.
+\end{corollary}
+
+\begin{corollary}
+  The cohomology rings of $\mathbb{C}\mathbb{P}^n$ and $\mathbb{R}\mathbb{P}^n$
+  are given by
+  \[
+    H^*(\mathbb{C}\mathbb{P}^n;\mathbb{Z})
+    \cong
+    \faktor{\mathbb{Z}[X]}{(X^{n+1})}
+  \]
+  with $\deg X = 2$ and
+  \[
+    H^*(\mathbb{R}\mathbb{P}^n, \mathbb{Z}/2)
+    \cong
+    \faktor{\mathbb{Z}/2[Y]}{(Y^{n+1})}
+  \]
+  with $\deg Y = 1$.
+\end{corollary}
+
+\begin{proof}
+  We prove this for $\mathbb{C}\mathbb{P}^n$ only,
+  the proof for $\mathbb{R}\mathbb{P}^n$ works the same way.
+  We proceed by induction, so we assume the claim for $\mathbb{C}\mathbb{P}^{n-1}$.
+
+  It follows that $x^{n-1} \in H^{2n-2}(\mathbb{C}\mathbb{P}^n ;\mathbb{Z})$ 
+  is a generator, using naturality of the cup product and the
+  isomorphism
+  \[
+    H^k(\mathbb{C}\mathbb{P}^{n-1};\mathbb{Z})
+    \xrightarrow{\cong}
+    H^k(\mathbb{C}\mathbb{P}^n;\mathbb{Z})
+  \] 
+  for all $k<2n$. 
+  By Poincaré duality, we deduce that
+  \[
+    x \cap [\mathbb{C}\mathbb{P}^n] \in H_{2n-2}(\mathbb{C}\mathbb{P}^n;\mathbb{Z})
+  \]
+  is a generator.
+  Then by the UCT, we get that
+  \[
+    \left< X^n, [\mathbb{C}\mathbb{P}^n] \right>
+    =
+    \left< X^{n-1}, x \cap [\mathbb{C}\mathbb{P}^n] \right>
+    =
+    \pm 1
+  \]
+  and thus $x^n$ is a generator.
+\end{proof}
+
+\todo{Something on canonical orientation of $\mathbb{C}\mathbb{P}^n$}.
+
+\begin{definition}
+  For $X$ with $H_n(X;\mathbb{Z}/2)$ finitely generated for all $n$
+  and  $0$ for almost all $n$.
+  Then
+   \[
+    \chi(X) \coloneqq \sum_{i=0}^{\infty} (-1)^i \dim_{\mathbb{Z}/2} H_i(X;\mathbb{Z}/2)
+  \]
+  is the Euler characteristic.
+\end{definition}
+\todo{recap this}
+
+
+
+
+\section{Applications of Poincaré Duality}
+
+First, we will show
