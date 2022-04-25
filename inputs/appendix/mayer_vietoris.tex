@@ -1,0 +1,145 @@
+\section{Mayer Vietoris}
+
+This section has been added to give a short overview of Mayer Vietoris.
+Recall the abstract nonsense version of Mayer Vietoris in a purely
+category-theoretic context:
+
+\begin{lemma}*
+  \label{lm:mayer-vietoris-abstract-nonsense}
+  Let $C_\chainbullet $ and $D_\chainbullet $ be long exact sequences,
+  and left $f_\chainbullet \colon C_\chainbullet  \to  D_\chainbullet $
+  be a chain map such that $f_{3n}$ is an isomorphism for all $n$.
+
+  Then, there is a long exact sequence, the Mayer-Vietoris sequence,
+  given by
+  \[
+  \begin{tikzcd}[column sep = 5em]
+    C_{3n+2}
+    \ar{r}{\partial _{3n+2} \oplus f_{3n+2}} &  
+    C_{3n+1} \oplus D_{3n+2}
+    \ar[draw=none]{d}[name=X,anchor=center]{}
+    \ar{r}{\partial _{3n+2} - f_{3n+1}} &  
+    D_{3n+1}
+    \ar[rounded corners,
+              to path={ -- ([xshift=2ex]\tikztostart.east)
+                        |- (X.center) \tikztonodes
+                        -| ([xshift=-2ex]\tikztotarget.west)
+                        -- (\tikztotarget)}]{dll}[at end]{\partial } \\
+    C_{3n-1}
+    \ar{r}{\partial _{3n-1} \oplus f_{3n-1}} &
+    C_{3n-2} \oplus D_{3n-1}
+    \ar{r}{\partial 3n-1 - f_{3n-2}} &
+    D_{3n-2}
+  \end{tikzcd}
+\]
+  where $\partial$ is given as the composition
+  \[
+  \begin{tikzcd}
+    D_{3n+1} \ar{r}{\partial _{3n+1}} &  D_{3n} & C_{3n} \ar{l}{\cong}[swap]{f_{3n}} \ar{r}{\partial _{3n}} &  C_{3n-1}
+  \end{tikzcd}
+  \]
+\end{lemma}
+
+\begin{proof}
+  See last semesters note, e.g.~available at
+  \href{https://latexci.gitlab.io/lecture-notes-bonn/TopologyI/2021_Topology_I.pdf}{GitLab},
+  or the hand-written notes by Daniel linked on eCampus.
+\end{proof}
+
+We want to give the following version that has not been covered last term:
+
+\begin{theorem}[Mayer Vietoris]
+  \label{thm:mayer-vietoris-union-intersection-of-subspaces}
+  Let $(X,A,B)$ be an excisive triad in the sense of
+  \autoref{def:excisive-triad}.
+  Then, there is long exact sequence in homology given by
+  \[
+    \begin{tikzcd}[column sep = tiny]
+    &
+    \ldots
+    \connectingmark[Y]
+    \ar{r}
+    &
+    H_{n+1} ( X, A\cup B)
+    \connectingmap[Y]{\partial}
+    \\
+    H_n ( X, A\cap B)
+    \ar{r}
+    &
+    H_n ( X, B; R) \oplus H_n(X, A)
+    \connectingmark[Z]
+    \ar{r}
+    &
+    H_n ( X, A\cup B; R )
+    \connectingmap[Z]{\partial}
+    \\
+    H_{n-1} ( X, A\cap B)
+    \ar{r}
+    &
+    \ldots
+    ,
+    \end{tikzcd}
+  \]
+  where the boundary morphism is given as the composition
+  \[
+    \begin{tikzcd}[column sep = tiny]
+      H_n(X,A\cup B)
+      \ar{r}
+      &
+      H_n(A\cup B, B)
+      &
+      \ar[swap]{l}{\cong}
+      H_n(A, A\cap B)
+      \ar{r}{\partial }
+      &
+      H_{n-1}(X,A\cap B)
+    \end{tikzcd}
+  \]
+  with the boundary operator of the triple sequence.
+\end{theorem}
+
+\begin{proof}
+  We use the triple sequences of the spaces
+  $(X,A\cap B, A)$ and $(X, A\cup B, B)$,
+  giving us a map of long exact sequences
+  \[
+    \begin{tikzcd}
+      \ldots
+      \ar{r}
+      &
+      H_n(X, A\cap B)
+      \ar{r}
+      \ar{d}
+      &
+      H_n(X,A)
+      \ar{r}
+      \ar{d}
+      &
+      H_n(A,A\cap B)
+      \ar{r}{\partial }
+      \ar{d}{\cong}
+      &
+      \ldots
+      \\
+      \ldots
+      \ar{r}
+      &
+      H_n(X,B)
+      \ar{r}
+      &
+      H_n(X,A\cup B)
+      \ar{r}{\partial }
+      &
+      H_n(A\cup B,B)
+      \ar{r}
+      &
+      \ldots
+    \end{tikzcd}
+  \]
+  This commutes as all maps are induced by the
+  natural inclusions.
+  The isomorphism is just given by the excision assumption.
+  Thus, by
+  \autoref{lm:mayer-vietoris-abstract-nonsense},
+  the claim follows.
+\end{proof}
