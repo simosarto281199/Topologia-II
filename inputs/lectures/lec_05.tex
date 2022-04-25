@@ -1,5 +1,5 @@
 %! TEX root = ../../master.tex
-\lecture[]{Mi 20 Apr 2022}{Untitled}
+\lecture[Properties of compact (connected) manifolds, in particular orientability criterion and existence of the fundemental class.]{Mi 20 Apr 2022}{Existence of the fundamental class}
 
 \begin{refproof}{lm:top-homology-of-manifold-relative-to-cocompact-subset}
   \begin{claim}
@@ -8,7 +8,221 @@
     then the statement also holds for $K_1\cup K_2$.
   \end{claim}
   \begin{proof}
-    Since $M$ is Hausdorff, the complements  $M \setminus K_i$ are open
-    and we get an induced Mayer-Vietoris sequence
+    Since $M$ is Hausdorff, the complements  $M \setminus K_i$
+    are open and thus $(M, M\setminus K_1, M\setminus K_2)$
+    is excisive and by
+    \autoref{thm:mayer-vietoris-union-intersection-of-subspaces}
+    we get the Mayer-Vietoris-sequence
+    \begin{IEEEeqnarray}{rCl}
+      \label{eq:mayer-vietoris-cocompact-subsets}
+      \ldots
+      &
+      \to
+      &
+      H_{n+1}(M, M \setminus (K_1 \cap K_2); N)
+      \to
+      H_n(M,M\setminus (K_1 \cup K_2);N)
+      \\
+      &
+      \to
+      &
+      H_n(M, M\setminus K_1; N) \oplus H_n(M, M\setminus K_2; N)
+      \to 
+      H_n(M, M \setminus (K_1 \cap K_2);N)
+      \to \ldots
+    \end{IEEEeqnarray}
+    $1)$ follows immediately.
+    For $2)$ note that $H_{d+1}(M, M\setminus (K_1\cap K_2;N)$
+    vanishes and thus the map into the sum is injective.
+    Let $u\in H_d(M, M\setminus (K_1 \cup K_2); N)$ be
+    mapped to $(u_1,u_2)$ by this.
+    By commutativity, an application of $2)$ for $K_1$
+    and $K_2$ separately shows that $u_1$ and $u_2$ are trivial,
+    hence by injectivity also $u$ is trivial.
   \end{proof}
+  Inductively, we immediately get the following:
+  \begin{claim}
+    \label{cl:lemma-holds-for-union-of-compact-subsets}
+    If the statement is true for compact subsets
+    $K_1, \dotsc, K_n$ and all their intersections
+    $\bigcap_{j\in J\subset \set{ 1,\dots, n } } K_j$,
+    then the statement holds for their union $K_1 \cup \dotsb \cup K_n$.
+  \end{claim}
+  Next, we show the following:
+  \begin{claim}
+    The statement holds for $M=\mathbb{R}^d$ and any compact $K\subset M$.
+  \end{claim}
+  \begin{proof}
+    Omitted for now.
+    \todo{add proof for this}
+  \end{proof}
+  Now, let $K$ be general.
+  By compactness of $K$, we can find compact subsets $K_i$ such that
+  $K = \bigcup_{i =1}^n K_i$, where $K_i$ is contained in a subset
+  $U_i$ homeomorphic to $\mathbb{R}^d$.
+  By excision, we get that
+  \[
+    H_n(M, M\setminus K_i;N) \cong H_n(U_i, U_i\setminus K;N)
+  \]
+  and we deduce the statement for each $K_i$ separately.
+  Thus, by
+  \autoref{cl:lemma-holds-for-union-of-compact-subsets},
+  the lemma follows.
 \end{refproof}
+
+\begin{lemma}
+  \label{lm:inclusion-is-injective-on-homology-for-compact-neighborhood-in-manifold}
+  Let $M$ be a $d$-dimensional manifold and $N$ be an $R$-module.
+  If $K\subset M$ is compact and connected, the map
+  \[
+  (i_x)_*\colon H_d(M, M\setminus K;N) \to H_d(M, M\setminus \set{ x } ;N)
+  \]
+  is injective for every $x\in K$.
+\end{lemma}
+
+\begin{proof}
+%  Pick $u\in H_d(M, M\setminus K; N)$ that lies in the kernel of $(i_x)_*$.
+  Omitted for now.
+  \todo{proof this}
+\end{proof}
+
+\begin{theorem}
+  \label{thm:unique-lifts-on-compact-subsets-in-manifold-and-iso-for-connected}
+  Let $M$ be a $d$-dimensional manifold with an $R$-orientation
+  $\set{ μ_x } $, $K\subset M$ a compact subset and $R$ be a ring.
+  Then, the following hold:
+  \begin{enumerate}[h]
+    \item There is a unique $μ_K\in H_d(M, M\setminus K;R)$
+      mapping to $μ_x$ for each $x\in K$.
+    \item If $K$ is connected, the map
+      \[
+        H_d(M, M\setminus K; R) \to H_d(M, M\setminus \set{ x } ;R)
+      \]
+      is an isomorphism for each $x\in K$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{definition}*
+ Let $M$ be a $d$-dimensional manifold with an $R$-ori\-en\-ta\-tion
+ $\set{ μ_x }$.
+ We say that a subset $U\subset M$ has the \vocab{lifting property}
+ if there exists some $μ_U$ such that for each $x\in X$,
+ the map
+ \[
+   (i_x)_* \colon H_d(M, M\setminus U;N) \to H_d(M, M\setminus \set{ x } ;N)
+ \]
+ sends $μ_U$ to $μ_x$.
+ Note that we do not require that such a $μ_U$ is unique.
+
+ In particular, the definition of a manifold says that
+ each point has a neighborhood with the lifting property.
+\end{definition}
+
+\begin{remark}*
+  Note that the if $U$ satisfies the lifting property,
+  then also each subset of $U$ does.
+\end{remark}
+
+\begin{proof}
+  First, note that if a $\mu_K$ as in $1)$ exists,
+  then it is already unique by
+  \autoref{lm:top-homology-of-manifold-relative-to-cocompact-subset},
+  as the difference of two such $μ_K$, $μ_K'$ maps to zero for each
+  $x\in K$.
+
+  For each $x\in K$, pick a lift $μ_{U_x}$ of $\set{ μ_x }$
+  for some neighborhood $U_x$.
+
+  As these cover $K$, by compactness and intersecting with $K$ we may pick
+  finitely many $K_1, \dotsc, K_n$ that cover $K$,
+  where each $K_i$ is contained in some $U_x$ and in particular has
+  the lifting property.
+  Let $L$ and $L'$ be two such compact subsets,
+  then again considering the Mayer-Vietoris-sequence
+  \eqref{eq:mayer-vietoris-cocompact-subsets},
+  we see that $(μ_L, μ_{L'})$ maps to zero under
+  \[
+    H_d(M, M\setminus L; R) \oplus H_d(M, M\setminus L'; R)
+    \to 
+    H_d(M, M\setminus (L \cup L'); R)
+  \] 
+  by applying the uniqueness condition we already proved.
+  By exactness, we can thus find some $μ_{L\cup L'}$
+  that is a lift on $L\cup L'$.
+
+  By induction, we deduce that also $K = K_1 \cup \dotsb \cup K_n$
+  has the lifting property.
+  This proves $1)$.
+
+  For $2)$, note that as $μ_K$ maps to $μ_x$ and $μ_x$ generates
+  $H_d(M, M\setminus \set{ x } ; R)$, the map is surjective.
+  But as $K$ is connected, by
+  \autoref{lm:inclusion-is-injective-on-homology-for-compact-neighborhood-in-manifold}
+  we deduce that the map is also injective, hence an isomorphism.
+\end{proof}
+
+\begin{remark}
+  As we will soon introduce manifolds with boundary,
+  we will refer to \enquote{closed manifolds} instead of
+  \enquote{compact manifolds} from now on.
+  This terminology is also more common in literature.
+\end{remark}
+
+\begin{theorem}
+  \label{thm:fundamental-class-exists-and-top-homology-is-r-iff-orientable}
+  Let $M$ be a $d$-dimensional closed manifold and $R$ be a ring.
+  Then, the following hold:
+  \begin{enumerate}[h]
+    \item For each $R$-orientation $\set{ μ_x } $ of $M$,
+      there is a unique element $[M]\in H_d(M; R)$ such that
+      $[M]$ maps to $μ_x$ for every $x\in M$.
+    \item
+      If $M$ is connected, the following are equivalent:
+      \begin{enumerate}[e]
+        \item $M$ is orientable
+        \item $H_d(M ; \mathbb{Z}) \cong \mathbb{Z}$
+        \item $H_d(M; \mathbb{Z})$ is nontrivial.
+      \end{enumerate}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Part $1)$ directly follows from
+  \autoref{thm:unique-lifts-on-compact-subsets-in-manifold-and-iso-for-connected}
+  by setting $K=M$.
+  For $2)$ note that $(1)\implies (2)$ by statement $2)$ of
+  \autoref{thm:unique-lifts-on-compact-subsets-in-manifold-and-iso-for-connected}.
+  As we also clearly have $(2) \implies(3)$,
+  it suffices to show $(3) \implies (1)$.
+
+  So assume that $H_d(M)$ is non-trivial.
+  As the map
+  \[
+    H_d(M) \to H_d(M, M\setminus \set{ x } ) \cong \mathbb{Z}
+  \]
+  is injective for each $x\in M$ by
+  \autoref{lm:inclusion-is-injective-on-homology-for-compact-neighborhood-in-manifold},
+  we deduce that $H_d(M)\cong \mathbb{Z}$
+  (but not that the above map is necessarily an isomorphism).
+  Pick a generator $μ\in H_d(M)$.
+  Now, for $x\in M$ define $μ_x$ as the unique generator in
+  $H_d(M, M\setminus \set{ x } )$ such that the image of $μ$ is a positive
+  multiple of $μ_x$.
+
+  We claim that $\set{ μ_x } $ defines an orientation.
+  For arbitrary $x$, pick a neighborhood $U$ such that
+  $H_d(M, M\setminus U) \to  H_d(M, M\setminus \set{ x } )$
+  is an isomorphism.
+  \todoquestion{why does this exist?}
+  By picking $μ_U$ such that the image of $μ$ is a positive multiple
+  of $μ$, we see that $μ_U$ does indeed map to $μ_y$ for each $y\in U$.
+\end{proof}
+
+\begin{definition}[Fundamental class]
+  \label{def:fundamental-class}
+  Let $R$ be a ring and $M$ be a closed,
+  $d$-dimensional manifold with an $R$-orientation.
+  The unique element $[M]$ from part $1)$ of
+  \autoref{thm:fundamental-class-exists-and-top-homology-is-r-iff-orientable}
+  is called the \vocab{fundamental class} of $M$. 
+\end{definition}
