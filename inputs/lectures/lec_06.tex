@@ -5,32 +5,32 @@
 
 \begin{remark}
   As
-  $H_d(M, M \setminus \set{ x } ,R)
+  $H_d(M, M \setminus \set{ x }; R)
   \cong
   H_d(M, M \setminus \set{ x } ; \mathbb{Z}) \tensor _{\mathbb{Z}} R$
-  by UCT,
+  by the \nameref{cor:uct-for-spaces},
   a generator on the left side corresponds to
-  $e\tensor r$ with $r\in R^{\times}$ and
+  $e\tensor r$ with $r\in R^{\times}$ and a generator
   $e\in H_d(M, M \setminus \set{ x } ; \mathbb{Z})$
-  a generator.
+  .
 
-  For an $\mathbb{Z}$-orientation $\set{ \mu_x } $ and $r\in R^{\times}$,
+  Thus, for a $\mathbb{Z}$-orientation $\set{ \mu_x } $ and $r\in R^{\times}$,
   we get an $R$-orientation  $\set{ \mu_x \tensor r} $.
 
   Note that that $\set{ \mu_x \tensor r } $ is in fact an orientation,
   as we have the commutative diagram
   \[
-  \begin{tikzcd}
-    H_d(M, M \setminus U; \mathbb{Z}) \ar[swap]{d}{} \ar{r}{} & H_d(M, M\setminus \set{ y } ; \mathbb{Z}) \tensor R \ar{d}{} \\
-    H_d(M , M \setminus U; R) \ar[swap]{r}{} & H_d(M, M\setminus \set{ y } ; R)
-  \end{tikzcd}
+    \begin{tikzcd}
+      H_d(M, M \setminus U; \mathbb{Z}) \ar[swap]{d}{} \ar{r}{} & H_d(M, M\setminus \set{ y } ; \mathbb{Z}) \tensor R \ar{d}{} \\
+      H_d(M , M \setminus U; R) \ar[swap]{r}{} & H_d(M, M\setminus \set{ y } ; R)
+    \end{tikzcd}
   \]
+  which shows the local compatibility of the generators.
 \end{remark}
 
 
 
-
-\section{The mapping degree}
+\subsection{The mapping degree}
 
 \begin{definition}[Mapping degree]
   \label{def:mapping-degree-oriented-closed-connected-manifolds}
@@ -42,14 +42,26 @@
     f_*[M] = \deg(f)\cdot f_*[N]
   .\] 
 \end{definition}
+\begin{well-definedness}
+  Note that by
+  \autoref{thm:fundamental-class-exists-and-top-homology-is-r-iff-orientable}
+  we get that $f_*$ is a map $\mathbb{Z}\to \mathbb{Z}$
+  and $[N]$ is a generator.
+\end{well-definedness}
 
-\todo{introduce notation here.}
+\begin{notation}+
+  Let $M$ be an oriented, connected,
+  closed, $d$-dimensional manifold.
+  As $M$ has exactly two orientations by
+  \autoref{ex:connected-manifold-has-zero-or-two-orientations},
+  we may denote $\overline{M}$ to mean $M$ with the unique
+  other orientation.
+\end{notation}
 
 \begin{lemma}
   Let $M$, $N$ and $P$ be oriented, connected, closed,
-  $d$-dimensional manifolds and $f\colon M\to N$.
-  Let $\overline{M}$ and $\overline{N}$ denote $M$ and $N$
-  with the other orientation, respectively.
+  $d$-di\-men\-sion\-al manifolds.
+  Let $f\colon M\to N$ and $g\colon  N \to P$ be maps.
   Then, the following hold:
   \begin{enumerate}[h]
     \item $\deg(f\colon M\to N) = \deg(f\colon \overline{M}\to \overline{N}) = -\deg(f\colon \overline{M}\to N)$.
@@ -67,43 +79,56 @@
 \begin{proof}
   For $1)$ it suffices to note that $[\overline{M}] = - [M]$.
 
-  For $2)$, by functoriality, we have
-  \[
+  For $2)$, by functoriality, we compute that
+  \begin{IEEEeqnarray*}{rCl}
     \deg(g \circ f) [P]
+    &
     =
+    &
     (g \circ f)_*[M]
     =
     g_*(f_*[M])
+    \\
+    &
     =
+    &
     g_*(\deg(f)[N])
     =
     \deg(f)g_*[N]
     =
     \deg(f)\deg(g)[P]
-  \]
+  \end{IEEEeqnarray*}
+  and thus $\deg(g\circ f) = \deg(f)\deg(g)$ as claimed.
 
-  For $3)$, assume that  $y\not\in \im f$.
-  We will show that $\deg(f) = 0$.
-  Consider
+  For $3)$, assume that  $y\not\in \im f$,
+  we will show that $\deg(f) = 0$.
+  Consider the composition
   \[
-    \begin{tikzcd}
+    \begin{array}{c c c c l}
       H_d(M;\mathbb{Z})
-      \ar{r}{f_*}
+      &
+      \longrightarrow
       &
       H_d(N,\mathbb{Z})
-      \ar{r}{\cong}
+      &
+      \xrightarrow{\cong}
       &
       H_d(N,N\setminus \set{ y } ;\mathbb{Z})
       \\
       \left[M\right]
-      \ar[mapsto]{r}
+      &
+      \longmapsto
       &
       \deg(f)\left[N\right]
-      \ar[mapsto]{r}
+      &
+      \longmapsto
       &
       \deg(f)\cdot \mu_y=0
-    \end{tikzcd}
-  \] 
+    \end{array}
+  .\]
+  But since $y\not\in \im f$, the composition is trivial,
+  but as the second map is a surjection, we deduce that already
+  $f_*[M]$ is trivial and thus $\deg(f) = 0$.
 \end{proof}
 
 \begin{oral}
@@ -113,77 +138,88 @@
 \end{oral}
 
 \begin{proposition}
-  Let $M$,  $N$ and  $f$ be as before.
-  Let  $x\in N$ with a neighborhood $U$ such that
+  \label{prop:degree-is-fibre-counted-with-signs}
+  Let $M$ and $N$ be oriented, connected, closed,
+  $d$-di\-men\-sion\-al manifolds
+  and $f\colon M \to  N$ a map.
+  Let  $x$ be a point in $N$ with a neighborhood $U$ such that
   $f^{-1}(U) = \coprod_{i \in I}U_i$
   such that each $U_i$ is mapped homeomorphically onto  $U$.
-  Then, for each $y_i \in f^{-1}(x) \cap U_i$,
+  Then, for each $y_i \coloneqq f^{-1}(x) \cap U_i$,
+  define $ε_i\in \set{ +1, -1 } $ to be the sign such that
   \[
-    \begin{tikzcd}
-      H_d(M, M \setminus \set{ y } )
-      &
+      H_d(M, M \setminus \set{ y_i } )
+      \xleftarrow{\cong}
       H_d(U_i, U_i \setminus \set{ y_i } )
-      \ar[swap]{l}{\cong}
-      \ar{r}{f}[swap]{\cong}
-      &
-      Hvd(U, U\setminus \set{ x } )
-      \ar{r}{\cong}
-      &
+      \mathrel{\mathop{\rightarrow}^{\cong}_{f}}
+      H_d(U, U\setminus \set{ x } )
+      \xrightarrow{\cong}
       H_d(N, N\setminus \set{ x } )
-      \\
-      \mu_{y_i}
-      \ar[mapsto]{rrr}
-      &
-      &
-      &
-      \pm \mu_x
-      =\noloc ε_i
-    \end{tikzcd}
   \]
+  sends $μ_{y_i}$ to to $ε_i μ_x$.
   Then,
   \[
     \deg(f) = \sum_{i \in I} ε_{i}
-  \] 
+  .\] 
 \end{proposition}
 
-\begin{oral}
-  This property is not totally off the charts,
-  it will usually hold for at least some points.
-  Think coverings, for example.
-\end{oral}
-
 \begin{remark}+
-  One often phrases the statement as
-  \enquote{$deg(f) = \abs{f^{-1}(x)}$ with signs}.
+  One often phrases the statement of 
+  \autoref{prop:degree-is-fibre-counted-with-signs}
+  as
+  \enquote{$\deg(f) = \abs{f^{-1}(x)}$ with signs}.
 \end{remark}
 
 \begin{remark}
-  For the sum to make sense, we need that $I$ is finite.
-  But actually, this follows from $M$ being compact.
+  For the sum in
+  \autoref{prop:degree-is-fibre-counted-with-signs}
+  to make sense, we need that $I$ is finite.
+  However, this actually follows from $M$ being compact
+  by assuming contrarily that $I$ is infinite.
+
+  Without loss of generality, $U$ is open.
+  As $N$ is Hausdorff and compact, it is normal,
+  and we may separate the closed sets $\set{ x } $
+  and $N \setminus U$ by some open neighborhoods,
+  say $N \setminus U \subset V$.
+  Then, $f^{-1}(V)$ and each of the $U_i$
+  form an open cover of $X$.
+  But as each of the $y_i$ is contained in only one of these
+  by assumption, this cover has no finite subcover, \contra.
 \end{remark}
 
-\begin{proof}
+\begin{refproof}{prop:degree-is-fibre-counted-with-signs}
   Consider the diagram
   \[
     \begin{tikzcd}
       &
       H_d\left(\coprod U_i, \coprod U_i \setminus \set{ y_i } \right)
-      \ar{d}{\cong}
+      \ar[swap]{d}{\cong}
       &
-      \directsum_{i \in I} H_d(U_i, U_i \setminus \set{ y_i } )
+      \directsum\limits_{i \in I} H_d(U_i, U_i \setminus \set{ y_i } )
       \ar[swap]{l}{\cong}
-      \ar{d}{\cong}
-      \ar[bend left = 100]{dd}{\text{sum of isos induced by $f$}}
+      \ar[swap]{d}{\cong}
+      \ar[bend left = 80]{dd}
+        {\directsum\limits _{i \in I} \left(\frestriction{f}{U_i}\right)_*}
       \\
       H_d(M)
       \ar{r}
-      \ar{d}
+      \ar[swap]{d}{f}
       &
       H_d(M, M\setminus f^{-1}(x))
       \ar{d}
-      \ar{r}
+      \ar{r}{\cong}
       &
-      \directsum_{i \in I} H_d(M, M\setminus \set{ y_i } )
+      \directsum\limits_{i \in I} H_d(M, M\setminus \set{ y_i } )
+      \ar[dl, rounded corners, blue, to path =
+        {
+          ([xshift=1em]\tikztostart.north)
+          -- ([yshift=2.5em, xshift=1em]\tikztostart.north)
+          -- ([yshift=2.5em, xshift=4.5em]\tikztostart.north)
+          |- ([yshift=.5em]\tikztotarget.north east)
+          -- (\tikztotarget)
+        }
+      ]
       \\
       H_d(N)
       \ar{r}{\cong}
@@ -194,9 +230,18 @@
       \ar[swap]{l}{\cong}
     \end{tikzcd}
   .\]
-  One checks commutativity.
-  Now it suffices to track where $[M]$ maps to.
-\end{proof}
+  Note that this commutes since all maps are induced
+  by the natural inclusions.
+  As the middle row is given as the sum of the isomorphism
+  $H_d(M) \to H_d(M, M \setminus \set{ y_i } )$, this sends
+  $[M]$ to $\sum_{i \in I} μ_{y_i}$.
+  But as the $ε_i$ are defined by the map indicated in blue, we also know
+  that in total, $H_d(M) \to H_d(N, N\setminus \set{ x } )$ maps
+  \[
+    [M] \mapsto \sum_{i \in I}μ_{y_i} \mapsto \sum_{i \in I}ε_i μ_x
+  \]
+  and thus by commutativity of the diagram, $\deg(f) = \sum_{i \in I}ε_i$.
+\end{refproof}
 
 \subsection{Recap of $\cup $ and $\cap $}
 
