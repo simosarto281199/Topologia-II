@@ -170,7 +170,7 @@
   \enquote{$\deg(f) = \abs{f^{-1}(x)}$ with signs}.
 \end{remark}
 
-\begin{remark}
+\begin{remark}+
   For the sum in
   \autoref{prop:degree-is-fibre-counted-with-signs}
   to make sense, we need that $I$ is finite.
@@ -243,77 +243,40 @@
   and thus by commutativity of the diagram, $\deg(f) = \sum_{i \in I}ε_i$.
 \end{refproof}
 
-\subsection{Recap of $\cup $ and $\cap $}
+\begin{editor}
+  At this point of the lecture, we did a quick recap on the properties
+  of the cup ($\cup $) and cap ($\cap $) products.
+  As this does not blend in too well in the middle of these notes,
+  Refer to
+  \autoref{sec:recap-cap-cup-product}
+  for the corresponding contents.
+\end{editor}
 
-Let $(X,A,B)$ be an excisive triad.
-Then, the cup product is a natural morphism
- \[
-  \cup \colon H^k(X,A;R) \tensor _R H^l(X,b;R)
-  \xrightarrow{} H^{k+l}(X,A\cup B;R) 
-\]
-that satisfies
-\begin{enumerate}[h]
-  \item $x\cup y = (-1)^{\abs{x} \cdot \abs{y} } y\cup x$
-  \item $(x\cup y)\cup z = x\cup (y\cup z)$ 
-  \item $δ(\varphi \cup \psi )
-    =
-    (δ \varphi )\cup \psi + (-1)^{\abs{\varphi } } \varphi  \cup (δ\psi )$ on chain level.
-\end{enumerate}
-\todo{different sign convention?}
 
-The cap product is defined by
-\[
-  \varphi ^k \cap σ^n = \varphi (\frestriction{σ}{[n-k,\ldots,n} \frestriction{σ}{0,\dotsc, n-k}
-\]
-such that
-\[
-  \cap \colon H^k(X,A;R)\tensor_R H_{k+l}(X,A\cup B;R)
-  \to 
-  H_l(X,B;R)
-\]
-It is natural in the sense that
-\[
-  x \cap f_*α = f_*(f^*x \cap  α)
-\] 
-\todo{Hatcher: right modules}
-\begin{enumerate}[h]
-  \item We have $x \cap (y \cap α) = (x\cup y) \cap α$
-  \item On chain level, we have
-    \[
-      \partial (\varphi  \cap σ) = \varphi  \cap (\partial σ) + (-1)^{\abs{\varphi } \abs{σ} } (δ\varphi )\cap σ
-    \]
-  \item Let $x = [\varphi ] \in H^k(X;R)$ and $α = [σ] \in H_k(X;R)$,
-    then
-    \[
-      \left< x,α \right> =\varphi (σ)\in R
-    .\]
-    This yields the cap product if $R$ is connected. 
-    Thus
-    \[
-      \left< x, y \cap α \right>  = \left< x\cup y, α \right> 
-    .\] 
-\end{enumerate}
-
-\section{Poincaré duality}
+\subsection{Poincaré duality}
 
 We will for now just state Poincaré duality.
 Later in the lecture, we will actually prove a stronger result.
 
 \begin{theorem}[Poincaré duality]
   \label{thm:poincare-duality}
-  Let $M$ be a closed, oriented, $d$-dimensional manifold 
+  Let $M$ be a closed, oriented, $d$-di\-men\-sion\-al manifold 
   with fundamental class $[M]$ and  $N$ be an  $R$-module.
 
-  Then
+  Then cupping with $[M]$ gives an isomorphism
    \[
      - \cap [M] \colon   H^n(M,N) \xrightarrow{\cong} H_{n-d}(M;N)
   \]
-  is an isomorphism for all $n\in \mathbb{Z}$.
+  for all $n\in \mathbb{Z}$.
 \end{theorem}
 
 \begin{corollary}
   We have $H^n(M;N) = H_n(M;N) = 0$ for all $n>d$.
 \end{corollary}
+\begin{proof}
+  Follows directly since the negative (co)homology groups of $M$
+  vanish.
+\end{proof}
 
 \begin{corollary}
   The cohomology rings of $\mathbb{C}\mathbb{P}^n$ and $\mathbb{R}\mathbb{P}^n$
@@ -359,7 +322,7 @@ Later in the lecture, we will actually prove a stronger result.
     =
     \pm 1
   \]
-  and thus $x^n$ is a generator.
+  and thus $X^n$ is a generator.
 \end{proof}
 
 \todo{Something on canonical orientation of $\mathbb{C}\mathbb{P}^n$}.
@@ -373,10 +336,6 @@ Later in the lecture, we will actually prove a stronger result.
   \]
   is the Euler characteristic.
 \end{definition}
-\todo{recap this}
-
 
 
 \section{Applications of Poincaré Duality}
-
-First, we will show

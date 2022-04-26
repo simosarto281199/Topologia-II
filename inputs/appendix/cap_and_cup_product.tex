@@ -1,0 +1,51 @@
+\subsection{Recap of the $\cup $ and $\cap $ products}
+\label{sec:recap-cap-cup-product}
+
+Let $(X,A,B)$ be an excisive triad.
+Then, the cup product is a natural morphism
+ \[
+  \cup \colon H^k(X,A;R) \tensor _R H^l(X,b;R)
+  \xrightarrow{} H^{k+l}(X,A\cup B;R) 
+\]
+that satisfies
+\begin{enumerate}[h]
+  \item $x\cup y = (-1)^{\abs{x} \cdot \abs{y} } y\cup x$
+  \item $(x\cup y)\cup z = x\cup (y\cup z)$ 
+  \item $δ(\varphi \cup \psi )
+    =
+    (δ \varphi )\cup \psi + (-1)^{\abs{\varphi } } \varphi  \cup (δ\psi )$ on chain level.
+\end{enumerate}
+\todo{different sign convention?}
+
+The cap product is defined by
+\[
+  \varphi ^k \cap σ^n = \varphi (\frestriction{σ}{[n-k,\ldots,n} \frestriction{σ}{0,\dotsc, n-k}
+\]
+such that
+\[
+  \cap \colon H^k(X,A;R)\tensor_R H_{k+l}(X,A\cup B;R)
+  \to 
+  H_l(X,B;R)
+\]
+It is natural in the sense that
+\[
+  x \cap f_*α = f_*(f^*x \cap  α)
+\] 
+\todo{Hatcher: right modules}
+\begin{enumerate}[h]
+  \item We have $x \cap (y \cap α) = (x\cup y) \cap α$
+  \item On chain level, we have
+    \[
+      \partial (\varphi  \cap σ) = \varphi  \cap (\partial σ) + (-1)^{\abs{\varphi } \abs{σ} } (δ\varphi )\cap σ
+    \]
+  \item Let $x = [\varphi ] \in H^k(X;R)$ and $α = [σ] \in H_k(X;R)$,
+    then
+    \[
+      \left< x,α \right> =\varphi (σ)\in R
+    .\]
+    This yields the cap product if $R$ is connected. 
+    Thus
+    \[
+      \left< x, y \cap α \right>  = \left< x\cup y, α \right> 
+    .\] 
+\end{enumerate}
