@@ -1,0 +1,149 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mi 27 Apr 2022}{Untitled}
+
+\begin{remark}
+  Another way to prove
+  \autoref{lm:co-homology-groups-of-compact-manifold-are-finitely-generated}
+  is to use the existence of finite good covers.
+
+  A finite good cover is a cover that only consists of contractible sets
+  whose intersections are contractible as well.
+
+  To show the existence of such a cover, we can locally pick balls in $\mathbb{R}^n$.
+  To see that their intersections in different charts are still contractible,
+  one can use a Riemannian metric (or a triangulation).
+\end{remark}
+
+\begin{remark}
+  In fact, every compact manifold is homotopy equivalent to
+  some finite CW-complex of the same dimension.
+  See e.g.~\cite[Cor.~A.11]{hatcher-2001}.
+
+  Moreover, if $M$ is smooth or the dimension is different from  $4$,
+  then $M$ is homeomorphic to a finite CW-complex of the same dimension.
+  See also the remarks at \cite[p.528f]{hatcher-2001}
+\end{remark}
+
+\begin{theorem}
+  Let $M$ be a closed,  $d$-dimensional manifold.
+  if  $d$ is odd, then the Euler characteristic  $\chi(M)$ is trivial.
+\end{theorem}
+
+\begin{proof}
+  Exercise.
+\end{proof}
+
+\begin{definition}[Euclidean neighborhood retract]
+  \label{def:euclidean-neighborhood-retract}
+  A space $X$ is said to be a \vocab{euclidean neighborhood retract} (ENR)
+  if it is dominated by some open subset $U\subset \mathbb{R}^n$, that is,
+  there exists maps $X \to U \to X$ such that the composition is the identity.
+\end{definition}
+
+\begin{proposition}
+  \label{prop:locally-contractible-compact-subspace-of-r-n-is-enr}
+  Let $X$ be a locally contractible, compact subspace of  $\mathbb{R}^n$.
+  Then, $X$ is an ENR.
+\end{proposition}
+\begin{proof}
+  We will just refer to \cite[Thm~A.7]{hatcher-2001}
+\end{proof}
+
+
+\begin{corollary}
+  \label{cor:compact-manifold-is-enr}
+  A compact manifold is a euclidean neighborhood retract.
+\end{corollary}
+
+\begin{proof}
+  Cover $M$ with finitely many euclidean charts  $h_i\colon U_i \cong \mathbb{R}^d$.
+  We define projections
+    \begin{equation*}
+    p_i: \left| \begin{array}{c c l} 
+    M & \longrightarrow & S^d \cong \mathbb{R}^d \cup \left\{\infty\right\}  \\
+    x & \longmapsto &  \begin{cases}
+      h_i(x) & x \in U_i \\
+      \infty& \text{else}
+    \end{cases}
+    \end{array} \right.
+    ,
+  \end{equation*}
+  inducing a map $M \to \prod_{i \in I} S^d$.
+  Since for $x\neq y\in U_i$ we have $p_i(x) \neq p_i(y)$ and
+  $X$ is covered by the  $U_i$, we see that $f$ is injective.
+  Now, embedding $\prod _{i \in I} S^d$ into some $\mathbb{R}^{m}$
+  (e.g.~$\mathbb{R}^{d\cdot \abs{I} }$ )
+  yields a homeomorphism onto the image of $M$,
+  as this is an injective map from a compact space to a Hausdorff
+  space,
+  so that we can view $M$ as a subspace of  $\mathbb{R}^m$.
+
+  As $M$ is locally euclidean, it is also locally contractible.
+  Hence, by
+  \autoref{prop:locally-contractible-compact-subspace-of-r-n-is-enr},
+  we deduce that $M$ is a euclidean neighborhood retract.
+\end{proof}
+
+\begin{refproof}{thm:compact-manifold-is-retract-of-simplicial-complex}
+  Using
+  \autoref{cor:compact-manifold-is-enr},
+  pick some $U\subset \mathbb{R}^n$ and consider the composition
+  $M \to U \hookrightarrow \mathbb{R}^n$.
+  By compactness, we can pick some simplex $\Delta^n \subset \mathbb{R}^n$
+  such that the image of $M$ is contained in  $\Delta^n$.
+
+  By compactness, we can pick a sufficiently fine barycentric subdivision
+  of $\Delta^n$ such that each simplex intersecting $M$ is already contained
+  in  $U$.
+
+  But then, we can pick  $K$ as the union of all simplices intersecting $M$ 
+  and restrict the retract $M \to U \to M$ to $M \to K \to M$, thus
+  yielding $M$ as finitely dominated.
+\end{refproof}
+
+
+
+
+
+\subsection{The intersection form}
+
+\begin{notation}
+  For an $R$-module  $A$, let  $A/\tors$ denote the quotient
+  of $A$ by its submodule of torsion elements.
+\end{notation}
+
+\begin{definition}+[Intersection form]
+  \label{def:intersection-form}
+  Let $R$ be a  principal ideal domain and $M$ an  $R$-orientable,
+  connected, closed,  $d$-dimensional manifold. 
+  Define the \vocab{$p$-th intersection form} as the $R$-linear map 
+    \begin{equation*}
+    s_{p,M,R}: \left| \begin{array}{c c l} 
+    H^p(M;R) \otimes _R H^{d-p}(M;R) & \longrightarrow & R \\
+    a \otimes b& \longmapsto &  \left< a, b \cap [M] \right>
+    = \left< a\cup b, [M] \right> 
+    \end{array} \right.
+  \end{equation*}
+  Also define its induced map
+  \[
+    \overline{s_{p,M,R}}\colon  H^p(M;R)/\tors \otimes _R H^{d-p}(M;R)/\tors
+    \to 
+    R
+  .\] 
+\end{definition}
+\begin{well-definedness}
+  Note that the induced map exists as $R$ has no zero-divisors
+  and hence torsion elements get mapped to zero.
+\end{well-definedness}
+
+\begin{remark}+
+  Note that as $M$ is compact,  $H^p(M;R)$ and  $H^{d-p}(M;R)$ 
+  are finitely generated and hence $H^p(M;R) / \tors$ and
+  $H^{d-p} / \tors$ are finitely generated, torsion-free $R$ modules.
+  As  $R$ is a  principal ideal domain, they are free.
+\end{remark}
+
+\begin{definition}
+  We call an $R$-linear map  $s\colon P\times N \to R$ a \vocab{perfect pairing}
+  if the adjoint maps
+\end{definition}
