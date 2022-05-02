@@ -339,3 +339,56 @@ Later in the lecture, we will actually prove a stronger result.
 
 
 \section{Applications of Poincaré Duality}
+
+\begin{definition}+
+  \label{def:finitely-dominated}
+  We say that a space $X$ is \vocab{dominated} by a space $Y$ if  $X$
+  is a retract of $Y$, that is, there exists map $X \to Y\to X$,
+  where the composition is the identity.
+
+  We say that a space $X$ is \vocab{finitely dominated} if $X$ is
+  dominated by some finite simplicial complex $K$.
+\end{definition}
+
+\begin{theorem}
+  \label{thm:compact-manifold-is-retract-of-simplicial-complex}
+  Let $M$ be a compact manifold.
+  Then, $M$ is finitely dominated.
+\end{theorem}
+
+\begin{lemma}
+  \label{lm:finitely-dominated-space-has-finitely-generated-co-homology-groups}
+  Let $X$ be finitely dominated and let $R$ be a noetherian domain.
+  Then, the (co)homology groups $H_n(X;R)$ and  $H^n(X;R)$ are finitely
+  generated for each $n$.
+\end{lemma}
+
+\begin{editor}
+  In the lecture, we stated
+  \autoref{lm:finitely-dominated-space-has-finitely-generated-co-homology-groups}
+  only for principal ideal domains $R$ and not for noetherian rings.
+
+  As was asked in the lecture, the noetherian condition suffices for the
+  statement, and thus we will state this version here.
+
+  Also note that a principal ideal domains is always noetherian.
+\end{editor}
+
+\begin{refproof}{lm:finitely-dominated-space-has-finitely-generated-co-homology-groups}
+  Pick some finite simplicial complex $X$ and a  retraction $X\to K\to X$.
+  As $K$ is finite, its cellular chain and cochain complexes are finitely
+  generated.
+  Since $R$ is noetherian, also the kernels of the boundary maps are finitely
+  generated, and thus the homology and cohomology groups are as well.
+
+  Since on homology, we also get a retraction
+  $H_n(X;R) \to H_n(K;R) \to H_n(X;R)$ for each $n$ and thus see that also
+  $H_n(X;R)$ is finitely generated, since the second map is surjective.
+  For cohomology, we do the same.
+\end{refproof}
+
+\begin{remark}*
+  In the lecture we actually stated that $H_n(X;R)$ is a direct
+  summand of $H_n(X;R)$.
+  While this is correct, this is not needed for the conclusion of the proof.
+\end{remark}
