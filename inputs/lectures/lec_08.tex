@@ -1,0 +1,318 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mo 02 Mai 2022}{Untitled}
+
+\todoquestion{why equality in definition of the form}
+
+\begin{oral}
+  We did not see this yet, but the intersection pairing
+  is closely related to intersections on manifolds.
+  One can show that, counting signs, the intersection pairing
+  counts the number of intersections of two
+  cohomology classes.
+\end{oral}
+
+\begin{definition}
+  \label{def:unimodular-form-on-manifold-of-even-dimension}
+  Let $R$ be a principal ideal domain,
+  $M$ an $R$-oriented, connected, closed,
+  $d$-dimensional manifold with $d=2k$.
+  Then the \vocab{intersection form} is the unimodular form
+  $\overline{s_{k,M,R}}$.
+\end{definition}
+
+\begin{remark}
+  The intersection form is symmetric if $k$ is even
+  and antisymmetric if $k$ is odd.
+
+  This follows from the graded commutativity of the cup product.
+\end{remark}
+
+\todo{forms}
+
+\begin{definition}[Signature of forms]
+  \label{def:signature-of-form}
+  Let $s$ be a symmetric form over $\mathbb{R}$
+  on a vector space $V$.
+  The \vocab{signature} of $s$ is the triple
+  $(p_{+}, p_{-}, p_0) \in \mathbb{N}^3$,
+  with $p_{+}$, $p_{-}$ the sum of the dimensions of the
+  positive and negative eigenspaces and $p_0$ the dimension
+  of the eigenspace with eigenvalue $0$.
+
+  If $s$ is unimodular, then $p_0=0$.
+  In this case, we define the \vocab{signature}  as
+  $σ(s) = p_{+} - p_{-} \in \mathbb{Z}$.
+\end{definition}
+
+\begin{example}*
+  Consider $s_{1, S^2 \times S^2, \mathbb{R}}$,
+  represented by the matrix
+  $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $.
+
+  This has $(x,x)$ with Eigenvalue $1$
+  and $(x,-x)$ with Eigenvalue $-1$.
+  Thus,
+  \[
+    σ(S^2\times S^2) = 1 - 1 = 0
+  \] 
+\end{example}
+
+\todo{hyperbolic form}
+\todo{matrix gives intersections of the generators!}
+
+\begin{definition}[Signature of manifold]
+  \label{def:signature-of-manifold}
+  Let $M$ be a closed, oriented, connected,
+  $4k$-dimensional manifold $M$.
+  The \vocab{signature} of $M$ is defined to be the
+  signature of $s_{2k, M, \mathbb{R}}$.
+
+  If $M$ is not connected, then define
+  \[
+    σ(M) \coloneqq \sum_{\text{$M_i$ conn. comp.}} σ(M_i)
+  .\]
+  If the dimension of $M$ is not divisible by $4$,
+  define $σ(M^d) \coloneqq 0$.
+\end{definition}
+
+\todo{verify definition non-connectedness}
+
+\begin{oral}
+  At some point, we will introduce manifolds with boundary.
+  One can then define that two manifolds of dimension $k$
+  are \vocab{bordant} if their disjoint union is the boundary
+  of some other manifold.
+
+  It turns out that the signature of a manifold is a bordism
+  invariant.
+\end{oral}
+
+\begin{oral}
+  Also note that forms are not invariant under bordism:
+  $S^2\times S^2$ is bordant to $S^4$ via the $5$-dimensional
+  manifold $S^2 \times D^3$.
+
+  As the form on $S^4$ is trivial, the form do not agree.
+\end{oral}
+
+
+
+
+\subsection{$3$-dimensional Lens spaces}
+
+\begin{oral}
+  One can actually study Lens spaces in all odd dimension.
+  However, in the lecture, we will restrict ourselves to
+  dimension $3$.
+\end{oral}
+
+\begin{definition}
+  Let $S^3\subset \mathbb{C}^2$ be the unit sphere and
+  $p$ a prime number.
+  Denote by $ω = e^{\frac{2 \pi i}{p}}$ a primitive $p$-th root of unity.
+  For $0 < q < p$ (actually $q$ coprime to $p$),
+  define
+    \begin{equation*}
+    T_q: \left| \begin{array}{c c l} 
+    S^3 & \longrightarrow & S^3 \\
+    (u,v) & \longmapsto &  (ωu, ω^qv)
+    \end{array} \right.
+    .
+  \end{equation*}
+  Note that this gives a free $\mathbb{Z}/p$ action on $S^3$.
+  The \vocab{Lense space}, denoted $L(p,q)$, is the quotient space
+  of $S^3$ by this action.
+\end{definition}
+
+\begin{lemma}+
+  $L(p,q)$ is an orientable, $3$-dimensional manifold
+  with $\pi_1(L(p,q)) \cong \mathbb{Z}/p$.
+\end{lemma}
+
+For
+\[
+  0
+  \to
+  \mathbb{Z}
+  \xrightarrow{\cdot p}
+  \mathbb{Z}
+  \to 
+  \faktor{\mathbb{Z}}{p}
+  \to
+  0
+\]
+we get a long exact sequence in cohomology, given by
+\[
+  \begin{tikzcd}[column sep = tiny]
+  &
+  \ldots
+  \connectingmark[Y]
+  \ar{r}
+  &
+  H^{n-1} ( L; \mathbb{Z}/p )
+  \connectingmap[Y]{\partial}
+  \\
+  H^n ( L; \mathbb{Z} )
+  \ar{r}
+  &
+  H^n ( L; \mathbb{Z} )
+  \connectingmark[Z]
+  \ar{r}
+  &
+  H^n ( L; \mathbb{Z}/p )
+  \connectingmap[Z]{\partial}
+  \\
+  H^{n+1} ( L; \mathbb{Z} )
+  \ar{r}
+  &
+  \ldots
+  \end{tikzcd}
+.\]
+\todo{Bockstein morphism $β$}
+
+Now, by the UCT, we see that $H^1(L; \mathbb{Z})$ is trivial,
+and thus $H^2(L; \mathbb{Z})  \cong H^2(L; \mathbb{Z}/p) \cong \mathbb{Z}/p$.
+Again, by the UCT, we see that $H^1(L; \mathbb{Z}/p) \cong \mathbb{Z}/p$.
+
+Thus, the Bockstein isomorphism $β^1$ and the reduction
+morphism in second cohomology are isomorphism.
+
+\begin{definition}+
+  We define 
+  \[
+    β
+    \coloneqq
+    \red \circ β^1
+    \colon 
+    H^1(L;\mathbb{Z}/p)
+    \xrightarrow{\cong}
+    H^2(L,\mathbb{Z}/p)
+  \] 
+\end{definition}
+
+Let $a\in H^1(L; \mathbb{Z}/p)$ be a generator.
+Then also $β(a) \in H^2(L;\mathbb{Z}/p)$ is a generator
+and thus
+\[
+  \left< a, β(a) \cap [L] \right> \in \mathbb{Z}/p
+\]
+is a generator, as $s_{1, L(p,q), \mathbb{Z}/p}$ is a perfect pairing.
+
+As for now, this generator depends both on the choice of $a$
+and the choice of an orientation on $L$.
+
+Orientation of $L$ gives a $\pm 1$.
+Let $b$ be another generator of $H^1(L; \mathbb{Z}/p)$,
+then $b=na$ for some $n$ coprime to $p$.
+
+Then,
+\[
+  \left< b, β(b) \cap [L] \right>
+  =
+  \left< na, β(na) \cap [L] \right>
+  =
+  n^2 \left< a, β(a) \cap [L] \right> 
+.\]
+
+Hence, $\left< a, β(a) \cap [L] \right> $ is well-defined up to
+multiplication with $\pm n^2$ with $n$ coprime to $p$.
+
+\todoquestion{pairing: $\mathbb{Z}$ orientation, view $\mathbb{Z}/p$ as $\mathbb{Z}$-module}
+
+Let $\simeq$ be the equivalence relation on $\mathbb{Z}/p$ given by
+$i \simeq j$ if $\exists n$ such that $i = \pm n^2 j$.
+
+Let $t_q \coloneqq \left< a, β(a) \cap [L(p,q)] \right> \in \mathbb{Z}/p / \simeq$.
+
+\begin{lemma}
+  We have $t_q \simeq q t_1$.
+\end{lemma}
+
+\begin{proof}
+  For $v = r\cdot e^{i\theta} \in \mathbb{C}$ define
+  $v^{(k)} \coloneqq re^{ik\theta}$.
+  Define
+    \begin{equation*}
+    \varphi : \left| \begin{array}{c c l} 
+    S^3 & \longrightarrow & S^3 \\
+    (u,v) & \longmapsto &  (u, v^{(q)})
+    \end{array} \right.
+    .
+  \end{equation*}
+  We claim that $\varphi $ is equivariant, for this compute
+  \[
+    \varphi T_1(u,v) = \varphi(\omega u, \omega v)
+    =
+    (\omega u, (\omega v)^{(q)})
+    =
+    T_q(u, v^{(q)})
+    =
+    T_q \varphi (u,v)
+  \]
+
+  Thus, $\varphi$ induces a map $\psi \colon  L(p,1) \to L(p,q)$
+  on the corresponding Lense spaces.
+
+  \begin{claim}
+    $\psi $ is an isomorphism on $\pi_1$.
+  \end{claim}
+  \begin{proof}
+    Let $α$ be a non-trivial element in $\pi_1(L(p,1))$.
+    Then, there is a path $z$ from some $x_0\in S^3$ to
+    $T_1^k(x_0)$ such that its image in $L(p,1)$
+    represents $α$.
+    $k$ is coprime to $p$.
+    Under $\varphi $ this maps to a path $\varphi \circ z$
+    from $\varphi (x_0)$ to $\varphi (T_1^k(x_0)) = T_q^k(\varphi (x_0))$.
+    This represents $\psi _*(α)$.
+  \end{proof}
+  Thus, $\psi _*$ is an isomorphism on $H_1$,
+  hence also
+  \[
+    \psi ^* \colon  H^1(L(p,q), \mathbb{Z}/p)
+    \xrightarrow{\cong}
+    H^1(L(p,1), \mathbb{Z}/p)
+  \]
+  is an isomorphism (UCT).
+  The map $\varphi  $ has degree $q$,
+  e.g.~by counting preimages, or it is the double suspension
+  of the map $v \mapsto v^q$ on $S^1$.
+
+  Now, by commutativity of
+  \[
+    \begin{tikzcd}
+      H_3(S^3; \mathbb{Z})
+      \ar[swap]{d}{\cdot p}
+      \ar{r}{\cdot q}
+      &
+      H_3(S^3 ; \mathbb{Z})
+      \ar{d}{\cdot p}
+      \\
+      H_3(L(p,1);\mathbb{Z})
+      \ar[swap]{r}{\cdot q}
+      &
+      H_3(L(p,q);\mathbb{Z})
+    \end{tikzcd}
+    ,
+  \]
+  (check that the covering has degree $p$)
+  we deduce that also $\psi $ has degree $q$.
+
+  Now, let $a\in H^1(L(p,q);\mathbb{Z}/p)$.
+  Then
+  \[
+    q\cdot t_q \simeq \left< a, β(a) \cap q[L(p,q)] \right>
+    =
+    \left< a, β(a) \cap \psi _* [L(p,1)] \right> 
+    =
+    \left< \psi ^* (a \cup β(a)), [L(p,1)] \right> 
+    =
+    \left< \psi ^*(a) \cup β(\psi ^*(a)), [L(p,1)] \right> 
+    =
+    \left< \psi ^*(a), β(\psi ^*(a)), [L(p,1)] \right> 
+  .\] 
+  But now, $t_q \simeq q^2t_q \simeq qt_1$
+  and we're done.
+\end{proof}
+
+\todo{covering condition, sheet 11 GeoTopo}
