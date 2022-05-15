@@ -1,2 +1,75 @@
 %! TEX root = ../../master.tex
 \lecture[]{Mi 04 Mai 2022}{Untitled}
+
+\begin{theorem}
+  If $L(p,q) \simeq L(p,q')$,
+  then there exists  $n$ such that  $q\equiv \pm n^2q' \mod p$.
+\end{theorem}
+
+\begin{proof}
+  Any such homotopy equivalence
+  $h\colon  L(p,q) \to L(p,q')$ has degree $\pm 1$.
+  Pick a generator $b\in H^1(L(p,q') ; \mathbb{Z}/p)$,
+  then also $a\coloneqq  h^*(b)$ is a generator of $H^1(L,pq); \mathbb{Z}/p)$,
+  and we may compute that
+  \begin{IEEEeqnarray*}{rCl}
+    t_q
+    &\simeq&
+    \left< a \cup β(a), [L(p,q)] \right> 
+    =
+    \left< h^*b \cup β(h^*b), [L(p,q)] \right> 
+    \\
+    &=&
+    \left< h^* (b\cup β(b), L[(p,q)] \right> 
+    =
+    \left< b\cup β(b), h_* [L(p,q)] \right> 
+    \\
+    &=&
+    \~m \left< b\cup β(b), [L(p,q')] \right> 
+    \simeq
+    t_{q'}
+  \end{IEEEeqnarray*}
+  Hence by
+  \autoref{lm:relation-lense-spaces-t-q-is-q-times-t-1}
+  we deduce that $qt_1 \simeq t_q \simeq t_{q'} \simeq q't_1$.
+  But now as $t_1$ is a generator of $\mathbb{Z}/p$,
+  by the definition of $\simeq$ we deduce that
+  $q \equiv  \pm n^2q' \mod p$
+  for some $n\in \mathbb{N}$.
+\end{proof}
+
+
+\begin{corollary}
+  There exist orientable, closed, connected, $3$-dimensional manifolds
+  $M$ and  $N$, such that
+  \begin{enumerate}[h]
+    \item $M$ and  $N$ have the same fundamental group
+    \item  $M$ and  $N$ have the same homology groups
+    \item  $M$ and  $N$ are not homotopy equivalent.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  We can check that $2$ is not  $\pm n^2 \mod 5$ for any $n$,
+  thus  $1 \not \simeq 2 \in \mathbb{Z}/5 / \simeq$.
+  This immediately gives us that the lense spaces $L(5,1)$ and  $L(5,2)$
+  are not homotopy equivalent by
+  \autoref{thm:homotopy-equivalent-lense-spaces-same-invariant}.
+
+  We have already computed that they have the same fundamental
+  and homology groups.
+\end{proof}
+
+\begin{remark}
+  \begin{enumerate}[1.]
+    \item 
+      The converse of
+      \autoref{thm:homotopy-equivalent-lense-spaces-same-invariant}
+      is also true.
+      That is, if $q \simeq q'$,
+      then also  $L(p,q) \simeq L(p,q')$  are homotopy equivalent.
+    \item
+      It can be shown that two lense spaces $L(p,q)$ and  $L(p,q')$
+      are homeomorphic if and only if  $q' \equiv \pm q^{\pm 1} \mod p$.
+  \end{enumerate}
+\end{remark}
