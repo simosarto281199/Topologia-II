@@ -73,3 +73,105 @@
       are homeomorphic if and only if  $q' \equiv \pm q^{\pm 1} \mod p$.
   \end{enumerate}
 \end{remark}
+
+
+
+\section{Additive and abelian categories}
+
+We will study some category theory for now.
+Although this is not strictly necessary for the rest of the lecture,
+we will show that the category of $R$-modules is complete and cocomplete,
+that is, it has all (small) limits and colimits.
+
+While this can also be shown by hand directly,
+this gives some more general approach.
+
+
+\begin{definition}+
+  An object in a category $\mathcat{C}$ is called a \vocab{zero object}
+  if it is both initial and terminal.
+\end{definition}
+
+\begin{remark}+
+  Note that \enquote{the} zero object is unique up to unique isomorphism,
+  as terminal and initial objects are.
+\end{remark}
+
+\begin{notation}
+  If $\mathcat{C}$ is a category with a zero object,
+  we usually denote this object by $0$.
+  Also note that for any two objects  $X_0$ and $X_1$,
+  there is a unique map
+  \[
+  X_0 \to  0 \to  X_1
+  \]
+  as $0$ is both terminal and initial,
+  which we want to call the  \vocab{zero map}
+  and denote by $0$ as well.
+\end{notation}
+
+
+\begin{definition}
+  A category $\mathcat{A}$ is called \vocab{semi-additive} if
+  \begin{enumerate}[p]
+    \item $\mathcat{A}$ has a zero object
+    \item $\mathcat{A}$ has all finite products and coproducts
+    \item For any two objects $X_0$ and $X_1$, the canonical map
+      \[
+      X_0 \coprod X_1 \to  X_0 \prod X_1
+      ,\]
+      induced by the maps  $X_i \xrightarrow{\id} X_i$
+      and $X_i \xrightarrow{0} X_{i+1}$,
+      is an isomorphism.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  For semi-additive categories, we usually denote the (co)product of
+  $X$ and  $Y$ by  $X \oplus Y$ and call it the \vocab{biproduct}
+  or the \vocab{sum} of $X$ and  $Y$. 
+
+  As we will see in the exercises, we can use this to equip $\Hom(X,y)$
+  with a canonical structure of a commutative monoid.
+\end{remark}
+
+\begin{remark}*
+  We will briefly talk about \vocab{enriched} categories now.
+  As a precise definition of an enriched category is quite long
+  (although not too complicated),
+  we won't state it here in full length and rather refer to the
+  nLab by
+  \cite{nlab:enriched+category}.
+
+  For us, we want to think of a category $\mathcat{C}$ enriched
+  over some category $\mathcat{V}$ as some category whose
+  $\Hom$-objects  $\mathcat{C}(X,Y)$ are objects in $\mathcat{V}$,
+  and where composition of maps
+  $\mathcat{C}(X,Y) \times \mathcat{C}(Y,Z) \to \mathcat{C}(X,Z)$
+  is given in some \enquote{nice} way.
+  
+  To be more precise, $\mathcat{V}$ has to have some notion of
+  a tensor product, and we want composition to be a map
+  $\mathcat{C}(X,Y) \otimes \mathcat{C}(Y,Z) \to \mathcat{C}(X,Z)$.
+\end{remark}
+
+\begin{definition}
+  A category $\mathcat{A}$ is called \vocab{pre-additive} if it is enriched
+  over the category of abelian groups.
+
+  To be precise, this means that every $\Hom$-set $\mathcat{A}(A,B)$ 
+  is an abelian group and composition
+  $\mathcat{A}(X,Y) \oplus \mathcat{A}(Y,Z) \to \mathcat{A}(X,Z)$
+  is bilinear.
+\end{definition}
+
+\begin{remark}*
+  The notion of \enquote{tensor products} in  $\Ab$
+  is just the direct sum (or biproduct) $\oplus$.
+\end{remark}
+
+\begin{example}
+  The category of $R$-modules is an additive category.
+  Moreover, the full subcategories of finitely generated,
+  projective or free modules are additive as well.
+\end{example}
