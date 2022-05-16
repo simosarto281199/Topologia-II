@@ -1,0 +1,69 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mi 11 Mai 2022}{Untitled}
+
+
+
+\section{Manifolds with boundary}
+
+\begin{notation}
+  Let us denote
+  $\mathbb{R}^d_{+} \coloneqq \mathbb{R}^{d-1} \times \mathbb{R}_{\geq 0}$.
+\end{notation}
+
+\begin{definition}[Manifold with boundary]
+  A $d$-dimensional \vocab{manifold with boundary}
+  is a second countable, Hausdorff space that
+  is locally homeomorphic to $\mathbb{R}^d_{+}$.
+
+  That is, each point $x$ has a neighborhood
+  $U$ homeomorphic to $\mathbb{R}^d_{+}$.
+
+  The \vocab{boundary} $\partial M$ of such
+  a manifold is the set of points
+  mapped to the subspace
+  $\mathbb{R}^{d-1} \times \set{ 0 } $ by any
+  of the charts (or equivalently, all).
+\end{definition}
+
+\begin{example}
+  The closed disk $D^d$ is a $d$-dimensional
+  manifold with boundary.
+\end{example}
+\todo{$M \setminus B^d$}
+
+\begin{remark}
+  By glueing $M$ along its boundary with itself,
+  we can view each manifold with boundary
+  as a subspace of some manifold without boundary.
+  That is, $M \cup _{\partial M} M$ is a manifold
+  without boundary of the same dimension.
+\end{remark}
+
+\begin{example}*
+  Considering again $D^n$, we note that
+  $D^n \cup _{\partial D^n} D^n \cong S^n$.
+\end{example}
+
+\begin{remark}
+  If $(M, \partial M)$ is a manifold $M$
+  with boundary $\partial M$,
+  we are interested in so-called \vocab{collars},
+  that is, injective maps
+  $\partial M \times [0,1) \hookrightarrow M$.
+
+  Actually, for each manifold (with boundary),
+  such a collar exists, although we will not
+  prove this here.
+
+  Note that we could also glue
+  $\partial M \times [0,1]$ to $M$
+  along $\partial M \times \set{ 1 } $
+  (and $\partial M$).
+  This gives us some manifold $\tilde{M}$ with
+  boundary $\partial M$ that is homotopy
+  equivalent to $M$ and has some obvious
+  collar, which suffices for our needs.
+
+  In any case, we will from now on assume that
+  each manifold with boundary has a collar.
+\end{remark}
