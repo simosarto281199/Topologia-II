@@ -1,4 +1,101 @@
 %! TEX root = ../../master.tex
 \lecture[]{Mo 09 Mai 2022}{Untitled}
 
+\begin{definition}
+  A partially ordered set $I$ is called \vocab{directed},
+  if for any $i$, $j\in I$, there is some $k\in I$
+  with $i$, $j\leq k$.
+
+  A \vocab{directed limit} is a colimit over a directed set. 
+\end{definition}
+
+\begin{example}
+  \label{ex:directed-limits-in-r-modules}
+  We have a better description for the directed limit
+  of $R$-modules over some diagram $(M_i, f_{i\leq j})$
+  than
+  \autoref{lm:products-and-equalizers-give-limits}:
+  \[
+    \colim \mathcat{I} = \faktor{\oplus_{i \in I} M_i}{\simeq}
+  \]
+  where $x\in M_i$ and $y\in M_j$ are equivalent iff
+  there exists some $k$ with $i$, $j\leq k$ and
+  $f_{i\leq k}(x) = f_{j\leq k}(y) \in M_k$.
+  Note that in particular, we can describe every element
+  of the colimit by a \emph{sinlge} element $x\in M_i$
+  for some $i$, in contrast to a family of elements
+  given by the description of
+  \autoref{lm:products-and-equalizers-give-limits}.
+\end{example}
+
+\begin{definition}
+  Let $\mathcat{C}$ be a category and $f\colon X\to Y$
+  me a morphism in $\mathcat{C}$.
+  We say that $f$ is a \vocab{monomorphism},
+  if $f$ is left-cancellable, that is,
+  for every object $Z$ and morphisms $g_1$, $g_2\colon Z\to X$,
+  if $f\circ g_1 = f \circ g_2$ implies $g_1 = g_2$.
+  \[
+    \begin{tikzcd}
+      Z
+      \ar[shift left]{r}{g_1}
+      \ar[shift right, swap]{r}{g_2}
+      &
+      X
+      \ar{r}{f}
+      &
+      Y
+    \end{tikzcd}
+  .\]
+  We also say that $f$ is \vocab{mono} or \vocab{monic}.
+
+  The dual notion is called an \vocab{epimorphism},
+  that is, $f$ is \vocab{epic} if $f$ is right-cancellable. 
+\end{definition}
+
+\begin{example}+
+  The kernel map $ι\colon \ker f \to X$ of a morphism $f\colon X\to Y$
+  is always monic.
+  If $g_1$, $g_2\colon Z \to  \ker f$ are any two
+  maps with $ι \circ g_1 = ι \circ g_2$,
+  then in particular $ι \circ  g_1 \circ  f = ι \circ  g_2 \circ f$,
+  and by the uniqueness property of the kernel,
+  the map $g_1 = g_2$ is the \emph{unique}
+  factorization of this map over $\ker f$.
+
+  Dually, the projection map $Y \to  \coker f$
+  is always an epimorphism.
+\end{example}
+
+\begin{definition}
+  \label{def:abelian-category}
+  A pre-abelian group is abelian if every monomorphism
+  is a kernel and every epimorphism is a cokernel.
+\end{definition}
+
+
 \section{Compactly supported cohomology}
+
+\begin{lemma}
+  Let $M$, $N$ and $P$ be three diagrams of $R$-modules,
+  indexed over some directed set $\mathcat{I}$.
+  Let $u\colon M\to N$ and $v\colon N \to P$ be natural
+  transformations between these diagrams.
+  Assume that for any $i\in \mathcat{I}$,
+  the sequence
+  \[
+    M_1 \xrightarrow{u_i}
+    N_i \xrightarrow{v_i}
+    P_i
+  \]
+  is exact.
+  Then also the induced sequence on directed limits
+  \[
+    \colim_{\mathcat{I}} M
+    \to
+    \colim_{\mathcat{I}} N
+    \to
+    \colim_{\mathcat{I}} P
+  \]
+  is exact.
+\end{lemma}
