@@ -1,0 +1,237 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mo 16 Mai 2022}{Untitled}
+
+\begin{definition}[Orientation of manifolds with boundary]
+  \label{def:orientation-of-manifold-with-boundary}
+  Let $M$ be a manifold with boundary.
+  We say that $M$ is $R$-orientable if
+  $M^0 \coloneqq  M \setminus \partial M$
+  is $R$-orientable.
+\end{definition}
+
+\begin{lemma}
+  Let $M$ be an $R$-orientable, $d$-dimensional manifold
+  with boundary.
+  Then $H_d(M, \partial M) \cong R$.
+\end{lemma}
+\begin{proof}
+  Let $K \coloneqq M \setminus ( \partial M \times [0,1) ) \subset M_0$.
+  Note that $K$ is compact.
+  By the five lemma, we get that
+  we have an isomorphism
+  \[
+    H_d(M, \partial M)
+    \cong
+    H_d(M, \partial M \times [0,1))
+  \]
+  But now using excision, we see that
+  \[
+    H_d(M, \partial M \times [0,1))
+    \cong
+    H_d(M^0, \partial M \times (0,1))
+    \cong
+    H_d(M^0, M_0 \K)
+    \cong
+    R
+  \]
+  by
+  \autoref{thm:unique-lifts-on-compact-subsets-in-manifold-and-iso-for-connected} .
+\end{proof}
+
+\begin{remark}
+  For each $x\in M^{\circ}$ consider the inclusion
+  \[
+    ι_x \colon H_d(M, \partial M)
+    \to
+    H_d(M, M\setminus \set{ x } )
+    \cong
+    H^d(M^{\circ}, M^{\circ} \setminus \set{ x } )
+  .\]
+  Then,
+  \begin{enumerate}[h]
+    \item Each $ι_x$ is an isomorphism
+    \item Choosing a generator $[M, \partial m] \in H_d(M, \partial M)$
+      is the same as choosing an orientation $(μ_x)_{x\in M^{\circ}}$.
+  \end{enumerate}
+  The element $[M, \partial M]$ is called the
+  \vocab{fundamental class}, and we con construct
+  $μ_x \coloneqq ι_x [M, \partial M]$.
+\end{remark}
+\todo{work this out}
+
+\begin{remark}
+  Let $M$ be a $d$-dimensional manifold with boundary.
+  \begin{itemize}
+    \item
+      The boundary of $M$ is a $(d-1)$-dimensional manifold without boundary.
+    \item If $M$ is compact, $\partial M$ is a closed manifold.
+  \end{itemize}
+\end{remark}
+
+\begin{lemma}
+  The connecting morphism of the pair sequence of $(M, \partial M)$
+  sends $[M, \partial M]$ to some fundamental class of $\partial M$.
+  That is, each orientation $[M, \partial M]$ induces an orientation
+  $\partial [M, \partial M]$ on $\partial M$.
+\end{lemma}
+
+\begin{proof}
+  Let $y\in \partial M$.
+  Define $x \coloneqq (y, \frac{1}{2)}\in \partial M \times [0,1)$
+  using the collar.
+  Let
+  \[
+    M_1 \coloneqq M \setminus (\partial M \times [0, 1/2)
+    \qquad
+    M_2 \coloneqq \partial M \times [0, 1/2]
+  .\]
+  Then define
+  \[
+    M_0 \coloneqq M_1 \cap M_2 = \partial M \times \set{ 1/2 } 
+  \]
+  and consider the diagram
+  \[
+    \begin{tikzcd}
+      (M, \partial M)
+      \ar[swap]{d}{}
+      \ar{r}{}
+      &
+      M_1 \cup _{M_0} (M_2, \partial M)
+      \ar{d}{}
+      \\
+      (M, M\setminus \set{ x } )
+      \ar[swap]{r}{}
+      &
+      (M_1, M_1 \setminus \set{ x } ) \cup _{M_0, M_0 \setminus \set{ x } } (M_2, M_2 \setminus \set{ x } )
+    \end{tikzcd}
+  .\]
+  Now, we get a morphism of Mayer-Vietoris sequences
+  \[
+    \begin{tikzcd}
+      H_d(M, \partial M)
+      \ar{r}
+      &
+      H_{d-1}(M_0)
+      \ar{rr}{}
+      &
+      &
+      H_{d-1}(M_1) \oplus H_{d-1}(M_2, \partial M)
+      \\
+      H_d(M, M \setminus \set{ x })
+      \ar{r}
+      &
+      H_{d-1}(M_0, M_0\setminus \set{ x } )
+      \ar{rr}{}
+      &
+      &
+      H_{d-1}(M_1, M_1 \setminus \set{ x } )
+      \oplus
+      H_{d-1}(M_2, M_2 \setminus \set{ x } )
+    \end{tikzcd}
+  \]
+  We see that for $i = 1$, $2$ that $M_i \\\set{ x } \to M_i$
+  is a homotopy equivalence, and thus
+  $H_\chainbullet (M_i, M_i \setminus \set{ x })  = 0$.
+  Also note that
+  $H_d(M, \partial M) \to H_d(M, M\setminus \set{ x } )$
+  is an isomorphism by 8.7\todoref.
+
+  Now consider the map $\varphi \colon M \to  M$
+  by interval resealing, squashing $\partial M \times [0, 1/2]$
+  to $\partial M$ and stretching $\partial M \times [1/2,]$.
+  This gives a morphism of excisive triads
+  \[
+    \begin{tikzcd}
+      (M, \partial M)
+      \ar[swap]{d}{}
+      \ar{r}{}
+      &
+      M_1 \cup _{M_0} (M_2, \partial M)
+      \ar{d}{}
+      \\
+      (M, \partial M)
+      \ar[swap]{r}{}
+      &
+      M \cup _{\partial M} (\partial M, \partial M)
+    \end{tikzcd}
+  \]
+  We note that $M_0 \to \partial M$ is just an isomorphism,
+  and that $(\partial M, \partial M)$ is trivial,
+  so that the Mayer-Vietoris sequence will just be
+  the long exact sequence of pairs.
+
+  Moreover, $\varphi $ restricts to some morphism
+  $\varphi \colon  (M_0, M_0 \setminus \set{ x } )
+  \to (\partial M, \partial M \setminus \set{ y } $,
+  giving us another induced map on Mayer-Vietoris-sequences.
+  Now we see that the morphism
+  \[
+    H_d(M, \partial M) \xrightarrow{\partial }
+    H_{d-1}(\partial M)
+    \xrightarrow{f_y}
+    H_{d-1}(\partial M, \partial M \setminus \set{ y } )
+  \]
+  is an isomorphism.
+  Thus, $f_y(\partial [M, \partial M])$ is a generator for each $y\in \partial M$,
+  but this is just the statement that $\partial [M, \partial M]$
+  is a fundamental class of $\partial M$.
+\end{proof}
+
+\begin{editor}
+  Just a placeholder to fix numbering for now.
+  \missingfigure{picture}
+\end{editor}
+
+\begin{definition}[Bordism]
+  Let $M$ and $M'$ be two closed, $d$-dimensional,
+  \emph{oriented} manifolds.
+  A \vocab{bordism} $W\colon M \to  M'$
+  is a $(d+1)$-dimensional, compact, \emph{oriented}
+  manifold with
+  \[
+    \partial W \cong M \sqcup (-M')
+  .\],
+  where $-M'$ denotes $M'$ with reversed orientation,
+  and $\partial W$ carries the induced orientation of $W$.
+
+  We say that $M$ and $M'$ are \vocab{bordant},
+  if there exists a bordism $W\colon  M \to  M'$.
+\end{definition}
+
+\begin{lemma}+
+  Bordism is an equivalence relation of closed, oriented manifolds.
+\end{lemma}
+\begin{proof}
+  For reflexivity, notice that we can take
+  the projection $M \times [0,1] \colon M \to  M$
+  and orient it in a natural way.
+
+  For symmetric, if $W\colon  M \to  M'$,
+  reversing the orientation of $W$ yields
+  a bordism $-W \colon M' \to  M$.
+
+  For transitivity, if $W\colon M \to  M'$
+  and $W' \colon M' \to  M''$ are two bordisms,
+  then $W' \circ W \coloneqq W \cup _{M'} W'$
+  is a bordism $M \to  M''$.
+\end{proof}
+
+\begin{lemma}
+  Denote
+  \[
+    \Omega_d \coloneqq \faktor{\set{ \text{$d$-dim, oriented manifolds} } }{\text{bordism}}
+  .\]
+  Then
+  \begin{enumerate}[h]
+    \item $\Omega_d$ is an abelian group by setting
+      \[
+        [M] + [N] = [M \sqcup N]
+      \],
+      called the \vocab{$d$-dimensional bordism group}. 
+    \item $\Omega \coloneqq  \directsum_{d\geq 0} \Omega_d$
+      is a graded-commutative ring, called the
+      \vocab{bordism ring}.
+  \end{enumerate}
+\end{lemma}
+\todo{change environment}
+\todo{note on set}
