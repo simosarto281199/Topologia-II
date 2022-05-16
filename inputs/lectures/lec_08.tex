@@ -44,22 +44,6 @@
   $σ(s) = p_{+} - p_{-} \in \mathbb{Z}$.
 \end{definition}
 
-\begin{example}*
-  Consider $s_{2, S^2 \times S^2, \mathbb{R}}$,
-  represented by the matrix
-  $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $.
-
-  This has $(x,x)$ with Eigenvalue $1$
-  and $(x,-x)$ with Eigenvalue $-1$.
-  Thus,
-  \[
-    σ(S^2\times S^2) = 1 - 1 = 0
-  \] 
-\end{example}
-
-\todo{hyperbolic form}
-\todo{matrix gives intersections of the generators!}
-
 \begin{definition}[Signature of manifold]
   \label{def:signature-of-manifold}
   Let $M$ be a closed, oriented, connected,
@@ -74,8 +58,24 @@
   If the dimension of $M$ is not divisible by $4$,
   define $σ(M^d) \coloneqq 0$.
 \end{definition}
-
 \todo{verify definition non-connectedness}
+
+\begin{example}
+  Consider $s_{1, S^2 \times S^2, \mathbb{R}}$,
+  represented by the matrix
+  $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $.
+
+  This has $(x,x)$ with Eigenvalue $1$
+  and $(x,-x)$ with Eigenvalue $-1$.
+  Thus,
+  \[
+    σ(S^2\times S^2) = 1 - 1 = 0
+  \] 
+\end{example}
+
+\todo{hyperbolic form}
+\todo{matrix gives intersections of the generators!}
+
 
 \begin{oral}
   At some point, we will introduce manifolds with boundary.
@@ -225,6 +225,7 @@ $i \simeq j$ if $\exists n$ such that $i = \pm n^2 j$.
 Let $t_q \coloneqq \left< a, β(a) \cap [L(p,q)] \right> \in \mathbb{Z}/p / \simeq$.
 
 \begin{lemma}
+  \label{lm:relation-lense-spaces-t-q-is-q-times-t-1}
   We have $t_q \simeq q t_1$.
 \end{lemma}
 

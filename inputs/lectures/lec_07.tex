@@ -146,9 +146,30 @@
 \begin{definition}+
   We call an $R$-linear map  $s\colon P\times N \to R$ a \vocab{perfect pairing}
   if the adjoint maps
+    \begin{equation*}
+    \Psi _1: \left| \begin{array}{c c l} 
+    P & \longrightarrow & \Hom_R(N,R) \\
+    p & \longmapsto &  s(p,\dash)
+    \end{array} \right.
+  \end{equation*}
+  and
+    \begin{equation*}
+    Psi_2: \left| \begin{array}{c c l} 
+    N & \longrightarrow & \Hom_R(P,R) \\
+    n & \longmapsto &  s(\dash,n)
+    \end{array} \right.
+  \end{equation*}
+  are isomorphisms.
+  The pairing is called \vocab{non-degenerate} if the $\Psi_i$ are injective.
+  If  $P=N$, a perfect pairing is called a \vocab{unimodular form} on $P$.
 \end{definition}
+\todoquestion{how is the adjunction?}
 
 \begin{lemma}
   \label{lm:intersection-pairing-is-perfect-pairing}
   $\overline{s_{p,M,R}}$ is a perfect pairing.
 \end{lemma}
+\begin{proof}
+  Omitted for now
+  \todo{proof of perfect pairing}
+\end{proof}

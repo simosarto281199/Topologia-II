@@ -1,0 +1,333 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mi 04 Mai 2022}{Untitled}
+
+\begin{theorem}
+  If $L(p,q) \simeq L(p,q')$,
+  then there exists  $n$ such that  $q\equiv \pm n^2q' \mod p$.
+\end{theorem}
+
+\begin{proof}
+  Any such homotopy equivalence
+  $h\colon  L(p,q) \to L(p,q')$ has degree $\pm 1$.
+  Pick a generator $b\in H^1(L(p,q') ; \mathbb{Z}/p)$,
+  then also $a\coloneqq  h^*(b)$ is a generator of $H^1(L,pq); \mathbb{Z}/p)$,
+  and we may compute that
+  \begin{IEEEeqnarray*}{rCl}
+    t_q
+    &\simeq&
+    \left< a \cup β(a), [L(p,q)] \right> 
+    =
+    \left< h^*b \cup β(h^*b), [L(p,q)] \right> 
+    \\
+    &=&
+    \left< h^* (b\cup β(b), L[(p,q)] \right> 
+    =
+    \left< b\cup β(b), h_* [L(p,q)] \right> 
+    \\
+    &=&
+    \pm \left< b\cup β(b), [L(p,q')] \right> 
+    \simeq
+    t_{q'}
+  \end{IEEEeqnarray*}
+  Hence by
+  \autoref{lm:relation-lense-spaces-t-q-is-q-times-t-1}
+  we deduce that $qt_1 \simeq t_q \simeq t_{q'} \simeq q't_1$.
+  But now as $t_1$ is a generator of $\mathbb{Z}/p$,
+  by the definition of $\simeq$ we deduce that
+  $q \equiv  \pm n^2q' \mod p$
+  for some $n\in \mathbb{N}$.
+\end{proof}
+
+
+\begin{corollary}
+  There exist orientable, closed, connected, $3$-dimensional manifolds
+  $M$ and  $N$, such that
+  \begin{enumerate}[h]
+    \item $M$ and  $N$ have the same fundamental group
+    \item  $M$ and  $N$ have the same homology groups
+    \item  $M$ and  $N$ are not homotopy equivalent.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  We can check that $2$ is not  $\pm n^2 \mod 5$ for any $n$,
+  thus  $1 \not \simeq 2 \in \mathbb{Z}/5 / \simeq$.
+  This immediately gives us that the lense spaces $L(5,1)$ and  $L(5,2)$
+  are not homotopy equivalent by
+  \autoref{thm:homotopy-equivalent-lense-spaces-same-invariant}.
+
+  We have already computed that they have the same fundamental
+  and homology groups.
+\end{proof}
+
+\begin{remark}
+  \begin{enumerate}[1.]
+    \item 
+      The converse of
+      \autoref{thm:homotopy-equivalent-lense-spaces-same-invariant}
+      is also true.
+      That is, if $q \simeq q'$,
+      then also  $L(p,q) \simeq L(p,q')$  are homotopy equivalent.
+    \item
+      It can be shown that two lense spaces $L(p,q)$ and  $L(p,q')$
+      are homeomorphic if and only if  $q' \equiv \pm q^{\pm 1} \mod p$.
+  \end{enumerate}
+\end{remark}
+
+
+
+\section{Additive and abelian categories}
+
+We will study some category theory for now.
+Although this is not strictly necessary for the rest of the lecture,
+we will show that the category of $R$-modules is complete and cocomplete,
+that is, it has all (small) limits and colimits.
+
+While this can also be shown by hand directly,
+this gives some more general approach.
+
+
+\begin{definition}+
+  An object in a category $\mathcat{C}$ is called a \vocab{zero object}
+  if it is both initial and terminal.
+\end{definition}
+
+\begin{remark}+
+  Note that \enquote{the} zero object is unique up to unique isomorphism,
+  as terminal and initial objects are.
+\end{remark}
+
+\begin{notation}
+  If $\mathcat{C}$ is a category with a zero object,
+  we usually denote this object by $0$.
+  Also note that for any two objects  $X_0$ and $X_1$,
+  there is a unique map
+  \[
+  X_0 \to  0 \to  X_1
+  \]
+  as $0$ is both terminal and initial,
+  which we want to call the  \vocab{zero map}
+  and denote by $0$ as well.
+\end{notation}
+
+
+\begin{definition}
+  A category $\mathcat{A}$ is called \vocab{semi-additive} if
+  \begin{enumerate}[p]
+    \item $\mathcat{A}$ has a zero object
+    \item $\mathcat{A}$ has all finite products and coproducts
+    \item For any two objects $X_0$ and $X_1$, the canonical map
+      \[
+      X_0 \coprod X_1 \to  X_0 \prod X_1
+      ,\]
+      induced by the maps  $X_i \xrightarrow{\id} X_i$
+      and $X_i \xrightarrow{0} X_{i+1}$,
+      is an isomorphism.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  For semi-additive categories, we usually denote the (co)product of
+  $X$ and  $Y$ by  $X \oplus Y$ and call it the \vocab{biproduct}
+  or the \vocab{sum} of $X$ and  $Y$. 
+
+  As we will see in the exercises, we can use this to equip $\Hom(X,y)$
+  with a canonical structure of a commutative monoid.
+\end{remark}
+
+\begin{remark}*
+  We will briefly talk about \vocab{enriched} categories now.
+  As a precise definition of an enriched category is quite long
+  (although not too complicated),
+  we won't state it here in full length and rather refer to the
+  nLab by
+  \cite{nlab:enriched+category}.
+
+  For us, we want to think of a category $\mathcat{C}$ enriched
+  over some category $\mathcat{V}$ as some category whose
+  $\Hom$-objects  $\mathcat{C}(X,Y)$ are objects in $\mathcat{V}$,
+  and where composition of maps
+  $\mathcat{C}(X,Y) \times \mathcat{C}(Y,Z) \to \mathcat{C}(X,Z)$
+  is given in some \enquote{nice} way.
+  
+  To be more precise, $\mathcat{V}$ has to have some notion of
+  a tensor product, and we want composition to be a map
+  $\mathcat{C}(X,Y) \otimes \mathcat{C}(Y,Z) \to \mathcat{C}(X,Z)$.
+\end{remark}
+
+\begin{definition}
+  A category $\mathcat{A}$ is called \vocab{pre-additive} if it is enriched
+  over the category of abelian groups.
+
+  To be precise, this means that every $\Hom$-set $\mathcat{A}(A,B)$ 
+  is an abelian group and composition
+  $\mathcat{A}(X,Y) \oplus \mathcat{A}(Y,Z) \to \mathcat{A}(X,Z)$
+  is bilinear.
+\end{definition}
+
+\begin{remark}*
+  The notion of \enquote{tensor products} in  $\Ab$
+  is just the direct sum (or biproduct) $\oplus$.
+\end{remark}
+
+\begin{lemma}
+  Let $\mathcat{A}$ be a semi-additive category.
+  If the monoids $\Hom(X,Y)$ are abelian groups for all  $X$,  $Y$,
+  $A$ is additive.
+
+  A functor between additive categorise is additive if and only
+  if it preserves all biproducts.
+\end{lemma}
+
+\begin{proof}
+  Exercise.
+\end{proof}
+
+\begin{example}
+  The category of $R$-modules is an additive category.
+  Moreover, the full subcategories of finitely generated,
+  projective or free modules are additive as well.
+\end{example}
+
+\begin{definition}[Kernel]
+  \label{def:kernel}
+  Let $\mathcat{A}$ be an additive category.
+  The \vocab{kernel} of a map $f\colon X\to Y$
+  is the equalizer of $f$ and  $0$.
+  That is, the kernel is a pair  $(\ker f, \varphi)$
+  where $\varphi \colon \ker f \to X$, such that the following
+  universal property holds:
+  \[
+    \begin{tikzcd}
+      &
+      A
+      \ar[dashed, swap]{dl}{\exists !}
+      \ar{d}{g}
+      \ar{dr}{0}
+      \\
+      \ker f
+      \ar{r}{\varphi}
+      &
+      X
+      \ar{r}{f}
+      &
+      Y
+    \end{tikzcd}
+  \]
+\end{definition}
+
+\begin{definition}+[Cokernel]
+  \label{def:cokernel}
+  Define the \vocab{cokernel} of a morphism $f\colon X\to Y$
+  in an additive category $\mathcat{A}$ to be the coequalizer
+  of $f$ and  $0$.
+\end{definition}
+
+\begin{definition}
+  A \vocab{pre-abelian} category is an additive category
+  sch that every morphism has a kernel and cokernel.
+\end{definition}
+
+\begin{example}
+  The category of $R$-modules is pre-abelian.
+
+  The full subcategory of finitely generated $R$-modules
+  is pre-abelian if  $R$ is noetherian
+  (in particular for  principal ideal domains $R$).
+
+  The category of free or projective $R$- modules is usually
+  not pre-abelian,
+  as e.g.~the cokernel of $\mathbb{Z} \xrightarrow{\cdot 2} \mathbb{Z}$
+  is not projective.
+\end{example}
+
+\begin{proposition}
+  \label{prop:limits-in-pre-abelian-category}
+  Let $\mathcat{A}$ be a pre-abelian category.
+  Then, $\mathcat{A}$ has all finite limits and colimits.
+
+  If $\mathcat{A}$ has all products (coproducts),
+  then $\mathcat{A}$ has all limits (colimits).
+\end{proposition}
+
+\begin{proof}
+  We check that in an additive category,
+  the equalizer (coequalizer) of $f$,  $g\colon X \to Y$
+  is the same as the equalizer (coequalizer) of $f-g$ and $0$.
+
+  Hence, by definition, pre-abelian categories have all equalizers
+  and coequalizers.
+
+  Now, the proposition immediately follows from
+  \autoref{lm:products-and-equalizers-give-limits},
+  as pre-abelian categories have finite limits and colimits by definition.
+\end{proof}
+
+\begin{lemma}
+  \label{lm:products-and-equalizers-give-limits}
+  Let $\mathcat{C}$ be a category that has all (finite) products (coproducts)
+  and equalizers (coequalizers).
+  Then, $\mathcat{C}$ has all (finite) limits (colimits).
+\end{lemma}
+
+\begin{proof}
+  We only prove the statement for products,
+  dualizing yields the case for coproducts.
+
+  Assume that $\mathcal{F}\colon \mathcat{I} \to  \mathcat{C}$ is a diagram.
+  Now consider the diagram
+  \[
+  \begin{tikzcd}
+    &
+    &[3em]
+    &
+    \mathcal{F}A
+    \ar{d}{f}
+    \\
+    \eq(s,t)
+    \ar{r}{\varphi }
+    &
+    \prod\limits_{A \in \Ob(\mathcat{I})} \mathcal{F}A
+    \ar[shift left, near start]{r}{s}
+    \ar[shift right, swap, near start]{r}{t}
+    \ar[bend left = 30]{urr}{\pr_A}
+    \ar[bend right = 30, swap]{drr}{\pr_B}
+    &
+    \smashoperator{\prod\limits_{f\colon A \to B \in  \Mor (\mathcat{I}) }} \; \mathcal{F}B
+    \ar{r}{\pr_f}
+    &
+    \mathcal{F}B
+    \\
+    &
+    &
+    &
+    \mathcal{F}B
+    \ar[swap]{u}{=}
+  \end{tikzcd}
+  ,\]
+  where we mean that the top diagram commutes with $s$
+  and the bottom with $t$.
+  Note that this defines $s$ and  $t$ by the universal properties
+  of the product uniquely.
+  Also note that all occurring products are finite iff  $\mathcat{I}$ is finite.
+
+  Now, some standard universal property checking yields that
+  the equalizer of $s$ and  $t$ has the universal property of
+  $\lim \mathcal{F}$.
+\end{proof}
+
+\begin{corollary}
+  The category of $R$-modules is complete and cocomplete.
+\end{corollary}
+
+\begin{example}
+  Working through the proof, we see that the colimit
+  of some diagram $\mathcal{M}\colon \mathcat{I} \to \Mod_R$
+  is given by the quotient
+  \[
+  \faktor{\directsum_{i \in I} M_i}{\simeq}
+  \]
+  where the equivalence relation is generated by
+  $\mathcal{M}(f)(x) \sim y$ for $f\colon M_i \to M_j$
+  and $x\in M_i$, $y\in M_j$.
+\end{example}
