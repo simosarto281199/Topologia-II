@@ -235,3 +235,111 @@
 \end{lemma}
 \todo{change environment}
 \todo{note on set}
+\todo{stuff on unoriented version}
+
+\begin{theorem}[Poincarè-Lefschetz]
+  Let $M$ be a $d$-dimensional, compact, orientable manifold with boundary.
+  Then,
+  \[
+    \dash \cap [M, \partial M]\colon H^p(M, \partial M) \to H_{d-p}(M)
+  \]
+  is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+  The family $K_n \coloneqq M \setminus (\partial M \times [0, 1/n))_{n\geq 1}$
+  is cofinal in the system of compact subsets of $M^{\circ}$.
+  Thus,
+  \[
+    H_{cs}^p(M^{\circ})
+    \cong
+    \lim_{n\in \mathbb{N}} H^p(M^{\circ}, M^{\circ} \setminus K_n)
+    \cong
+    \lim_{n\in \mathbb{N}} H^p(M, M\setminus K_n)
+  .\]
+  Also note that we have a system of isomorphisms
+  \[
+    H^p(M, M\setminus K_1) \to H^p(M, M\setminus K_2) \to \ldots
+  \]
+  Thus, we get an induced isomorphism
+  \[
+    H_{CS}^p(M^{\circ})
+    \xrightarrow{\varphi }
+    H^p(M, \partial M)
+  .\]
+  Note that this already yields that we have an abstract
+  isomorphism, but not necessarily given by cupping.
+
+  Now the fundamental class $[M, \partial M]$ gives us
+  generators $μ_n \in H_d(M, M\setminus K_n)
+  \cong H_d (M^{\circ}, M^{\circ} \setminus K_n)$
+  and we know that for all $α\in H^p(M, M\setminus K_n)$,
+  $α \cap μ^n = \varphi _n(α) \cap [M, \partial M]$.
+  \todo{check this, adjunction formula!}
+  As poincare duality was constructed by $\lim (- \cap μ_n)$,
+  we deduce that there is some commutative diagram
+  \[
+    \begin{tikzcd}
+      H_{cs}^p (M^{\circ})
+      \ar[swap]{d}{PD}
+      \ar{r}{\varphi }
+      &
+      H^p(M, \partial M)
+      \ar{d}{- \cap [M, \partial M]}
+      \\
+      H_{d-p}(M^{\circ})
+      \ar[swap]{r}{}
+      &
+      H_{d-p}(M)
+    \end{tikzcd}
+  .\]
+\end{proof}
+
+\begin{theorem}[Poincarè-Lefschetz 2]
+  Let $M$ be a compact, orientable, $d$-dimensional manifold
+  with boundary.
+  Then,
+  \[
+    - \cap [M, \partial M] \colon H^p(M) \to H_{d-p}(M, \partial M)
+  \]
+  is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+  Very generally, the following diagrams commute
+  for each pair $(X,A)$.
+  \[
+    \begin{tikzcd}
+      H^k(X) \tensor H_{n+k}(X,A)
+      \ar[swap]{d}{\cap }
+      \ar{r}{(-1)^k \cdot (i^* \tensor \partial )}
+      &
+      H^k(A) \tensor H^{n+k-1}(A)
+      \ar{d}{\cap }
+      \\
+      H_n(X,A)
+      \ar[swap]{r}{\partial }
+      &
+      H_{n-1}(A)
+    \end{tikzcd}
+  \]
+  This follows using $\partial (\varphi  \cap σ) = (-1)^{\abs{\varphi } }(\varphi  \cap \partial σ - δ \varphi  \cap σ)$.
+  \todo{check this}.
+  \begin{tikzcd}
+    H^k(A) \tensor H_{n+k-1}(A)
+    &
+    H^k(A) \tensor H_{n+k}(X,A)
+    \ar{l}{1 \tensor  \partial }
+    \ar{r}{δ \tensor 1}
+    &
+    H^{k+1}(X,A) \tensor H_{n+k}(X,A)
+    \ar{d}{\cap }
+    \\
+    H_{n-1}(A)
+    \ar{rr}{ι_*}
+    &
+    &
+    H_{n-1}(X)
+  \end{tikzcd}
+  using the same boundary formula.
+\end{proof}
