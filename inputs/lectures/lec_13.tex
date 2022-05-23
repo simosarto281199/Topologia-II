@@ -1,0 +1,164 @@
+%! TEX root = ../../master.tex
+\lecture[]{Mo 23 Mai 2022}{Untitled}
+
+
+\begin{theorem}
+  \label{thm:middle-dimensional-of-boundary-manifold-is-even}
+  Let $\mathbb{F}$ be a field.
+  Let $W^{2n+1}$ be an $\mathbb{F}$-orientable, compact
+  manifold with $\partial W = M$.
+  Then $\dim H^n(M; \mathbb{F})$ is even and
+  \[
+    \dim ( \ker ( i_*\colon H_n(M; \mathbb{F}) \to H_n (W; \mathbb{F}))
+    =
+    \dim ( \im (i^* \colon H^n(W;\mathbb{F}) \to H^n(M;\mathbb{F}))
+    =
+    \frac{1}{2} \dim H^n(M, \mathbb{F})
+  \]
+  Moreover, the $\cup $ of any two classes in
+  $\im i^* \subset H^n(M, F)$ is trivial.
+\end{theorem}
+
+\begin{proof}
+  Consider the following part of Poincaré duality:
+  \[
+    \begin{tikzcd}
+      H^n(W; \mathbb{F})
+      \ar{r}{i^*}
+      &
+      H^n(M ; \mathbb{F})
+      \ar{r}{δ}
+      \ar{d}{\blank \cap \left[M\right]}
+      &
+      H^{n+1}(W, M ; \mathbb{F})
+      \ar{d}{\blank \cap \left[W,M\right]}
+      \\
+      &
+      H_n(M ; \mathbb{F})
+      -\ar{r}{i_*}
+      &
+      H_n(W ; \mathbb{F})
+    \end{tikzcd}
+  \]
+  Hence $(\im i^*) \cap [M] = \ker i_*$.
+  In particular, $\dim ( \im i^*)) = \dim ( \ker ( i_*))$.
+  Thus,
+  \begin{IEEEeqnarray*}{rCl}
+    \rank ( i^* )
+    &=&
+    \dim \im (i^*)
+    =
+    \dim \ker (i_*)
+    =
+    \dim H_n (M ; \mathbb{F}) - \rank (i_*)
+    \\
+    &\stackrel{\text{UCT}}{=}&
+    \dim H_n(M ; \mathbb{F}) - \rank(i^*)
+    .
+  \end{IEEEeqnarray*}
+  The UCT part here comes from the naturality of the UCT,
+  giving us the commutative diagram
+  \[
+    \begin{tikzcd}
+      H^n(W;\mathbb{F})
+      \ar[swap]{d}{i^*}
+      \ar{r}{\cong}
+      &
+      \Hom (H^n(W;\mathbb{F}) ; \mathbb{F})
+      \ar{d}{i_*}
+      \\
+      H^n(M ; \mathbb{F})
+      \ar[swap]{r}{\cong}
+      &
+      \Hom (H_n(M ; \mathbb{F}) ; \mathbb{F})
+    \end{tikzcd}
+    .
+  \]
+  Thus indeed we have
+  \[
+    \dim H_n(M ; \mathbb{F}) = 2 \rank (i^*)
+    = 2 \dim ( \im i^*)
+    = 2 \dim ( \ker i_*)
+  .\]
+  Now, for any $i^*(α)$, $i^*(β) \in \im i^*$,
+  to show that $i^*(α) \cup i^*(β)$ is zero, it suffices
+  to compute
+  \begin{IEEEeqnarray*}{rCl}
+    i_*(i^*(α) \cup i^*(β)) \cap [M]
+    &=&
+    i_* i^*(α \cup β) \cap [M]
+    \\
+    &=& ( α \cup β) \cap i_* [M]
+    \\
+    &=& 0
+  \end{IEEEeqnarray*}
+  \todo{Complete proof, was not done in the lecture.}
+\end{proof}
+
+\begin{remark}
+  Replacing $\dim$ by $\rank$, we could have also formulated
+  the theorem for principal ideal domains,
+  in particular for $\mathbb{Z}$-coefficients.
+\end{remark}
+
+\begin{corollary}
+  If $M$ is the boundary of a compact manifold,
+  then the Euler characteristic $\chi(M)$ is even.
+\end{corollary}
+
+\begin{proof}
+  If $M$ is odd-dimensional,
+  then $\chi(M) = 0$ by an Exercise sheet.
+  By the same proof, in the even-dimensional case,
+  $\chi(M) \equiv \dim (H^n (M ; \mathbb{Z} / 2) \equiv 0 \mod 2$ by
+  \autoref{thm:middle-dimensional-of-boundary-manifold-is-even}.
+\end{proof}
+
+\begin{corollary}
+  The manifolds $\mathbb{R}\mathbb{P}^{2n}$ and $\mathbb{C}\mathbb{P}^{2n}$
+  are not boundaries of compact manifolds.
+\end{corollary}
+
+\begin{remark}
+  One could also say that the Euler characteristic $\mod 2$ is a
+  bordism-invariant.
+  Beware that the Euler characteristic itself is not,
+  consider e.g.~oriented surfaces.
+\end{remark}
+
+\begin{corollary}
+  If $M$ is the boundary of an oriented,
+  compact manifold, then $σ(M) = 0$
+  (with the induced orientation).
+\end{corollary}
+
+\begin{proof}
+  By definition, we can restrict to the case $\dim M \equiv 0 \mod 4$,
+  so let $\dim M = 4k$.
+  Then $\im i^* \subset H^{2k}(M ; \mathbb{R})$ is a Lagrangian $U$
+  for the intersection form $s_n$, i.e. $s_n$ vanishes on
+  $\im i^*$ by
+  \autoref{thm:middle-dimensional-of-boundary-manifold-is-even}
+  and $\dim ( \im i^*) = \frac{1}{2} \dim H^{2k}(M ; \mathbb{R})$.
+  Thus, $σ(M) = 0$.
+
+  Let $W^+$ and $W^-$ be the subspaces on which $s_n$ is
+  positive/negative definite.
+  Then $U\cap W^+ = U \cap W^- = 0$.
+  Thus, $\dim W^+$, $\dim W^- \leq \frac{1}{2} \dim H^n(M ; \mathbb{R})$
+  and thus $\dim W^+ = \dim W^- = \frac{1}{2} \dim H^n(M; \mathbb{R})$.
+\end{proof}
+
+\begin{corollary}
+  If $M$ is oriented bordant to $M'$,
+  then $σ(M) = σ(M')$.
+\end{corollary}
+
+\begin{proof}
+  We note that
+  \[
+    0 = σ ( \partial W)
+    = σ ( M \sqcup - M')
+    = σ(M) - σ(M')
+  \] 
+\end{proof}
