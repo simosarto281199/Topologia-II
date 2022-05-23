@@ -15,7 +15,8 @@
     =
     \frac{1}{2} \dim H^n(M, \mathbb{F})
   \]
-  Moreover, the $\cup $ of any two classes in
+  Moreover, the intersection form $s_n$ (with induced orientation on $M$)
+  of any two classes in
   $\im i^* \subset H^n(M, F)$ is trivial.
 \end{theorem}
 
@@ -84,13 +85,16 @@
   to show that $i^*(α) \cup i^*(β)$ is zero, it suffices
   to compute
   \begin{IEEEeqnarray*}{rCl}
-    i_*(i^*(α) \cup i^*(β)) \cap [M]
+    s_n(i^*(α) , i^*(β))
     &=&
-    i_* i^*(α \cup β) \cap [M]
+    \left< ι^*(α) \cup i^*(β), [M] \right> 
     \\
-    &=& ( α \cup β) \cap i_* [M]
+    &=&
+    \left< i^*(a \cup β), [M] \right> 
     \\
-    &=& 0
+    &=&
+    \left< α \cup β, \underbrace{i_*[M]}_{=0} \right> 
+    = 0
   \end{IEEEeqnarray*}
   \todo{Complete proof, was not done in the lecture.}
 \end{proof}
@@ -150,6 +154,7 @@
 \end{proof}
 
 \begin{corollary}
+  \label{cor:signature-is-bordism-invariant}
   If $M$ is oriented bordant to $M'$,
   then $σ(M) = σ(M')$.
 \end{corollary}
@@ -162,3 +167,108 @@
     = σ(M) - σ(M')
   \] 
 \end{proof}
+
+\begin{remark}
+  We can define the oriented bordism ring $\Omega_*$
+  with elements given by bordism classes of manifolds.
+  Addition is given by disjoint union and multiplication
+  by the products of manifolds.
+  The ring is graded commutative, since
+  $[M \times N] = (-1)^{\dim M \dim N} [ N \times M]$.
+
+  By \autoref{cor:signature-is-bordism-invariant}
+  and Exercise 5.4, the signature is a ring homeomorphism
+  $\Omega_* \xrightarrow{σ} \mathbb{Z}$.
+\end{remark}
+
+
+
+
+\section{Smooth manifolds}
+
+\begin{definition}
+  Let $M$ be a $d$-dimensional manifold.
+  A \vocab{chart} is a homeomorphism $h\colon U \to U'$
+  from an open $U\subset M$ to $U'\subset \mathbb{R}^d$
+  (or $\mathbb{R}^d_+$).
+  A collection of charts $\set{ h_α \colon  U_α \to U_{α'} } $
+  is an \vocab{atlas} if $\bigcup_{α} U_α = M$.
+
+  For two charts $h_α$ and $h_β$, there is a \vocab{transition map}
+  \[
+    τ_{α,β} \colon h_β \circ h_α ^{-1}
+    \colon
+    h_α ( U_α \cap U_β) \to h_β ( U_α \cap U_β)
+  \] 
+\end{definition}
+
+\begin{definition}
+  An atlas on $M$ is called \vocab{smooth} if all
+  transition maps are smooth, i.e.~in $C^{\infty}$.
+
+  A smooth manifold is a manifold $M$ together with a
+  maximal smooth atlas.
+\end{definition}
+
+\begin{remark}+
+  Note that a smooth atlas determines a maximal smooth atlas
+  in a unique way by adding all compatible charts.
+\end{remark}
+
+\begin{example}
+  Consider $\mathbb{R}^d$ with $\set{ \id_{\mathbb{R}^d} } $.
+\end{example}
+
+\begin{example}
+  On $S^d \subset \mathbb{R}^{d+1}$,
+  we can define charts as follows:
+
+  For $i\in \set{ 1, \ldots, d+1 }$ let
+  $U_i^+ \coloneqq \set{ x\in S^d \suchthat x_i > 0 } $
+  and $U_i^- \coloneqq \set{ x\in S^d | x_i < 0 }$.
+
+  Consider the charts
+  \begin{equation*}
+      h_i^{\pm}: \left| \begin{array}{c c l} 
+    U_i^{\pm} & \longrightarrow & \mathbb{R}^d \\
+    x & \longmapsto &  (x_1, \ldots, \hat{x}_i, \ldots, x_{d+1})
+    \end{array} \right.
+  \end{equation*}
+  with inverses
+  \[
+    (x_1,\dotsc, x_d)
+    \mapsto
+    \left(x_1, \dotsc, x_{i-1}, \pm \sqrt{1 - \sum_{j=1}^d x_j^2}, x_i, \dotsc, x_d\right)
+  \]
+  where of course the chosen sign depends on the sign of $U_i$.
+
+  The transition maps are thus given by deleting an entry and
+  adding $\pm \sqrt{1 - \sum x_j^2}$ somewhere else.
+
+  Thus, we get a smooth structure.
+\end{example}
+
+\begin{definition}
+  A continuous map $f\colon M\to N$
+  between smooth manifolds is called \vocab{smooth}
+  if for each point $p\in M$ there are charts
+  $h\colon U\to U'$, $h'\colon V\to V'$
+  with $p\in U$ and $f(p) \in V$
+  such that $h' \circ  f \circ  h^{-1}$ is smooth.
+
+  A \vocab{diffeomorphism} is a smooth map with smooth
+  inverse.
+\end{definition}
+
+\begin{oral}
+  Note that this definition is equivalent to saying
+  that for all such charts $h$ and $h'$,
+  the composition is smooth, since the transition maps
+  are smooth.
+\end{oral}
+
+\begin{remark}
+  For smooth manifolds $M$ and $N$,
+  there are canonical smooth structures on $M \coprod N$
+  and $M \times N$.
+\end{remark}
